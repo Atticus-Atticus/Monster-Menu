@@ -12,7 +12,11 @@ config_version=5
 
 config/name="Monster Menu"
 config/features=PackedStringArray("4.6", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://Assets/Sprites/icon.svg"
+
+[autoload]
+
+Globals="*uid://bwae0c3pn0vx3"
 
 [physics]
 
