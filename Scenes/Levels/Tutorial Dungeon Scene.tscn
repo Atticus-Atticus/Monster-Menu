@@ -1,3 +1,46 @@
 [gd_scene format=3 uid="uid://qoph1ir5amve"]
 
-[node name="Node3D" type="Node3D" unique_id=424758510]
+[ext_resource type="Texture2D" uid="uid://rgboq7ga6jhb" path="res://Assets/Sprites/icon.svg" id="1_rli08"]
+[ext_resource type="PackedScene" uid="uid://dyonu5gdbindm" path="res://Scenes/Player/test_player_scene.tscn" id="2_mykdr"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rli08"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_mykdr"]
+sky_material = SubResource("ProceduralSkyMaterial_rli08")
+
+[sub_resource type="Environment" id="Environment_xqf5a"]
+background_mode = 2
+sky = SubResource("Sky_mykdr")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xqf5a"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mykdr"]
+albedo_texture = ExtResource("1_rli08")
+
+[sub_resource type="BoxMesh" id="BoxMesh_gpdna"]
+
+[node name="ControlNode" type="Node3D" unique_id=424758510]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1002400733]
+environment = SubResource("Environment_xqf5a")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=382567987]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Level Block Out" type="StaticBody3D" parent="." unique_id=93866289]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level Block Out" unique_id=1619142058]
+transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, 0, 0, 0)
+shape = SubResource("BoxShape3D_xqf5a")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Level Block Out/CollisionShape3D" unique_id=751049942]
+material_override = SubResource("StandardMaterial3D_mykdr")
+mesh = SubResource("BoxMesh_gpdna")
+
+[node name="TestPlayer" parent="." unique_id=2119703179 instance=ExtResource("2_mykdr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.166031, 0)

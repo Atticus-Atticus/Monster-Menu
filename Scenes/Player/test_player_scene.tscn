@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://dyonu5gdbindm"]
+
+[ext_resource type="Script" uid="uid://c7l0eipkt0yx" path="res://Scripts/test_player_controls.gd" id="1_r5sbx"]
+[ext_resource type="Texture2D" uid="uid://c2rcdbe07c4xw" path="res://Assets/Temp Textures/TempTextureBlue.png" id="2_pveob"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pveob"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_lcj6v"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lcj6v"]
+albedo_texture = ExtResource("2_pveob")
+
+[sub_resource type="BoxMesh" id="BoxMesh_fwfrn"]
+
+[node name="TestPlayer" type="CharacterBody3D" unique_id=2119703179]
+script = ExtResource("1_r5sbx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1919892764]
+shape = SubResource("CapsuleShape3D_pveob")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D" unique_id=131855422]
+mesh = SubResource("CapsuleMesh_lcj6v")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1195583362]
+transform = Transform3D(0.38989025, 0, 0, 0, 0.40704435, 0, 0, 0, 0.35146463, 0, 0.30269665, -0.44680893)
+material_override = SubResource("StandardMaterial3D_lcj6v")
+mesh = SubResource("BoxMesh_fwfrn")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1849911685]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 5.1625795, 4.086043)
