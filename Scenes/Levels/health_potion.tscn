@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://dyulg7p3d3632"]
+
+[ext_resource type="Script" uid="uid://bib21o0j0iqsd" path="res://Scripts/health_potion.gd" id="1_wry1p"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wry1p"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_u541r"]
+material = SubResource("StandardMaterial3D_wry1p")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_422mq"]
+height = 1.6281738
+
+[node name="HealthPotion" type="Node3D" unique_id=114972891]
+transform = Transform3D(0.36483246, 0, 0, 0, 0.24299957, 0, 0, 0, 0.3508348, 0, 0, 0)
+script = ExtResource("1_wry1p")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=35187026]
+transform = Transform3D(0.17435479, 0, 0, 0, 0.1654958, 0, 0, 0, -0.18611228, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_u541r")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=885898923]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=2009589086]
+transform = Transform3D(0.20478922, 0, 0, 0, 0.20478922, 0, 0, 0, 0.20478922, 0, -0.00057496876, 0)
+shape = SubResource("CapsuleShape3D_422mq")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

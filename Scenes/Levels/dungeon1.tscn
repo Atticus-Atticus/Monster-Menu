@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://b0ml586edfo08"]
+
+[ext_resource type="PackedScene" uid="uid://co0j1h3knvxb8" path="res://Scenes/Player/player.tscn" id="1_imqn4"]
+[ext_resource type="PackedScene" uid="uid://cbb8i8nd8nro3" path="res://Scenes/Enemies/enemy.tscn" id="2_rop7o"]
+[ext_resource type="PackedScene" uid="uid://dyulg7p3d3632" path="res://Scenes/Levels/health_potion.tscn" id="3_4x7if"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_rop7o"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4x7if"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_dncr1"]
+
+[node name="Node3D" type="Node3D" unique_id=1347313948]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1532888527]
+physics_material_override = SubResource("PhysicsMaterial_rop7o")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1229222281]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, 0, 0, 0)
+shape = SubResource("BoxShape3D_4x7if")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1670396466]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, 0, 0, 0)
+mesh = SubResource("BoxMesh_dncr1")
+
+[node name="player" parent="." unique_id=1415999693 instance=ExtResource("1_imqn4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0492351, 0.91999996, 2.6392822)
+
+[node name="enemy" parent="." unique_id=1294842684 instance=ExtResource("2_rop7o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8504102, 0.62, 1.7035468)
+
+[node name="HealthPotion" parent="." unique_id=114972891 instance=ExtResource("3_4x7if")]
+transform = Transform3D(0.36483246, 0, 0, 0, 0.24299957, 0, 0, 0, 0.3508348, 2.7329202, 0.5402152, 2.1007037)
+
+[node name="HealthPotion2" parent="." unique_id=806211459 instance=ExtResource("3_4x7if")]
+transform = Transform3D(0.36483246, 0, 0, 0, 0.24299957, 0, 0, 0, 0.3508348, 2.7329202, 0.5402152, -2.0466247)
+
+[node name="HealthPotion3" parent="." unique_id=357502951 instance=ExtResource("3_4x7if")]
+transform = Transform3D(0.36483246, 0, 0, 0, 0.24299957, 0, 0, 0, 0.3508348, -3.2981749, 0.5402152, 2.1007037)

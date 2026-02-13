@@ -1,0 +1,134 @@
+[gd_scene format=3 uid="uid://cbb8i8nd8nro3"]
+
+[ext_resource type="Script" uid="uid://dwinwf5876buo" path="res://Scripts/enemy.gd" id="1_4gyqm"]
+[ext_resource type="Texture2D" uid="uid://b43oggiehh4m" path="res://Scenes/Enemies/slime_green.png" id="1_7k104"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_4gyqm"]
+radius = 0.039238676
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qi2p4"]
+atlas = ExtResource("1_7k104")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iifgy"]
+atlas = ExtResource("1_7k104")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_epg4t"]
+atlas = ExtResource("1_7k104")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3yqyl"]
+atlas = ExtResource("1_7k104")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dxifv"]
+atlas = ExtResource("1_7k104")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pwjut"]
+atlas = ExtResource("1_7k104")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4gyqm"]
+atlas = ExtResource("1_7k104")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wujgv"]
+atlas = ExtResource("1_7k104")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hb8ge"]
+atlas = ExtResource("1_7k104")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e1ltt"]
+atlas = ExtResource("1_7k104")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wujgv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qi2p4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iifgy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_epg4t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3yqyl")
+}],
+"loop": true,
+"name": &"awaken",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dxifv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pwjut")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4gyqm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wujgv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hb8ge")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e1ltt")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4gyqm"]
+size = Vector3(3, 0.001, 3)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4gyqm"]
+radius = 1.0170898
+height = 2.0341797
+
+[node name="enemy" type="CharacterBody3D" unique_id=1294842684]
+script = ExtResource("1_4gyqm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=195963784]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0017562732, -0.07889792, 0.011200264)
+shape = SubResource("SphereShape3D_4gyqm")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." unique_id=13233984]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.009057343)
+sprite_frames = SubResource("SpriteFrames_wujgv")
+animation = &"awaken"
+frame = 2
+frame_progress = 0.9213985
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1132139018]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.009057343)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=154565065]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.001, -0.06, 0)
+shape = SubResource("BoxShape3D_4gyqm")
+
+[node name="PlayerHitArea" type="Area3D" parent="." unique_id=1287710441]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerHitArea" unique_id=1061506315]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, -0.06159668, 0)
+shape = SubResource("CapsuleShape3D_4gyqm")
+
+[connection signal="animation_finished" from="AnimatedSprite3D" to="." method="_on_animated_sprite_3d_animation_finished"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
+[connection signal="body_entered" from="PlayerHitArea" to="." method="_on_player_hit_area_body_entered"]
