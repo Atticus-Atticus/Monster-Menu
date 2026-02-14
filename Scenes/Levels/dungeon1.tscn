@@ -30,10 +30,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0492351, 0.91999996, 2.639
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8504102, 0.62, 1.7035468)
 
 [node name="HealthPotion" parent="." unique_id=114972891 instance=ExtResource("3_4x7if")]
-transform = Transform3D(0.36483246, 0, 0, 0, 0.24299957, 0, 0, 0, 0.3508348, 2.7329202, 0.5402152, 2.1007037)
+transform = Transform3D(0.36483246, 0, 0, 0, 0.24299957, 0, 0, 0, 0.3508348, 2.2452652, 0.54021543, 3.414909)
 
-[node name="HealthPotion2" parent="." unique_id=806211459 instance=ExtResource("3_4x7if")]
-transform = Transform3D(0.36483246, 0, 0, 0, 0.24299957, 0, 0, 0, 0.3508348, 2.7329202, 0.5402152, -2.0466247)
+[node name="HealthPotion2" parent="." unique_id=1834574347 instance=ExtResource("3_4x7if")]
+transform = Transform3D(0.36483246, 0, 0, 0, 0.24299957, 0, 0, 0, 0.3508348, 3.9210966, 0.54021543, -1.0759335)
 
-[node name="HealthPotion3" parent="." unique_id=357502951 instance=ExtResource("3_4x7if")]
-transform = Transform3D(0.36483246, 0, 0, 0, 0.24299957, 0, 0, 0, 0.3508348, 2.7329202, 0.5402152, 2.1007037)
+[node name="HealthPotion3" parent="." unique_id=1859402791 instance=ExtResource("3_4x7if")]
+transform = Transform3D(0.36483246, 0, 0, 0, 0.24299957, 0, 0, 0, 0.3508348, -2.0174794, 0.5402152, -1.5704293)

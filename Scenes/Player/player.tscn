@@ -131,6 +131,8 @@ animations = [{
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hqtel"]
 bg_color = Color(1, 0, 0, 1)
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_xpcdj"]
+
 [node name="player" type="CharacterBody3D" unique_id=1415999693 groups=["player"]]
 script = ExtResource("1_xpcdj")
 
@@ -156,3 +158,13 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_hqtel")
 max_value = 3.0
 value = 3.0
 show_percentage = false
+
+[node name="MeleeHitbox" type="Area3D" parent="." unique_id=1507677051]
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeleeHitbox" unique_id=1156702933]
+transform = Transform3D(0.017728822, 0.4996856, 0, -0.4996856, 0.017728822, 0, 0, 0, 0.5, 0.06967048, -0.061941147, 0)
+shape = SubResource("SphereShape3D_xpcdj")
+
+[connection signal="body_entered" from="MeleeHitbox" to="." method="_on_melee_hitbox_body_entered"]

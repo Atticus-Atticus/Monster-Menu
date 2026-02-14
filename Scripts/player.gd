@@ -1,6 +1,9 @@
 extends CharacterBody3D
 
 @onready var anim = $AnimatedSprite3D
+var attacking := false
+@export var attack_damage := 1
+@export var attack_duration := 0.2
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 var HEALTH = 3
@@ -56,3 +59,26 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 	_setanimation(delta)
+
+func attack():
+	if attacking:
+		return
+
+	attacking = true
+	$MeleeHitbox.monitoring = true
+	$MeleeHitbox.monitorable = true
+
+	await get_tree().create_timer(attack_duration).timeout
+
+	$MeleeHitbox.monitoring = false
+	$MeleeHitbox.monitorable = false
+	attacking = false
+
+func _input(event):
+	if event.is_action_pressed("Attack"):
+		attack()
+
+func _on_melee_hitbox_body_entered(body: Node3D) -> void:
+	if body.has_method("take_damage"):
+		body.take_damage(attack_damage)
+		print ("enemy took damage")

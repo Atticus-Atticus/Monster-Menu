@@ -128,7 +128,11 @@ shape = SubResource("BoxShape3D_4gyqm")
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, -0.06159668, 0)
 shape = SubResource("CapsuleShape3D_4gyqm")
 
+[node name="DamageTimer" type="Timer" parent="." unique_id=1001526650]
+
 [connection signal="animation_finished" from="AnimatedSprite3D" to="." method="_on_animated_sprite_3d_animation_finished"]
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
 [connection signal="body_entered" from="PlayerHitArea" to="." method="_on_player_hit_area_body_entered"]
+[connection signal="body_exited" from="PlayerHitArea" to="." method="_on_player_hit_area_body_exited"]
+[connection signal="timeout" from="DamageTimer" to="." method="_on_damage_timer_timeout"]
