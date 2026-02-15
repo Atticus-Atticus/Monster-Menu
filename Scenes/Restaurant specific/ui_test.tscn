@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bdppl18wd8pe7"]
+
+[ext_resource type="Script" uid="uid://qa8nkyw76xih" path="res://Scripts/Restaurant/ui_test.gd" id="1_q5dee"]
+
+[node name="UI_Test" type="Control" unique_id=518497589]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_q5dee")
+
+[node name="Panel" type="Panel" parent="." unique_id=254167196]
+layout_mode = 0
+offset_left = 448.0
+offset_right = 1152.0
+offset_bottom = 192.0

@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://w3eucis2p24f"]
+
+[ext_resource type="Script" uid="uid://biaksfpvlr4ru" path="res://Scripts/Restaurant/npc_spawner.gd" id="1_x2p7u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4gaqi"]
+size = Vector2(200, 448)
+
+[node name="NPC_Spawner" type="Area2D" unique_id=872110875]
+script = ExtResource("1_x2p7u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=148692018]
+shape = SubResource("RectangleShape2D_4gaqi")

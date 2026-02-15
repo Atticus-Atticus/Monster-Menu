@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://k3vhdiuji6ls"]
+
+[ext_resource type="Script" uid="uid://cvnlln8frsdr0" path="res://Scripts/Restaurant/npc.gd" id="1_wxogn"]
+[ext_resource type="Texture2D" uid="uid://cu1ohgl87ltnj" path="res://Assets/Temp Assets/NPC Spritesheet.png" id="3_7duf1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3483m"]
+size = Vector2(200, 448)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3rofn"]
+atlas = ExtResource("3_7duf1")
+region = Rect2(0, 0, 300, 600)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6uqfc"]
+atlas = ExtResource("3_7duf1")
+region = Rect2(300, 0, 300, 600)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g5e83"]
+atlas = ExtResource("3_7duf1")
+region = Rect2(600, 0, 300, 600)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hl7va"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3rofn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6uqfc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g5e83")
+}],
+"loop": true,
+"name": &"Appearance",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_wxogn"]
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(512, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_7duf1"]
+resource_name = "Slide onto screen"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(840, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3rofn"]
+_data = {
+&"RESET": SubResource("Animation_wxogn"),
+&"Slide onto screen": SubResource("Animation_7duf1")
+}
+
+[node name="NPC" type="Area2D" unique_id=557610033]
+script = ExtResource("1_wxogn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=82528523]
+shape = SubResource("RectangleShape2D_3483m")
+
+[node name="Sprites" type="AnimatedSprite2D" parent="CollisionShape2D" unique_id=1883142121]
+position = Vector2(4, -72)
+sprite_frames = SubResource("SpriteFrames_hl7va")
+animation = &"Appearance"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=401031558]
+libraries/ = SubResource("AnimationLibrary_3rofn")
+autoplay = &"Slide onto screen"
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

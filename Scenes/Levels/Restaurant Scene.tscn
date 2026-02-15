@@ -1,3 +1,36 @@
 [gd_scene format=3 uid="uid://utjh5wocdp0q"]
 
-[node name="Node2D" type="Node2D" unique_id=1227212215]
+[ext_resource type="Texture2D" uid="uid://bbg136wlui53i" path="res://Assets/Temp Assets/Counter.png" id="1_6o2kf"]
+[ext_resource type="Texture2D" uid="uid://btoswl80m0rs7" path="res://Assets/Temp Assets/Background.png" id="1_27fwp"]
+[ext_resource type="PackedScene" uid="uid://k3vhdiuji6ls" path="res://Scenes/Restaurant specific/npc.tscn" id="2_eka65"]
+[ext_resource type="PackedScene" uid="uid://w3eucis2p24f" path="res://Scenes/Restaurant specific/npc_spawner.tscn" id="4_251mm"]
+[ext_resource type="PackedScene" uid="uid://b8egbrqblo66b" path="res://Scenes/Restaurant specific/test.tscn" id="5_mufko"]
+
+[node name="Restaurant" type="Node2D" unique_id=1227212215]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=396861858]
+
+[node name="Background" type="Sprite2D" parent="." unique_id=582939804]
+z_index = 1
+position = Vector2(1.5258789e-05, 2.0000107)
+scale = Vector2(1.28, 1.0733334)
+texture = ExtResource("1_27fwp")
+
+[node name="Counter" type="Sprite2D" parent="." unique_id=1250188291]
+z_index = 3
+position = Vector2(3.0517578e-05, 2)
+scale = Vector2(1.28, 1.0733334)
+texture = ExtResource("1_6o2kf")
+
+[node name="NPC" parent="." unique_id=557610033 instance=ExtResource("2_eka65")]
+visible = false
+z_index = 2
+position = Vector2(8, 72)
+
+[node name="NPC_Spawner" parent="." unique_id=872110875 instance=ExtResource("4_251mm")]
+z_index = 1
+position = Vector2(224, 48)
+
+[node name="Test" parent="." unique_id=1167416085 instance=ExtResource("5_mufko")]
+z_index = 4
+position = Vector2(-64, 16)

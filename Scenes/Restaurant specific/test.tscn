@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://b8egbrqblo66b"]
+
+[ext_resource type="Texture2D" uid="uid://cop6vssulw5xm" path="res://Assets/Temp Assets/Hobs.png" id="1_xs2sp"]
+[ext_resource type="Texture2D" uid="uid://eahgcnmumbmy" path="res://Assets/Temp Assets/Pan.png" id="2_4bdon"]
+[ext_resource type="Texture2D" uid="uid://b0gs3y2ltic15" path="res://Assets/Temp Assets/Slime.png" id="3_ikq41"]
+
+[node name="Test" type="Node2D" unique_id=1167416085]
+
+[node name="Hobs" type="Sprite2D" parent="." unique_id=1467710854]
+position = Vector2(51, 32.5)
+texture = ExtResource("1_xs2sp")
+
+[node name="Pan" type="Sprite2D" parent="." unique_id=1015686264]
+position = Vector2(-21, -31.5)
+texture = ExtResource("2_4bdon")
+
+[node name="Slime" type="Sprite2D" parent="." unique_id=1381656819]
+position = Vector2(-133, -47.5)
+texture = ExtResource("3_ikq41")

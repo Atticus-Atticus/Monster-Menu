@@ -11,12 +11,17 @@ config_version=5
 [application]
 
 config/name="Monster Menu"
+run/main_scene="uid://utjh5wocdp0q"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://Assets/Sprites/icon.svg"
 
 [autoload]
 
 Globals="*uid://bwae0c3pn0vx3"
+
+[gui]
+
+theme/default_font_multichannel_signed_distance_field=true
 
 [physics]
 
