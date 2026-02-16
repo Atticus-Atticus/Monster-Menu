@@ -12,7 +12,7 @@ material = SubResource("StandardMaterial3D_wry1p")
 height = 1.6281738
 
 [node name="HealthPotion" type="Node3D" unique_id=114972891]
-transform = Transform3D(0.36483246, 0, 0, 0, 0.24299957, 0, 0, 0, 0.3508348, 0, 0, 0)
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
 script = ExtResource("1_wry1p")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=35187026]

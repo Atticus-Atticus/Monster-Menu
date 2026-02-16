@@ -160,6 +160,7 @@ value = 3.0
 show_percentage = false
 
 [node name="MeleeHitbox" type="Area3D" parent="." unique_id=1507677051]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, -0.068133816, 0.10212712, 0.0035686865)
 monitoring = false
 monitorable = false
 
