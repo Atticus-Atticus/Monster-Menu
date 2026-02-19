@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cbb8i8nd8nro3"]
 
 [ext_resource type="Script" uid="uid://dwinwf5876buo" path="res://Scripts/enemy.gd" id="1_4gyqm"]
-[ext_resource type="Texture2D" uid="uid://b43oggiehh4m" path="res://Scenes/Enemies/slime_green.png" id="1_7k104"]
+[ext_resource type="Texture2D" uid="uid://b43oggiehh4m" path="res://Scenes/Enemies/PLACEHOLDER_slime.png" id="1_7k104"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_4gyqm"]
 radius = 0.039238676
@@ -128,6 +128,7 @@ transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, -0.06159668, 0)
 shape = SubResource("CapsuleShape3D_4gyqm")
 
 [node name="DamageTimer" type="Timer" parent="." unique_id=1001526650]
+wait_time = 0.75
 
 [connection signal="animation_finished" from="AnimatedSprite3D" to="." method="_on_animated_sprite_3d_animation_finished"]
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

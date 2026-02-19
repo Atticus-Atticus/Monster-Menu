@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bw30q83611rcv"
-path="res://.godot/imported/ATTACK 1.png-fd320963b29fc1de901605c96305fed3.ctex"
+uid="uid://d3ldjoxo8r82e"
+path="res://.godot/imported/JUMP.png-de6540d6eb9657769fd3cc700fd35858.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/Knight 2D Pixel Art/Sprites/with_outline/ATTACK 1.png"
-dest_files=["res://.godot/imported/ATTACK 1.png-fd320963b29fc1de901605c96305fed3.ctex"]
+source_file="res://Scenes/Knight 2D Pixel Art PLACEHOLDER/Sprites/without_outline/JUMP.png"
+dest_files=["res://.godot/imported/JUMP.png-de6540d6eb9657769fd3cc700fd35858.ctex"]
 
 [params]
 

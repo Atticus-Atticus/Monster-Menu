@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ck7sq4g4ufkso"
-path="res://.godot/imported/WALK.png-4374d273cdc6655424d708140737400c.ctex"
+uid="uid://bpum64b2chfgf"
+path="res://.godot/imported/HURT.png-1465a1e8e8b1a3740c8bfdf5abefb27a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/Knight 2D Pixel Art/Sprites/without_outline/WALK.png"
-dest_files=["res://.godot/imported/WALK.png-4374d273cdc6655424d708140737400c.ctex"]
+source_file="res://Scenes/Knight 2D Pixel Art PLACEHOLDER/Sprites/with_outline/HURT.png"
+dest_files=["res://.godot/imported/HURT.png-1465a1e8e8b1a3740c8bfdf5abefb27a.ctex"]
 
 [params]
 

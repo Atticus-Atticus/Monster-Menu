@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cniyjepf45j7j"
-path="res://.godot/imported/DEATH.png-adb5e6f56b1d04bb713d310c129bed9b.ctex"
+uid="uid://c2erviswilabi"
+path="res://.godot/imported/DEFEND.png-c1cc9ea211310aa98d5aaf8790d7102b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/Knight 2D Pixel Art/Sprites/with_outline/DEATH.png"
-dest_files=["res://.godot/imported/DEATH.png-adb5e6f56b1d04bb713d310c129bed9b.ctex"]
+source_file="res://Scenes/Knight 2D Pixel Art PLACEHOLDER/Sprites/with_outline/DEFEND.png"
+dest_files=["res://.godot/imported/DEFEND.png-c1cc9ea211310aa98d5aaf8790d7102b.ctex"]
 
 [params]
 

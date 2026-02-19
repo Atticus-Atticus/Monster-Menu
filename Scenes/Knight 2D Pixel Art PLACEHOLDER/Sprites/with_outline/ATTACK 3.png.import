@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c2erviswilabi"
-path="res://.godot/imported/DEFEND.png-a6e97ee1b5029a134f7eb07b6c5709f3.ctex"
+uid="uid://b75a14y5ouuaj"
+path="res://.godot/imported/ATTACK 3.png-47b297cad67f95e86581ba43c67a4ab1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/Knight 2D Pixel Art/Sprites/with_outline/DEFEND.png"
-dest_files=["res://.godot/imported/DEFEND.png-a6e97ee1b5029a134f7eb07b6c5709f3.ctex"]
+source_file="res://Scenes/Knight 2D Pixel Art PLACEHOLDER/Sprites/with_outline/ATTACK 3.png"
+dest_files=["res://.godot/imported/ATTACK 3.png-47b297cad67f95e86581ba43c67a4ab1.ctex"]
 
 [params]
 

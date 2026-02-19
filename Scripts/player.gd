@@ -1,12 +1,16 @@
 extends CharacterBody3D
 
 @onready var anim = $AnimatedSprite3D
-var attacking := false
+
 @export var attack_damage := 1
 @export var attack_duration := 0.2
+
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
-var HEALTH = 3
+var HEALTH = 5
+var attacking := false
+var slimeballs = 0
+
 func _setanimation(_delta):
 	if velocity.length() > 0.1:
 		anim.play("run")
@@ -32,6 +36,10 @@ func restore_health(hit_points):
 
 func die():
 	pass
+
+func add_slimeball(amount: int):
+	slimeballs += amount
+	print("Slimeballs:", slimeballs)
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.

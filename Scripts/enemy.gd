@@ -2,6 +2,7 @@ extends CharacterBody3D
 
 @export var speed := 1.0
 @export var max_health := 5
+@export var drop_scene: PackedScene = preload("res://slimeball.tscn")
 var health := max_health
 var player: CharacterBody3D = null
 var awake := false
@@ -39,11 +40,15 @@ func take_damage(amount: int):
 		die()
 
 func die():
+	if drop_scene:
+		var drop = drop_scene.instantiate()
+		drop.global_transform = global_transform
+		get_tree().current_scene.add_child(drop)
 	queue_free()
 
 
 func _on_area_3d_body_entered(body):
-	if body is CharacterBody3D:
+	if body.is_in_group("player"):
 		player = body
 		awake = true
 

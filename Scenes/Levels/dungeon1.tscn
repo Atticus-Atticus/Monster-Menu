@@ -4,13 +4,28 @@
 [ext_resource type="PackedScene" uid="uid://cbb8i8nd8nro3" path="res://Scenes/Enemies/enemy.tscn" id="2_rop7o"]
 [ext_resource type="PackedScene" uid="uid://dyulg7p3d3632" path="res://Scenes/Levels/health_potion.tscn" id="3_4x7if"]
 
+[sub_resource type="Environment" id="Environment_4x7if"]
+
+[sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_dncr1"]
+
+[sub_resource type="Compositor" id="Compositor_a0htm"]
+
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_rop7o"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4x7if"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a0htm"]
+albedo_color = Color(0.07058824, 0.5568628, 0.24313726, 1)
+
 [sub_resource type="BoxMesh" id="BoxMesh_dncr1"]
+material = SubResource("StandardMaterial3D_a0htm")
 
 [node name="Node3D" type="Node3D" unique_id=1347313948]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=192778069]
+environment = SubResource("Environment_4x7if")
+camera_attributes = SubResource("CameraAttributesPhysical_dncr1")
+compositor = SubResource("Compositor_a0htm")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1532888527]
 physics_material_override = SubResource("PhysicsMaterial_rop7o")
@@ -37,3 +52,9 @@ transform = Transform3D(0.36483246, 0, 0, 0, 0.24299957, 0, 0, 0, 0.3508348, 3.9
 
 [node name="HealthPotion3" parent="." unique_id=1859402791 instance=ExtResource("3_4x7if")]
 transform = Transform3D(0.36483246, 0, 0, 0, 0.24299957, 0, 0, 0, 0.3508348, -2.0174794, 0.5402152, -1.5704293)
+
+[node name="enemy2" parent="." unique_id=730684969 instance=ExtResource("2_rop7o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8504102, 0.62, -1.096385)
+
+[node name="enemy3" parent="." unique_id=198794558 instance=ExtResource("2_rop7o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8504102, 0.62, 3.6567178)

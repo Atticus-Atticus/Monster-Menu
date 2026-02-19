@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c4dvnv6g1f3so"
-path="res://.godot/imported/IDLE.png-b0c49ce6b80f0ed786302dc128006c15.ctex"
+uid="uid://cniyjepf45j7j"
+path="res://.godot/imported/DEATH.png-723728aa3d50267b2961eb8ac01989bd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/Knight 2D Pixel Art/Sprites/with_outline/IDLE.png"
-dest_files=["res://.godot/imported/IDLE.png-b0c49ce6b80f0ed786302dc128006c15.ctex"]
+source_file="res://Scenes/Knight 2D Pixel Art PLACEHOLDER/Sprites/with_outline/DEATH.png"
+dest_files=["res://.godot/imported/DEATH.png-723728aa3d50267b2961eb8ac01989bd.ctex"]
 
 [params]
 
