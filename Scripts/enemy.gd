@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 @export var speed := 1.0
-@export var max_health := 5
+@export var max_health := 3
 @export var drop_scene: PackedScene = preload("res://slimeball.tscn")
 var health := max_health
 var player: CharacterBody3D = null

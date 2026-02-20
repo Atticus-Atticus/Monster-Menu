@@ -1,15 +1,15 @@
 extends CharacterBody3D
 
 @onready var anim = $AnimatedSprite3D
+@export var attack_duration := 0.5
 
-@export var attack_damage := 1
-@export var attack_duration := 0.2
-
-const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
-var HEALTH = 5
 var attacking := false
-var slimeballs = 0
+
+func _ready():
+	# Update UI from PlayerData
+	$Camera3D/ProgressBar.max_value = Playerdata.max_health
+	$Camera3D/ProgressBar.value = Playerdata.health
+
 
 func _setanimation(_delta):
 	if velocity.length() > 0.1:
@@ -17,49 +17,51 @@ func _setanimation(_delta):
 	else:
 		anim.play("idle")
 
+
 func hurt(hit_points):
-	if hit_points < HEALTH:
-		HEALTH -= hit_points
-	else	:
-		HEALTH = 0
-	$Camera3D/ProgressBar.value = HEALTH
-	if HEALTH == 0:
+	Playerdata.health = max(Playerdata.health - hit_points, 0)
+	$Camera3D/ProgressBar.value = Playerdata.health
+
+	if Playerdata.health == 0:
 		die()
 
+
 func restore_health(hit_points):
-	if ((hit_points + HEALTH) < 3):
-		HEALTH += hit_points
-	else:
-		HEALTH = 3
-		
-	$Camera3D/ProgressBar.value = HEALTH
+	Playerdata.health = min(Playerdata.health + hit_points, Playerdata.max_health)
+	$Camera3D/ProgressBar.value = Playerdata.health
+
 
 func die():
+	# Add death logic later
 	pass
 
+
 func add_slimeball(amount: int):
-	slimeballs += amount
-	print("Slimeballs:", slimeballs)
+	Playerdata.slimeballs += amount
+	print("Slimeballs:", Playerdata.slimeballs)
+
 
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
+	# Gravity
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
-	# Handle jump.
+	# Jump
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+		velocity.y = Playerdata.jump_velocity
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
+	# Movement
 	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+
 	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+		velocity.x = direction.x * Playerdata.speed
+		velocity.z = direction.z * Playerdata.speed
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, Playerdata.speed)
+		velocity.z = move_toward(velocity.z, 0, Playerdata.speed)
+
+	# Flip sprite
 	if input_dir.x > 0:
 		$AnimatedSprite3D.scale.x = 1
 	elif input_dir.x < 0:
@@ -67,6 +69,7 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 	_setanimation(delta)
+
 
 func attack():
 	if attacking:
@@ -82,11 +85,13 @@ func attack():
 	$MeleeHitbox.monitorable = false
 	attacking = false
 
+
 func _input(event):
 	if event.is_action_pressed("Attack"):
 		attack()
 
+
 func _on_melee_hitbox_body_entered(body: Node3D) -> void:
 	if body.has_method("take_damage"):
-		body.take_damage(attack_damage)
-		print ("enemy took damage")
+		body.take_damage(Playerdata.attack_damage)
+		print("enemy took damage")

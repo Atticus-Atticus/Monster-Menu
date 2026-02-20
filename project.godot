@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="Monster Menu"
-run/main_scene="res://Scenes/Levels/dungeon1.tscn"
+run/main_scene="res://Scenes/Levels/level1.tscn"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://Assets/Sprites/icon.svg"
 
 [autoload]
 
 Globals="*uid://bwae0c3pn0vx3"
+Playerdata="*uid://du35vs4fc80i3"
 
 [display]
 

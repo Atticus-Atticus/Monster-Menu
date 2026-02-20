@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://li184j3lsxow"]
+
+[ext_resource type="PackedScene" uid="uid://co0j1h3knvxb8" path="res://Scenes/Player/player.tscn" id="1_jgdhe"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mrp2g"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jgdhe"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_qoeng"]
+
+[node name="Node3D" type="Node3D" unique_id=214130134]
+transform = Transform3D(63.26637, 0, 0, 0, 1, 0, 0, 0, 61.99823, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1996952077]
+physics_material_override = SubResource("PhysicsMaterial_mrp2g")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=439573718]
+shape = SubResource("BoxShape3D_jgdhe")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=161646545]
+mesh = SubResource("BoxMesh_qoeng")
+
+[node name="player" parent="." unique_id=1415999693 instance=ExtResource("1_jgdhe")]
+transform = Transform3D(0.015806187, 0, 0, 0, 1, 0, 0, 0, 0.016129496, 0, 0.82729137, 0)

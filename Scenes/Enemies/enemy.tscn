@@ -124,7 +124,7 @@ shape = SubResource("BoxShape3D_4gyqm")
 [node name="PlayerHitArea" type="Area3D" parent="." unique_id=1287710441]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerHitArea" unique_id=1061506315]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, -0.06159668, 0)
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, -0.06159668, 0)
 shape = SubResource("CapsuleShape3D_4gyqm")
 
 [node name="DamageTimer" type="Timer" parent="." unique_id=1001526650]
