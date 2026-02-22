@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://co0j1h3knvxb8"]
 
 [ext_resource type="Script" uid="uid://8jjl8bvka625" path="res://Scripts/player.gd" id="1_xpcdj"]
-[ext_resource type="Texture2D" uid="uid://f3ufwxqony5l" path="res://Scenes/Knight 2D Pixel Art PLACEHOLDER/Sprites/without_outline/IDLE.png" id="2_i3pqv"]
-[ext_resource type="Texture2D" uid="uid://cp36qr8srcrh7" path="res://Scenes/Knight 2D Pixel Art PLACEHOLDER/Sprites/without_outline/RUN.png" id="3_i3pqv"]
+[ext_resource type="Texture2D" uid="uid://f3ufwxqony5l" path="res://Knight 2D Pixel Art PLACEHOLDER/Sprites/without_outline/IDLE.png" id="2_i3pqv"]
+[ext_resource type="Texture2D" uid="uid://cp36qr8srcrh7" path="res://Knight 2D Pixel Art PLACEHOLDER/Sprites/without_outline/RUN.png" id="3_i3pqv"]
+[ext_resource type="PackedScene" uid="uid://kie42x1272by" path="res://Scenes/inventory.tscn" id="4_mtuoh"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hqtel"]
 radius = 1.1826172
@@ -168,5 +169,22 @@ monitorable = false
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeleeHitbox" unique_id=1156702933]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
 shape = SubResource("SphereShape3D_xpcdj")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1301226535]
+
+[node name="InventoryInterface" type="Control" parent="CanvasLayer" unique_id=30478407]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 60.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="PlayerInventory" parent="CanvasLayer/InventoryInterface" unique_id=470278532 instance=ExtResource("4_mtuoh")]
+layout_mode = 0
+metadata/_edit_use_anchors_ = true
 
 [connection signal="body_entered" from="MeleeHitbox" to="." method="_on_melee_hitbox_body_entered"]

@@ -1,5 +1,6 @@
 extends CharacterBody3D
 
+
 @onready var anim = $AnimatedSprite3D
 @export var attack_duration := 0.5
 
@@ -17,6 +18,10 @@ func _setanimation(_delta):
 	else:
 		anim.play("idle")
 
+func _unhandled_input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("ui_accept"):
+		DialogueManager.show_example_dialogue_balloon(load("res://Dialogue/start_dialogue.dialogue"), "start")
+		return
 
 func hurt(hit_points):
 	Playerdata.health = max(Playerdata.health - hit_points, 0)
@@ -36,9 +41,12 @@ func die():
 	pass
 
 
-func add_slimeball(amount: int):
-	Playerdata.slimeballs += amount
-	print("Slimeballs:", Playerdata.slimeballs)
+func add_item(item_data: ItemData):
+	Playerdata.inventory_data.add_item(item_data)
+	print("Added item resource:", item_data.name)
+
+
+
 
 
 func _physics_process(delta: float) -> void:
@@ -93,5 +101,7 @@ func _input(event):
 
 func _on_melee_hitbox_body_entered(body: Node3D) -> void:
 	if body.has_method("take_damage"):
-		body.take_damage(Playerdata.attack_damage)
+		var dir = (body.global_position - global_position)
+		dir.y = 0  # keep knockback horizontal
+		body.take_damage(Playerdata.attack_damage, dir)
 		print("enemy took damage")

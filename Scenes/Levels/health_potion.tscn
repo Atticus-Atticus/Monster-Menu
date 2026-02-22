@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dyulg7p3d3632"]
 
-[ext_resource type="Script" uid="uid://bib21o0j0iqsd" path="res://Scripts/health_potion.gd" id="1_wry1p"]
+[ext_resource type="Script" uid="uid://bib21o0j0iqsd" path="res://Scripts/items/health_potion.gd" id="1_wry1p"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wry1p"]
 albedo_color = Color(1, 0, 0, 1)

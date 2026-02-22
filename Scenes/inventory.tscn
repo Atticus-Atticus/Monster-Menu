@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://kie42x1272by"]
+
+[ext_resource type="Script" uid="uid://burl4mi0k3qce" path="res://Scenes/inventory.gd" id="1_wdn4f"]
+
+[node name="Inventory" type="PanelContainer" unique_id=470278532]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_wdn4f")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1688376230]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="ItemGrid" type="GridContainer" parent="MarginContainer" unique_id=598686294]
+layout_mode = 2
+columns = 6

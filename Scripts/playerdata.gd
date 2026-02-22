@@ -5,7 +5,7 @@ var health := 5
 var max_health := 5
 
 # Inventory
-var slimeballs := 0
+@export var inventory_data: InventoryData = preload("res://Scenes/Player/inventory.tres")
 
 # Combat
 var attack_damage := 1
@@ -16,7 +16,6 @@ var jump_velocity := 4.5
 
 func reset():
 	health = max_health
-	slimeballs = 0
 	attack_damage = 1
 	speed = 3
 	jump_velocity = 4.5

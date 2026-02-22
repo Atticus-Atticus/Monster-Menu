@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://guvi0egexwy8"]
+
+[ext_resource type="Texture2D" uid="uid://dal4vs6x0ii64" path="res://Assets/Sprites/slimeball.webp" id="1_tvkje"]
+[ext_resource type="Script" uid="uid://vo0qxwk7jomh" path="res://Scripts/items/slimeball_pickup.gd" id="2_7oi3l"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_tvkje"]
+
+[node name="slimeball_pickup" type="Area3D" unique_id=1480840754]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+script = ExtResource("2_7oi3l")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=476841239]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+shape = SubResource("SphereShape3D_tvkje")
+
+[node name="Sprite3D" type="Sprite3D" parent="CollisionShape3D" unique_id=895542295]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+texture = ExtResource("1_tvkje")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

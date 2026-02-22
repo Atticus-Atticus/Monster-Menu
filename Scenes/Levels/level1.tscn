@@ -14,7 +14,7 @@ ambient_light_color = Color(0.83802813, 0.8891686, 1, 1)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_rop7o"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_4x7if"]
+[sub_resource type="HeightMapShape3D" id="HeightMapShape3D_0xrym"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a0htm"]
 albedo_color = Color(0.07058824, 0.5568628, 0.24313726, 1)
@@ -33,8 +33,8 @@ compositor = SubResource("Compositor_a0htm")
 physics_material_override = SubResource("PhysicsMaterial_rop7o")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1229222281]
-transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, 0, 0, 0)
-shape = SubResource("BoxShape3D_4x7if")
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0.5225501, 0)
+shape = SubResource("HeightMapShape3D_0xrym")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1670396466]
 transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, 0, 0, 0)

@@ -2,15 +2,18 @@ extends CharacterBody3D
 
 @export var speed := 1.0
 @export var max_health := 3
-@export var drop_scene: PackedScene = preload("res://slimeball.tscn")
+@export var drop_resource: Resource = preload("res://Scripts/items/slimeball.tres")
+@export var pickup_scene: PackedScene = preload("res://Scenes/Enemies/slimeball.tscn")
 var health := max_health
 var player: CharacterBody3D = null
 var awake := false
 var player_in_hitbox := false
+var knockback_time := 0.0
+var knockback_duration := 0.15
+
 
 func _ready():
-	# Damage every 0.5 seconds (adjust as needed)
-	$DamageTimer.wait_time = 0.5
+	$DamageTimer.wait_time = 0.3
 	$DamageTimer.autostart = false
 
 
@@ -19,6 +22,12 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
+	if knockback_time > 0:
+		knockback_time -= delta
+		move_and_slide()
+		return
+
+	# Normal AI movement
 	if awake and player:
 		var direction = player.global_transform.origin - global_transform.origin
 		direction.y = 0
@@ -32,19 +41,26 @@ func _physics_process(delta):
 
 	move_and_slide()
 
-func take_damage(amount: int):
+func take_damage(amount: int, knockback_dir := Vector3.ZERO):
 	health -= amount
 	print("Enemy health:", health)
+
+	if knockback_dir != Vector3.ZERO:
+		var knockback_strength := 2
+		velocity = knockback_dir.normalized() * knockback_strength
+		knockback_time = knockback_duration
 
 	if health <= 0:
 		die()
 
 func die():
-	if drop_scene:
-		var drop = drop_scene.instantiate()
-		drop.global_transform = global_transform
-		get_tree().current_scene.add_child(drop)
+	if pickup_scene:
+		var pickup = pickup_scene.instantiate()
+		pickup.item = drop_resource
+		get_parent().add_child(pickup)
+		pickup.global_position = global_position
 	queue_free()
+
 
 
 func _on_area_3d_body_entered(body):
