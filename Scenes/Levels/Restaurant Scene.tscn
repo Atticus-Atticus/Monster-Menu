@@ -8,7 +8,12 @@
 
 [node name="Restaurant" type="Node2D" unique_id=1227212215]
 
-[node name="Camera1" type="Camera2D" parent="." unique_id=396861858]
+[node name="Cameras" type="Node" parent="." unique_id=1717938138]
+
+[node name="Camera1" type="Camera2D" parent="Cameras" unique_id=396861858]
+
+[node name="Camera2" type="Camera2D" parent="Cameras" unique_id=2088306497]
+position = Vector2(1184, 0)
 
 [node name="Background" type="Sprite2D" parent="." unique_id=582939804]
 z_index = 1
@@ -30,12 +35,10 @@ visible = false
 z_index = 5
 position = Vector2(-64, 16)
 
-[node name="Switch_Screens" parent="." unique_id=518497589 instance=ExtResource("5_umv8g")]
+[node name="Switch_Screens" parent="." unique_id=518497589 node_paths=PackedStringArray("cameras") instance=ExtResource("5_umv8g")]
 z_index = 4
 offset_left = -576.0
 offset_top = -320.0
 offset_right = -576.0
 offset_bottom = -320.0
-
-[node name="Camera2" type="Camera2D" parent="." unique_id=2088306497]
-position = Vector2(1184, 0)
+cameras = [NodePath("../Cameras/Camera1"), NodePath("../Cameras/Camera2")]
