@@ -46,7 +46,7 @@ func take_damage(amount: int, knockback_dir := Vector3.ZERO):
 	print("Enemy health:", health)
 
 	if knockback_dir != Vector3.ZERO:
-		var knockback_strength := 2
+		var knockback_strength := 2	
 		velocity = knockback_dir.normalized() * knockback_strength
 		knockback_time = knockback_duration
 
