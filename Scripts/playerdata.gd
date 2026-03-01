@@ -7,6 +7,7 @@ var max_health := 5
 # Inventory
 @export var inventory_data: InventoryData = preload("res://Scenes/Player/inventory.tres")
 
+
 # Combat
 var attack_damage := 1
 

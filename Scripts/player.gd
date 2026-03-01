@@ -13,10 +13,15 @@ func _ready():
 
 
 func _setanimation(_delta):
+	if attacking:
+		anim.play("attack")
+		return
+
 	if velocity.length() > 0.1:
 		anim.play("run")
 	else:
 		anim.play("idle")
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("ui_accept"):
@@ -37,8 +42,9 @@ func restore_health(hit_points):
 
 
 func die():
-	# Add death logic later
-	pass
+	if Playerdata.health <= 0:
+		self.queue_free()
+		get_node("%GameOver").game_over()
 
 
 func add_item(item_data: ItemData):

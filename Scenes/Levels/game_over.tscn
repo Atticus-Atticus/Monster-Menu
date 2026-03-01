@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://cqb0imqf3quff"]
+
+[ext_resource type="Script" uid="uid://dtes08a6lrlud" path="res://Scenes/Levels/game_over.gd" id="1_jw20l"]
+
+[sub_resource type="Theme" id="Theme_m0h5h"]
+
+[node name="GameOver" type="CanvasLayer" unique_id=749302593]
+script = ExtResource("1_jw20l")
+
+[node name="Panel" type="Panel" parent="." unique_id=1037882357]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="." unique_id=1035454523]
+offset_left = 565.0
+offset_top = 220.0
+offset_right = 1264.0
+offset_bottom = 435.0
+theme = SubResource("Theme_m0h5h")
+theme_override_font_sizes/font_size = 60
+text = "Game Over!
+You Died"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="respawn" type="Button" parent="." unique_id=1910953561]
+offset_left = 807.0
+offset_top = 630.0
+offset_right = 1036.0
+offset_bottom = 722.0
+text = "Respawn"
+
+[connection signal="pressed" from="respawn" to="." method="_on_respawn_pressed"]

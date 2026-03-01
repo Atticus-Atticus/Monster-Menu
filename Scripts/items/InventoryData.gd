@@ -20,3 +20,7 @@ func add_item(item_data: ItemData):
 	slot_datas.append(new_slot)
 
 	inventory_changed.emit()
+
+func reset():
+	slot_datas.clear()
+	inventory_changed.emit()
