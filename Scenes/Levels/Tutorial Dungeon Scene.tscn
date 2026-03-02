@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dyonu5gdbindm" path="res://Scenes/Player/test_player_scene.tscn" id="2_mykdr"]
 [ext_resource type="Texture2D" uid="uid://e7ka3g6pxu41" path="res://Assets/Temp Textures/TempTextureGreen.png" id="2_rli08"]
+[ext_resource type="Shader" uid="uid://cie75p0nqjovd" path="res://Shaders/WaterShader.gdshader" id="3_mykdr"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rli08"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -47,6 +48,43 @@ albedo_texture = ExtResource("2_rli08")
 [sub_resource type="BoxShape3D" id="BoxShape3D_rli08"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_mykdr"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_xqf5a"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qb7kh"]
+render_priority = 0
+shader = ExtResource("3_mykdr")
+shader_parameter/color_shallow = Color(0.01, 0.2, 0.3, 1)
+shader_parameter/color_deep = Color(0.3, 0.5, 0.6, 1)
+shader_parameter/transparency = 1.0
+shader_parameter/metallic = 0.0
+shader_parameter/roughness = 0.25
+shader_parameter/max_visible_depth = 20.0
+shader_parameter/wave_move_direction_a = Vector2(-1, 0)
+shader_parameter/wave_move_direction_b = Vector2(0, 1)
+shader_parameter/wave_noise_scale_a = 15.0
+shader_parameter/wave_noise_scale_b = 15.0
+shader_parameter/wave_time_scale_a = 0.15
+shader_parameter/wave_time_scale_b = 0.15
+shader_parameter/wave_height_scale = 1.0
+shader_parameter/wave_normal_flatness = 50.0
+shader_parameter/surface_normals_move_direction_a = Vector2(-1, 0.2)
+shader_parameter/surface_normals_move_direction_b = Vector2(0.2, 1)
+shader_parameter/surface_texture_roughness = 0.15
+shader_parameter/surface_texture_scale = 0.1
+shader_parameter/surface_texture_time_scale = 0.06
+shader_parameter/ssr_resolution = 1.0
+shader_parameter/ssr_max_travel = 30.0
+shader_parameter/ssr_max_diff = 4.0
+shader_parameter/ssr_mix_strength = 0.7
+shader_parameter/ssr_screen_border_fadeout = 0.3
+shader_parameter/refraction_intensity = 0.4
+shader_parameter/border_color = Color(1, 1, 1, 1)
+shader_parameter/border_scale = 2.0
+shader_parameter/border_near = 0.5
+shader_parameter/border_far = 300.0
+shader_parameter/cut_out_x = 0.0
+shader_parameter/cut_out_z = 0.0
 
 [node name="ControlNode" type="Node3D" unique_id=424758510]
 
@@ -221,3 +259,8 @@ shape = SubResource("BoxShape3D_rli08")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Paths/CollisionShape3D11" unique_id=1203306606]
 transform = Transform3D(1.0091218, 8.0480544e-10, -1.8626451e-09, 2.2661189e-07, 1.0130608, 7.6243367e-10, 0, -4.4150212e-09, 0.97911227, 0, 0, 0)
 mesh = SubResource("BoxMesh_mykdr")
+
+[node name="Water" type="MeshInstance3D" parent="." unique_id=1888594125]
+transform = Transform3D(158.92801, 0, 0, 0, 1, 0, 0, 0, 156.07802, 0, -3, -95)
+mesh = SubResource("PlaneMesh_xqf5a")
+surface_material_override/0 = SubResource("ShaderMaterial_qb7kh")
