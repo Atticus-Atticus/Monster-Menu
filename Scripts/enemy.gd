@@ -1,5 +1,5 @@
 extends CharacterBody3D
-
+class_name Enemies;
 @export var speed := 1.0
 @export var max_health := 3
 @export var drop_resource: Resource = preload("res://Scripts/items/slimeball.tres")

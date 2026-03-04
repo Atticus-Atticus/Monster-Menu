@@ -182,6 +182,8 @@ bg_color = Color(1, 0, 0, 1)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_xpcdj"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_htcer"]
+
 [node name="player" type="CharacterBody3D" unique_id=1415999693 groups=["player"]]
 script = ExtResource("1_xpcdj")
 
@@ -196,7 +198,7 @@ autoplay = "idle"
 frame_progress = 0.61702263
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=343637069]
-transform = Transform3D(1, 0, 0, 0, 0.66726077, 0.74482423, 0, -0.74482423, 0.66726077, 0, 1.2085214, 0.9915769)
+transform = Transform3D(1, 0, 0, 0, 0.7385495, 0.6741993, 0, -0.6741993, 0.7385495, 0, 0.9717865, 0.9915769)
 current = true
 fov = 69.0193
 
@@ -234,5 +236,12 @@ metadata/_edit_use_anchors_ = true
 [node name="PlayerInventory" parent="CanvasLayer/InventoryInterface" unique_id=470278532 instance=ExtResource("4_mtuoh")]
 layout_mode = 0
 metadata/_edit_use_anchors_ = true
+
+[node name="ActionableFinder" type="Area3D" parent="." unique_id=274848868]
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ActionableFinder" unique_id=1250034448]
+shape = SubResource("SphereShape3D_htcer")
 
 [connection signal="body_entered" from="MeleeHitbox" to="." method="_on_melee_hitbox_body_entered"]

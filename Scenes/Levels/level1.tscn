@@ -2,10 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://co0j1h3knvxb8" path="res://Scenes/Player/player.tscn" id="1_1ukdm"]
 [ext_resource type="PackedScene" uid="uid://cbb8i8nd8nro3" path="res://Scenes/Enemies/enemy.tscn" id="2_0xrym"]
-[ext_resource type="PackedScene" uid="uid://dyulg7p3d3632" path="res://Scenes/Levels/health_potion.tscn" id="3_c0r4e"]
 [ext_resource type="PackedScene" uid="uid://bn8sa3o3fdfpa" path="res://Scenes/Levels/next_level.tscn" id="4_0xrym"]
+[ext_resource type="PackedScene" uid="uid://bog36erxobt4t" path="res://Scenes/actionable.tscn" id="4_20uw2"]
 [ext_resource type="PackedScene" uid="uid://cqb0imqf3quff" path="res://Scenes/Levels/game_over.tscn" id="5_c0r4e"]
 [ext_resource type="PackedScene" uid="uid://bmett3e8jnej8" path="res://Scenes/grass_scene.tscn" id="6_m0h5h"]
+[ext_resource type="Resource" uid="uid://c4yeq782ftl" path="res://Dialogue/start_dialogue.dialogue" id="7_20uw2"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_c0r4e"]
 energy_multiplier = 3.88
@@ -30,6 +31,9 @@ size = Vector3(1, 1.9667969, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_20uw2"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_m0h5h"]
+radius = 0.21912065
+
 [node name="Node3D" type="Node3D" unique_id=1347313948]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=192778069]
@@ -45,23 +49,35 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0492351, 0.91999996, 2.639
 [node name="enemy" parent="." unique_id=1294842684 instance=ExtResource("2_0xrym")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8504102, 0.62, 1.7035468)
 
-[node name="HealthPotion" parent="." unique_id=114972891 instance=ExtResource("3_c0r4e")]
-transform = Transform3D(0.36483246, 0, 0, 0, 0.24299957, 0, 0, 0, 0.3508348, 2.2452652, 0.54021543, 3.414909)
-
-[node name="HealthPotion2" parent="." unique_id=1834574347 instance=ExtResource("3_c0r4e")]
-transform = Transform3D(0.36483246, 0, 0, 0, 0.24299957, 0, 0, 0, 0.3508348, 3.9210966, 0.54021543, -1.0759335)
-
-[node name="HealthPotion3" parent="." unique_id=1859402791 instance=ExtResource("3_c0r4e")]
-transform = Transform3D(0.36483246, 0, 0, 0, 0.24299957, 0, 0, 0, 0.3508348, -2.0174794, 0.5402152, -1.5704293)
-
 [node name="enemy2" parent="." unique_id=730684969 instance=ExtResource("2_0xrym")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8504102, 0.62, -1.096385)
 
 [node name="enemy3" parent="." unique_id=198794558 instance=ExtResource("2_0xrym")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8504102, 0.62, 3.6567178)
 
+[node name="enemy4" parent="." unique_id=800989245 instance=ExtResource("2_0xrym")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8645269, 0.62, 3.6567178)
+
+[node name="enemy5" parent="." unique_id=1214044340 instance=ExtResource("2_0xrym")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.33929062, 0.62, 3.6567178)
+
+[node name="enemy6" parent="." unique_id=1283511933 instance=ExtResource("2_0xrym")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2509505, 0.62, 3.6567178)
+
+[node name="enemy7" parent="." unique_id=1376716289 instance=ExtResource("2_0xrym")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8504102, 0.62, 2.937469)
+
+[node name="enemy8" parent="." unique_id=1372074833 instance=ExtResource("2_0xrym")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8504102, 0.62, 3.240168)
+
+[node name="enemy9" parent="." unique_id=1894908406 instance=ExtResource("2_0xrym")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8504102, 0.62, 3.8720765)
+
+[node name="enemy10" parent="." unique_id=1897601199 instance=ExtResource("2_0xrym")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8504102, 0.62, 3.4447289)
+
 [node name="next_level" parent="." unique_id=1446430955 instance=ExtResource("4_0xrym")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, -5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -5)
 
 [node name="GameOver" parent="." unique_id=749302593 instance=ExtResource("5_c0r4e")]
 unique_name_in_owner = true
@@ -76,7 +92,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.26212788, 0)
 shape = SubResource("BoxShape3D_m0h5h")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2" unique_id=801179339]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.24775082, 0)
+transform = Transform3D(1, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, 0, -0.24775079, 0)
 mesh = SubResource("BoxMesh_20uw2")
 
 [node name="StaticBody3D3" type="StaticBody3D" parent="." unique_id=1793386966]
@@ -116,3 +132,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.24775082, 0)
 mesh = SubResource("BoxMesh_20uw2")
 
 [node name="Node3D" parent="." unique_id=1451261955 instance=ExtResource("6_m0h5h")]
+
+[node name="Actionable" parent="." unique_id=432569736 instance=ExtResource("4_20uw2")]
+dialogue_resource = ExtResource("7_20uw2")
+dialogue_start = "start"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Actionable" unique_id=976536667]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.11461806, 0.06566355, 0)
+shape = SubResource("SphereShape3D_m0h5h")

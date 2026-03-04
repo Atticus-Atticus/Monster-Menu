@@ -22,4 +22,5 @@ func _on_body_entered(body: Node3D) -> void:
 		picked_up = true
 		body.add_item(item)
 		print("Pickup triggered by:", body.name)
+		Playerdata.slimeballs_collected += 1
 		queue_free()
