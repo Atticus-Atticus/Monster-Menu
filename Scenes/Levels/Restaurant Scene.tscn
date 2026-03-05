@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bbg136wlui53i" path="res://Assets/Temp Assets/Counter.png" id="1_6o2kf"]
 [ext_resource type="Texture2D" uid="uid://btoswl80m0rs7" path="res://Assets/Temp Assets/Background.png" id="1_27fwp"]
+[ext_resource type="Script" uid="uid://b3cgi7x8lbftc" path="res://Scripts/Restaurant/restaurant_scene.gd" id="1_ex7vx"]
 [ext_resource type="PackedScene" uid="uid://w3eucis2p24f" path="res://Scenes/Restaurant specific/npc_spawner.tscn" id="4_251mm"]
 [ext_resource type="Texture2D" uid="uid://b0gs3y2ltic15" path="res://Assets/Temp Assets/Slime.png" id="5_c8ibj"]
 [ext_resource type="PackedScene" uid="uid://b8egbrqblo66b" path="res://Scenes/Restaurant specific/test.tscn" id="5_mufko"]
@@ -9,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://eahgcnmumbmy" path="res://Assets/Temp Assets/Pan.png" id="6_ex7vx"]
 
 [node name="Restaurant" type="Node2D" unique_id=1227212215]
+script = ExtResource("1_ex7vx")
 
 [node name="Kitchen" type="Node2D" parent="." unique_id=1996547837]
 
@@ -38,7 +40,6 @@ z_index = 1
 position = Vector2(224, 48)
 
 [node name="Test" parent="Kitchen" unique_id=1167416085 instance=ExtResource("5_mufko")]
-visible = false
 z_index = 5
 position = Vector2(-64, 16)
 

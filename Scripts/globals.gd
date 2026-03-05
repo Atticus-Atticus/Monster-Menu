@@ -9,3 +9,5 @@ var health: int = 3
 #Restaurant score + money. Shortened bc none of us can spell restrant.
 var resScore: int = 0
 var money: int = 0
+
+var slinkLoot = false
