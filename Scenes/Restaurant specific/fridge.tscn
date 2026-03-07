@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://c6t2vjts21umi"]
+
+[ext_resource type="Script" uid="uid://ckp7bpdrmxfaa" path="res://Scripts/Restaurant/fridge.gd" id="1_rxdx5"]
+[ext_resource type="Texture2D" uid="uid://1q5nbm2sc1ue" path="res://Assets/Temp Assets/fridge 1.png" id="2_ew3fd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f16n3"]
+size = Vector2(256, 480)
+
+[node name="Fridge" type="Area2D" unique_id=1085246631]
+script = ExtResource("1_rxdx5")
+
+[node name="FridgeText" type="Sprite2D" parent="." unique_id=1833986899]
+texture = ExtResource("2_ew3fd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2055352258]
+shape = SubResource("RectangleShape2D_f16n3")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

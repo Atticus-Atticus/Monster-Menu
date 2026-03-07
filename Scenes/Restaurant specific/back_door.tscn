@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://ce6aj7qqtnlaq"]
+
+[ext_resource type="Script" uid="uid://ge8jo6gllghd" path="res://Scripts/Restaurant/back_door.gd" id="1_1u7u3"]
+[ext_resource type="Texture2D" uid="uid://b0a0qx4bhr6a2" path="res://Assets/Temp Assets/door.png" id="2_ekh8i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gd4no"]
+size = Vector2(352, 528)
+
+[node name="BackDoor" type="Area2D" unique_id=80662571]
+script = ExtResource("1_1u7u3")
+
+[node name="Door" type="Sprite2D" parent="." unique_id=2069309826]
+texture = ExtResource("2_ekh8i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1629811669]
+shape = SubResource("RectangleShape2D_gd4no")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

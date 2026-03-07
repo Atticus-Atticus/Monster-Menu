@@ -23,8 +23,8 @@ script = ExtResource("1_q5dee")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1917810310]
 layout_mode = 1
-offset_right = 1164.488
-offset_bottom = 648.0
+offset_right = 1920.0
+offset_bottom = 1080.0
 scale = Vector2(0.98927593, 1.0033594)
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 0

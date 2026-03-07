@@ -1,6 +1,5 @@
 extends Area2D
 
-
 var RanNumGen = RandomNumberGenerator.new()
 var canInteract = false
 var Appearance = 0
