@@ -1,10 +1,10 @@
-[gd_scene format=3 uid="uid://co0j1h3knvxb8"]
+[gd_scene format=3 uid="uid://mhe6fu28wwjn"]
 
 [ext_resource type="Script" uid="uid://8jjl8bvka625" path="res://Scripts/player.gd" id="1_xpcdj"]
 [ext_resource type="Texture2D" uid="uid://b7cmogiop6uuo" path="res://Knight 2D Pixel Art PLACEHOLDER/Sprites/without_outline/ATTACK 1.png" id="2_htcer"]
 [ext_resource type="Texture2D" uid="uid://f3ufwxqony5l" path="res://Knight 2D Pixel Art PLACEHOLDER/Sprites/without_outline/IDLE.png" id="2_i3pqv"]
 [ext_resource type="Texture2D" uid="uid://cp36qr8srcrh7" path="res://Knight 2D Pixel Art PLACEHOLDER/Sprites/without_outline/RUN.png" id="3_i3pqv"]
-[ext_resource type="PackedScene" uid="uid://kie42x1272by" path="res://Scenes/inventory.tscn" id="4_mtuoh"]
+[ext_resource type="PackedScene" path="res://Scenes/inventory.tscn" id="4_mtuoh"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hqtel"]
 radius = 1.1826172
@@ -198,7 +198,7 @@ autoplay = "idle"
 frame_progress = 0.61702263
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=343637069]
-transform = Transform3D(1, 0, 0, 0, 0.7385495, 0.6741993, 0, -0.6741993, 0.7385495, 0, 0.9717865, 0.9915769)
+transform = Transform3D(1, 0, 0, 0, 0.7385495, 0.6741993, 0, -0.6741993, 0.7385495, 0, 1.8162477, 2.327073)
 current = true
 fov = 69.0193
 

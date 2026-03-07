@@ -13,7 +13,7 @@ var slimeballs_collected: int = 0
 var attack_damage := 1
 
 # Movement
-var speed := 3
+var speed := 6
 var jump_velocity := 4.5
 
 func reset():

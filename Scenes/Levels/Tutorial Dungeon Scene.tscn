@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://qoph1ir5amve"]
 
-[ext_resource type="PackedScene" uid="uid://dyonu5gdbindm" path="res://Scenes/Player/test_player_scene.tscn" id="2_mykdr"]
 [ext_resource type="Texture2D" uid="uid://e7ka3g6pxu41" path="res://Assets/Temp Textures/TempTextureGreen.png" id="2_rli08"]
 [ext_resource type="Shader" uid="uid://cie75p0nqjovd" path="res://Shaders/WaterShader.gdshader" id="3_mykdr"]
+[ext_resource type="PackedScene" uid="uid://mhe6fu28wwjn" path="res://Scenes/Player/player.tscn" id="3_xqf5a"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rli08"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -94,9 +94,6 @@ environment = SubResource("Environment_xqf5a")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=382567987]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
 shadow_enabled = true
-
-[node name="TestPlayer" parent="." unique_id=2119703179 instance=ExtResource("2_mykdr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.166031, 0)
 
 [node name="Rooms" type="StaticBody3D" parent="." unique_id=93866289]
 
@@ -264,3 +261,6 @@ mesh = SubResource("BoxMesh_mykdr")
 transform = Transform3D(158.92801, 0, 0, 0, 1, 0, 0, 0, 156.07802, 0, -3, -95)
 mesh = SubResource("PlaneMesh_xqf5a")
 surface_material_override/0 = SubResource("ShaderMaterial_qb7kh")
+
+[node name="player" parent="." unique_id=1415999693 instance=ExtResource("3_xqf5a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 3, -2)
