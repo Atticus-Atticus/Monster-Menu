@@ -13,6 +13,11 @@ var is_dashing := false
 var can_dash := true
 var dash_direction := Vector3.ZERO
 var attacking := false
+var combo_step := 1
+var last_attack_time := 0
+var combo_window := 800 
+var is_dead := false
+var is_hurting := false
 
 var in_dialogue := false
 func _ready():
@@ -27,8 +32,13 @@ func _on_dialogue_ended(_resource: DialogueResource):
 	in_dialogue = false
 
 func _setanimation(_delta):
+	if is_dead:
+		return
+	if is_hurting:
+		return
 	if attacking:
-		anim.play("attack")
+		# Dynamically plays "attack1", "attack2", or "attack3"
+		anim.play("attack" + str(combo_step))
 		return
 
 	if velocity.length() > 0.1:
@@ -46,11 +56,27 @@ func _unhandled_input(event: InputEvent) -> void:
 			return
 
 func hurt(hit_points):
+	if is_dead:
+		return
+		
 	Playerdata.health = max(Playerdata.health - hit_points, 0)
 	$Camera3D/ProgressBar.value = Playerdata.health
-
+	
 	if Playerdata.health == 0:
+		is_dead = true
+		anim.play("die")
+		await anim.animation_finished
 		die()
+	else:
+		is_hurting = true
+		anim.play("hurt")
+		
+		# Wait for the animation to finish before letting the player idle/run again
+		await anim.animation_finished 
+		
+		is_hurting = false
+
+
 
 func restore_health(hit_points):
 	Playerdata.health = min(Playerdata.health + hit_points, Playerdata.max_health)
@@ -67,6 +93,8 @@ func add_item(item_data: ItemData):
 
 func _physics_process(delta: float) -> void:
 	# --- NEW DIALOGUE CHECK ---
+	if is_dead:
+		return
 	if in_dialogue:
 		# Keep applying gravity so you don't float if you talk while falling
 		if not is_on_floor():
@@ -87,6 +115,7 @@ func _physics_process(delta: float) -> void:
 	# Jump
 	if Input.is_action_just_pressed("jump") and is_on_floor() and not is_dashing:
 		velocity.y = Playerdata.jump_velocity
+		anim.play("jump")
 
 	# Get Input Direction
 	var input_dir := Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -143,15 +172,31 @@ func attack():
 	if attacking or in_dialogue:
 		return
 
+	# 1. Reset combo to 1 if the player waited too long between clicks
+	if Time.get_ticks_msec() - last_attack_time > combo_window:
+		combo_step = 1
+
+	# 2. Record the exact time of this new attack
+	last_attack_time = Time.get_ticks_msec()
+
+	# Start the attack!
 	attacking = true
 	$MeleeHitbox.monitoring = true
 	$MeleeHitbox.monitorable = true
 
+	# Wait for the sword swing to finish
 	await get_tree().create_timer(attack_duration).timeout
 
+	# Turn off hitboxes
 	$MeleeHitbox.monitoring = false
 	$MeleeHitbox.monitorable = false
 	attacking = false
+
+	# 3. Queue up the next combo step for their NEXT click
+	if combo_step < 3:
+		combo_step += 1
+	else:
+		combo_step = 1 # Reset back to the first attack after the 3rd swing
 
 func _input(event):
 	if event.is_action_pressed("Attack"):
