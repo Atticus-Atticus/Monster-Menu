@@ -1,9 +1,18 @@
 extends Node2D
 
-@export var npcScene: PackedScene
-var fridge
+#gets an ref 2 the spawner so i can call it here.
+#i want 2 be able 2 keep all of the npc queue code in here
+@onready var Spawner = $Kitchen/NPC_Spawner
+@onready var NPC = preload("res://Scenes/Restaurant specific/npc.tscn")
 
-func _ready():
-	if Globals.slinkLoot == true:
-		#add spriteswap 4 the fridge here
-		pass
+var canCustomerOrder = true
+
+#----------------------------------FUNCTIONS----------------------------------
+func _physics_process(delta: float):
+	if canCustomerOrder == true:
+		canCustomerOrder = false
+		Spawner.spawn()
+		#await NPC.queue_free()
+		#canCustomerOrder = true
+	
+	
