@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://co0j1h3knvxb8"]
 
-[ext_resource type="Script" uid="uid://8jjl8bvka625" path="res://Scripts/player.gd" id="1_xpcdj"]
+[ext_resource type="Script" uid="uid://8jjl8bvka625" path="res://Scripts/player/player.gd" id="1_xpcdj"]
 [ext_resource type="Texture2D" uid="uid://b7cmogiop6uuo" path="res://Knight 2D Pixel Art PLACEHOLDER/Sprites/without_outline/ATTACK 1.png" id="2_htcer"]
 [ext_resource type="Texture2D" uid="uid://f3ufwxqony5l" path="res://Knight 2D Pixel Art PLACEHOLDER/Sprites/without_outline/IDLE.png" id="2_i3pqv"]
 [ext_resource type="Texture2D" uid="uid://cp36qr8srcrh7" path="res://Knight 2D Pixel Art PLACEHOLDER/Sprites/without_outline/RUN.png" id="3_i3pqv"]
 [ext_resource type="Texture2D" uid="uid://cg6bujo61jdqj" path="res://Knight 2D Pixel Art PLACEHOLDER/Sprites/without_outline/ATTACK 2.png" id="4_jlvik"]
-[ext_resource type="PackedScene" uid="uid://kie42x1272by" path="res://Scenes/inventory.tscn" id="4_mtuoh"]
+[ext_resource type="PackedScene" uid="uid://kie42x1272by" path="res://Scenes/Player/inventory.tscn" id="4_mtuoh"]
 [ext_resource type="Texture2D" uid="uid://01vplj1yigvn" path="res://Knight 2D Pixel Art PLACEHOLDER/Sprites/without_outline/ATTACK 3.png" id="5_gk6dx"]
 [ext_resource type="Texture2D" uid="uid://b7o40apg7cc1k" path="res://Knight 2D Pixel Art PLACEHOLDER/Sprites/without_outline/DEATH.png" id="5_jhyir"]
 [ext_resource type="Texture2D" uid="uid://dbiodi7d07war" path="res://Knight 2D Pixel Art PLACEHOLDER/Sprites/without_outline/HURT.png" id="6_jhyir"]
@@ -422,7 +422,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"run",
-"speed": 5.0
+"speed": 10.0
 }]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hqtel"]
@@ -444,7 +444,7 @@ script = ExtResource("1_xpcdj")
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." unique_id=2027241730]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.20318547, 0)
 sprite_frames = SubResource("SpriteFrames_8d028")
-animation = &"hurt"
+animation = &"run"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1401308739]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.24079743, 0)

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cbb8i8nd8nro3"]
 
-[ext_resource type="Script" uid="uid://dwinwf5876buo" path="res://Scripts/enemy.gd" id="1_4gyqm"]
-[ext_resource type="Texture2D" uid="uid://b43oggiehh4m" path="res://Scenes/Enemies/PLACEHOLDER_slime.png" id="1_7k104"]
+[ext_resource type="Script" uid="uid://dwinwf5876buo" path="res://Scripts/enemy/enemy.gd" id="1_4gyqm"]
+[ext_resource type="Texture2D" uid="uid://b43oggiehh4m" path="res://Assets/Sprites/PLACEHOLDER_slime.png" id="1_7k104"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_4gyqm"]
 radius = 0.039238676
@@ -112,7 +112,6 @@ shape = SubResource("SphereShape3D_4gyqm")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.009057343)
 sprite_frames = SubResource("SpriteFrames_wujgv")
 animation = &"run"
-frame_progress = 0.5702117
 
 [node name="Area3D" type="Area3D" parent="." unique_id=1132139018]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.009057343)

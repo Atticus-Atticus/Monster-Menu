@@ -46,7 +46,7 @@ func _setanimation(_delta):
 	else:
 		anim.play("idle")
 
-func _unhandled_input(event: InputEvent) -> void:
+func _unhandled_input(_event: InputEvent) -> void:
 	# Check that we aren't already in a dialogue before interacting
 	if Input.is_action_just_pressed("ui_accept") and not in_dialogue:
 		var actionables = actionable_finder.get_overlapping_areas()
