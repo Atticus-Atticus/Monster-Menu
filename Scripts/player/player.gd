@@ -6,7 +6,7 @@ extends CharacterBody3D
 
 
 @export var dash_speed := 12
-@export var dash_duration := 0.1
+@export var dash_duration := 0.2
 @export var dash_cooldown := 0.7
 
 var is_dashing := false

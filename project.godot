@@ -18,8 +18,8 @@ config/icon="res://Assets/Sprites/icon.svg"
 [autoload]
 
 Globals="*uid://bwae0c3pn0vx3"
-Playerdata="*uid://du35vs4fc80i3"
 DialogueManager="*uid://c3rodes2l3gxb"
+Playerdata="*uid://du35vs4fc80i3"
 
 [display]
 
