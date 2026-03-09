@@ -1,6 +1,6 @@
 extends CharacterBody3D
 class_name Enemies;
-@export var speed := 1.0
+@export var speed := 7
 @export var max_health := 3
 @export var drop_resource: Resource = preload("res://Scripts/items/slimeball.tres")
 @export var pickup_scene: PackedScene = preload("res://Scenes/Enemies/slimeball.tscn")

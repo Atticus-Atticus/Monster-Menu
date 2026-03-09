@@ -4,10 +4,10 @@ extends CharacterBody3D
 @export var attack_duration := 0.3
 @onready var actionable_finder = $ActionableFinder
 
-
 @export var dash_speed := 12
 @export var dash_duration := 0.2
 @export var dash_cooldown := 0.7
+@export var fall_multiplier := 4
 
 var is_dashing := false
 var can_dash := true
@@ -20,8 +20,9 @@ var is_dead := false
 var is_hurting := false
 
 var in_dialogue := false
+
 func _ready():
-# Update UI from PlayerData
+	# Update UI from PlayerData
 	$Camera3D/ProgressBar.max_value = Playerdata.max_health
 	$Camera3D/ProgressBar.value = Playerdata.health
 	
@@ -32,19 +33,22 @@ func _on_dialogue_ended(_resource: DialogueResource):
 	in_dialogue = false
 
 func _setanimation(_delta):
-	if is_dead:
-		return
-	if is_hurting:
+	if is_dead or is_hurting:
 		return
 	if attacking:
-		# Dynamically plays "attack1", "attack2", or "attack3"
 		anim.play("attack" + str(combo_step))
 		return
 
-	if velocity.length() > 0.1:
-		anim.play("run")
+	if not is_on_floor():
+		if anim.animation != "jump":
+			anim.play("jump")
+
+	elif velocity.length() > 0.1:
+		if anim.animation != "run":
+			anim.play("run")
 	else:
-		anim.play("idle")
+		if anim.animation != "idle":
+			anim.play("idle")
 
 func _unhandled_input(_event: InputEvent) -> void:
 	# Check that we aren't already in a dialogue before interacting
@@ -76,16 +80,14 @@ func hurt(hit_points):
 		
 		is_hurting = false
 
-
-
 func restore_health(hit_points):
 	Playerdata.health = min(Playerdata.health + hit_points, Playerdata.max_health)
 	$Camera3D/ProgressBar.value = Playerdata.health
 
 func die():
 	if Playerdata.health <= 0:
+		get_parent().get_node("GameOver").game_over()
 		self.queue_free()
-		get_node("%GameOver").game_over()
 
 func add_item(item_data: ItemData):
 	Playerdata.inventory_data.add_item(item_data)
@@ -108,14 +110,18 @@ func _physics_process(delta: float) -> void:
 		# Force the idle animation
 		anim.play("idle")
 		return 
-	if not is_on_floor():
-		velocity += get_gravity() * delta
 
+	if not is_on_floor():
+		if velocity.y < 0: # velocity.y < 0 means falling DOWN in 3D
+			velocity += get_gravity() * fall_multiplier * delta
+		else:              # Moving UP
+			velocity += get_gravity() * delta
 
 	# Jump
 	if Input.is_action_just_pressed("jump") and is_on_floor() and not is_dashing:
 		velocity.y = Playerdata.jump_velocity
 		anim.play("jump")
+		
 
 	# Get Input Direction
 	var input_dir := Input.get_vector("move_left", "move_right", "move_up", "move_down")

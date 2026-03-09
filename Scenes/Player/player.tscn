@@ -391,9 +391,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2aanf")
 }],
-"loop": true,
+"loop": false,
 "name": &"jump",
-"speed": 8.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -426,7 +426,7 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hqtel"]
-radius = 1.1826172
+radius = 1.4853516
 height = 5.818878
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i3pqv"]
@@ -439,19 +439,22 @@ bg_color = Color(1, 0, 0, 1)
 [sub_resource type="SphereShape3D" id="SphereShape3D_htcer"]
 
 [node name="player" type="CharacterBody3D" unique_id=1415999693 groups=["player"]]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 0, 0, 0)
 script = ExtResource("1_xpcdj")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." unique_id=2027241730]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.20318547, 0)
 sprite_frames = SubResource("SpriteFrames_8d028")
-animation = &"run"
+animation = &"jump"
+frame = 4
+frame_progress = 1.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1401308739]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.24079743, 0)
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.24079746, 0)
 shape = SubResource("CapsuleShape3D_hqtel")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=343637069]
-transform = Transform3D(1, 0, 0, 0, 0.7385495, 0.6741993, 0, -0.6741993, 0.7385495, 0, 0.9717865, 0.9915769)
+transform = Transform3D(1, 0, 0, 0, 0.7385495, 0.6741993, 0, -0.6741993, 0.7385495, 0, 1.3545318, 1.4219596)
 current = true
 fov = 69.0193
 

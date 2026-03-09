@@ -2,7 +2,11 @@
 
 [ext_resource type="Texture2D" uid="uid://e7ka3g6pxu41" path="res://Assets/Temp Textures/TempTextureGreen.png" id="2_rli08"]
 [ext_resource type="Shader" uid="uid://cie75p0nqjovd" path="res://Shaders/WaterShader.gdshader" id="3_mykdr"]
-[ext_resource type="PackedScene" uid="uid://mhe6fu28wwjn" path="res://Scenes/Player/player.tscn" id="3_xqf5a"]
+[ext_resource type="PackedScene" uid="uid://bog36erxobt4t" path="res://Scenes/actionable.tscn" id="3_qb7kh"]
+[ext_resource type="PackedScene" uid="uid://co0j1h3knvxb8" path="res://Scenes/Player/player.tscn" id="3_xqf5a"]
+[ext_resource type="Resource" uid="uid://c4yeq782ftl" path="res://Dialogue/start_dialogue.dialogue" id="4_qb7kh"]
+[ext_resource type="PackedScene" uid="uid://cbb8i8nd8nro3" path="res://Scenes/Enemies/enemy.tscn" id="6_gpdna"]
+[ext_resource type="PackedScene" uid="uid://cqb0imqf3quff" path="res://Scenes/Menus/game_over.tscn" id="7_rkini"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rli08"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -49,6 +53,10 @@ albedo_texture = ExtResource("2_rli08")
 
 [sub_resource type="BoxMesh" id="BoxMesh_mykdr"]
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gpdna"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_rkini"]
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_xqf5a"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qb7kh"]
@@ -85,6 +93,9 @@ shader_parameter/border_near = 0.5
 shader_parameter/border_far = 300.0
 shader_parameter/cut_out_x = 0.0
 shader_parameter/cut_out_z = 0.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gpdna"]
+size = Vector3(1.9986572, 1, 2.0065918)
 
 [node name="ControlNode" type="Node3D" unique_id=424758510]
 
@@ -257,10 +268,41 @@ shape = SubResource("BoxShape3D_rli08")
 transform = Transform3D(1.0091218, 8.0480544e-10, -1.8626451e-09, 2.2661189e-07, 1.0130608, 7.6243367e-10, 0, -4.4150212e-09, 0.97911227, 0, 0, 0)
 mesh = SubResource("BoxMesh_mykdr")
 
-[node name="Water" type="MeshInstance3D" parent="." unique_id=1888594125]
-transform = Transform3D(158.92801, 0, 0, 0, 1, 0, 0, 0, 156.07802, 0, -3, -95)
+[node name="Slimetwink" parent="." unique_id=432569736 instance=ExtResource("3_qb7kh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5332794, 1.5149307, -0.03123951)
+dialogue_resource = ExtResource("4_qb7kh")
+dialogue_start = "start"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Slimetwink" unique_id=2098481506]
+shape = SubResource("CapsuleShape3D_gpdna")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Slimetwink" unique_id=260373286]
+mesh = SubResource("CapsuleMesh_rkini")
+
+[node name="player" parent="." unique_id=1415999693 instance=ExtResource("3_xqf5a")]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -11.156141, 2.0177016, 1.1446285)
+dash_speed = 40
+
+[node name="enemy" parent="." unique_id=1294842684 instance=ExtResource("6_gpdna")]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 42, -4, -18)
+
+[node name="Water" type="Area3D" parent="." unique_id=1435212152]
+transform = Transform3D(158.928, 0, 0, 0, 0.9999838, 0, 0, 0, 156.07802, 0.048503876, -13.798965, -94.52365)
+
+[node name="WaterMesh" type="MeshInstance3D" parent="Water" unique_id=1888594125]
+transform = Transform3D(1.0000001, 0, 0, 0, 1.0000162, 0, 0, 0, 1, -0.0009792852, 1.5258789e-05, -0.001943171)
+transparency = 0.36
+cast_shadow = 0
 mesh = SubResource("PlaneMesh_xqf5a")
 surface_material_override/0 = SubResource("ShaderMaterial_qb7kh")
 
-[node name="player" parent="." unique_id=1415999693 instance=ExtResource("3_xqf5a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 3, -2)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Water" unique_id=1347275621]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2934246, 0)
+shape = SubResource("BoxShape3D_gpdna")
+
+[node name="GameOver" parent="." unique_id=749302593 instance=ExtResource("7_rkini")]
+process_mode = 3
+
+[connection signal="body_entered" from="Water" to="Slimetwink" method="_on_water_body_entered"]
+
+[editable path="GameOver"]

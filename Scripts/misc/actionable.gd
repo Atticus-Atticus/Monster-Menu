@@ -6,3 +6,9 @@ extends Area3D
 
 func action() -> void:
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource, dialogue_start)
+
+
+func _on_water_body_entered(body: Node3D) -> void:
+	if body is CharacterBody3D and body.is_in_group("player"):
+		Playerdata.health = 0
+		body.die() 
