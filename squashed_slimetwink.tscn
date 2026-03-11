@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://ti4gdl0acon5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gtvf4"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_hsgi2"]
+
+[node name="squashed slimetwink" type="Area3D" unique_id=766555285]
+transform = Transform3D(1.4174405, 0, 0, 0, 0.28170323, 0, 0, 0, 1.4383017, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2016336567]
+shape = SubResource("BoxShape3D_gtvf4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=948985600]
+mesh = SubResource("BoxMesh_hsgi2")

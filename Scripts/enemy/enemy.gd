@@ -8,11 +8,12 @@ var health := max_health
 var player: CharacterBody3D = null
 var awake := false
 var player_in_hitbox := false
-var knockback_time := 0.0
+var knockback_time := 0.5
 var knockback_duration := 0.15
 
 
 func _ready():
+	health = max_health
 	$DamageTimer.wait_time = 0.3
 	$DamageTimer.autostart = false
 
@@ -74,22 +75,15 @@ func _on_area_3d_body_exited(body):
 		player = null
 		awake = false
 
-
-# -----------------------------
-#   DAMAGE HITBOX LOGIC
-# -----------------------------
 func _on_player_hit_area_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
 		player_in_hitbox = true
 		$DamageTimer.start()  # begin continuous damage
 
-
 func _on_player_hit_area_body_exited(body: Node3D) -> void:
 	if body.is_in_group("player"):
 		player_in_hitbox = false
 		$DamageTimer.stop()   # stop continuous damage
-
-
 
 func _on_damage_timer_timeout() -> void:
 	if player_in_hitbox:

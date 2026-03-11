@@ -5,11 +5,11 @@ class_name BossEnemy
 var is_in_phase_2 := false
 
 func _ready():
-	max_health = 30
+	max_health = 10
 	health = max_health
-	speed = 2.0
+	speed = 5
 	
-	knockback_duration = 0.0 
+	knockback_duration = 0.5
 
 	super._ready()
 
@@ -28,3 +28,28 @@ func enter_phase_2():
 	# Make the boss attack twice as fast!
 	$DamageTimer.wait_time = 0.15 
 	
+
+
+func _on_vision_area_body_entered(body: Node3D) -> void:
+	if body.is_in_group("player"):
+		player = body
+		awake = true
+
+
+func _on_vision_area_body_exited(body: Node3D) -> void:
+	if body == player:
+		player = null
+		awake = false
+
+func _on_player_hit_area_body_entered(body: Node3D) -> void:
+	if body.is_in_group("player"):
+		player_in_hitbox = true
+		if body.has_method("hurt"): 
+			body.hurt(1)
+		$DamageTimer.start()
+
+
+func _on_player_hit_area_body_exited(body: Node3D) -> void:
+	if body.is_in_group("player"):
+		player_in_hitbox = false
+		$DamageTimer.stop()   # stop continuous damage

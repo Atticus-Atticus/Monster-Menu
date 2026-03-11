@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://b0ml586edfo08"]
 
 [ext_resource type="PackedScene" uid="uid://co0j1h3knvxb8" path="res://Scenes/Player/player.tscn" id="1_1ukdm"]
-[ext_resource type="PackedScene" uid="uid://cbb8i8nd8nro3" path="res://Scenes/Enemies/enemy.tscn" id="2_0xrym"]
+[ext_resource type="PackedScene" uid="uid://cbb8i8nd8nro3" path="res://Scenes/Enemies/slime_enemy.tscn" id="2_0xrym"]
 [ext_resource type="PackedScene" uid="uid://bn8sa3o3fdfpa" path="res://Scenes/Levels/next_level.tscn" id="4_0xrym"]
-[ext_resource type="PackedScene" uid="uid://bog36erxobt4t" path="res://Scenes/actionable.tscn" id="4_20uw2"]
+[ext_resource type="PackedScene" uid="uid://bog36erxobt4t" path="res://Scenes/slimetwink.tscn" id="4_20uw2"]
 [ext_resource type="PackedScene" uid="uid://cqb0imqf3quff" path="res://Scenes/Menus/game_over.tscn" id="5_c0r4e"]
 [ext_resource type="PackedScene" uid="uid://bmett3e8jnej8" path="res://Scenes/grass_scene.tscn" id="6_m0h5h"]
 [ext_resource type="Resource" uid="uid://c4yeq782ftl" path="res://Dialogue/start_dialogue.dialogue" id="7_20uw2"]

@@ -155,7 +155,6 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	_setanimation(delta)
 
-# --- NEW DASH FUNCTION ---
 func start_dash(dir: Vector3) -> void:
 	# If the player isn't pressing a direction, dash in the direction they are facing
 	if dir == Vector3.ZERO:

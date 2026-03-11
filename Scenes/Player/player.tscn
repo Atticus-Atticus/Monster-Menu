@@ -429,14 +429,21 @@ animations = [{
 radius = 1.4853516
 height = 5.818878
 
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_jhyir"]
+
+[sub_resource type="Compositor" id="Compositor_74mp2"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i3pqv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hqtel"]
 bg_color = Color(1, 0, 0, 1)
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_xpcdj"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_jhyir"]
+height = 0.7027588
+radius = 0.60839844
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_htcer"]
+radius = 0.37158605
 
 [node name="player" type="CharacterBody3D" unique_id=1415999693 groups=["player"]]
 transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 0, 0, 0)
@@ -455,8 +462,10 @@ shape = SubResource("CapsuleShape3D_hqtel")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=343637069]
 transform = Transform3D(1, 0, 0, 0, 0.7385495, 0.6741993, 0, -0.6741993, 0.7385495, 0, 1.3545318, 1.4219596)
+attributes = SubResource("CameraAttributesPractical_jhyir")
+compositor = SubResource("Compositor_74mp2")
 current = true
-fov = 69.0193
+fov = 97.4
 
 [node name="ProgressBar" type="ProgressBar" parent="Camera3D" unique_id=2005575579]
 offset_right = 384.0
@@ -473,8 +482,8 @@ monitoring = false
 monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeleeHitbox" unique_id=1156702933]
-transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
-shape = SubResource("SphereShape3D_xpcdj")
+transform = Transform3D(0.59999967, 0, 0, 0, 0.59999967, 0, 0, 0, 0.59999967, 0, 0.11209726, 0)
+shape = SubResource("CylinderShape3D_jhyir")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1301226535]
 
@@ -494,10 +503,12 @@ layout_mode = 0
 metadata/_edit_use_anchors_ = true
 
 [node name="ActionableFinder" type="Area3D" parent="." unique_id=274848868]
+visible = false
 collision_layer = 16
 collision_mask = 16
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ActionableFinder" unique_id=1250034448]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1808203, 0)
 shape = SubResource("SphereShape3D_htcer")
 
 [connection signal="body_entered" from="MeleeHitbox" to="." method="_on_melee_hitbox_body_entered"]

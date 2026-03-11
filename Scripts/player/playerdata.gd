@@ -4,6 +4,12 @@ extends Node
 var health := 5
 var max_health := 5
 
+signal trigger_boss_drop
+var boss_defeated := false
+
+func start_boss_event():
+	trigger_boss_drop.emit()
+
 # Inventory
 @export var inventory_data: InventoryData = preload("res://Scenes/Player/inventory.tres")
 var slimetwink_quest_status: String = "not_started" 

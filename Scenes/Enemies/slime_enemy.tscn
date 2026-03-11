@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b43oggiehh4m" path="res://Assets/Sprites/PLACEHOLDER_slime.png" id="1_7k104"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_4gyqm"]
-radius = 0.039238676
+radius = 0.18935311
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qi2p4"]
 atlas = ExtResource("1_7k104")
@@ -101,12 +101,12 @@ size = Vector3(3, 0.001, 3)
 radius = 1.0170898
 height = 2.0341797
 
-[node name="enemy" type="CharacterBody3D" unique_id=1294842684]
+[node name="Slime enemy" type="CharacterBody3D" unique_id=1294842684]
 transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, 0)
 script = ExtResource("1_4gyqm")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=195963784]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0017562732, -0.07889792, 0.011200264)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0017562732, -0.049639747, 0.011200264)
 shape = SubResource("SphereShape3D_4gyqm")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." unique_id=13233984]
@@ -114,10 +114,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.009057343)
 sprite_frames = SubResource("SpriteFrames_wujgv")
 animation = &"run"
 
-[node name="Area3D" type="Area3D" parent="." unique_id=1132139018]
+[node name="VisionArea" type="Area3D" parent="." unique_id=1132139018]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.009057343)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=154565065]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VisionArea" unique_id=154565065]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.001, -0.06, 0)
 shape = SubResource("BoxShape3D_4gyqm")
 
@@ -131,8 +131,8 @@ shape = SubResource("CapsuleShape3D_4gyqm")
 wait_time = 0.75
 
 [connection signal="animation_finished" from="AnimatedSprite3D" to="." method="_on_animated_sprite_3d_animation_finished"]
-[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
-[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
+[connection signal="body_entered" from="VisionArea" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="VisionArea" to="." method="_on_area_3d_body_exited"]
 [connection signal="body_entered" from="PlayerHitArea" to="." method="_on_player_hit_area_body_entered"]
 [connection signal="body_exited" from="PlayerHitArea" to="." method="_on_player_hit_area_body_exited"]
 [connection signal="timeout" from="DamageTimer" to="." method="_on_damage_timer_timeout"]
