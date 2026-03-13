@@ -13,7 +13,7 @@ func start_boss_event():
 # Inventory
 @export var inventory_data: InventoryData = preload("res://Scenes/Player/inventory.tres")
 var slimetwink_quest_status: String = "not_started" 
-var slimeballs_collected: int = 0
+var slimeballs_collected: int = 10
 
 # Combat
 var attack_damage := 1

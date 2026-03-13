@@ -284,7 +284,7 @@ shape = SubResource("CapsuleShape3D_gpdna")
 mesh = SubResource("CapsuleMesh_rkini")
 
 [node name="Slimetwink2" parent="." unique_id=1864951336 instance=ExtResource("3_qb7kh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 107.37621, 16.696009, -18.292065)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 108, 16, -18)
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Slimetwink2" unique_id=1872794863]
 shape = SubResource("CapsuleShape3D_gpdna")
@@ -350,14 +350,15 @@ shape = SubResource("BoxShape3D_gpdna")
 [node name="GameOver" parent="." unique_id=749302593 instance=ExtResource("7_rkini")]
 process_mode = 3
 
-[node name="Boss Slime" parent="." unique_id=1297845405 instance=ExtResource("8_ol0rc")]
-process_mode = 4
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 106.485565, 47.732056, -16.9151)
-phase_2_speed_multiplier = 12.0
-
 [node name="squashed slimetwink" parent="." unique_id=766555285 instance=ExtResource("9_qrmmj")]
 transform = Transform3D(1.4174405, 0, 0, 0, 0.28170323, 0, 0, 0, 1.4383017, 108.06158, 14.997789, -18.188164)
 visible = false
+
+[node name="Boss Slime" parent="." unique_id=1297845405 instance=ExtResource("8_ol0rc")]
+process_mode = 4
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 108, 50, -18)
+phase_2_speed_multiplier = 1.5
+speed = 8
 
 [connection signal="body_entered" from="Water" to="Slimetwink" method="_on_water_body_entered"]
 

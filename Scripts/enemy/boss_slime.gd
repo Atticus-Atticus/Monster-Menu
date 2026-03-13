@@ -9,16 +9,18 @@ func _ready():
 	health = max_health
 	speed = 5
 	
-	knockback_duration = 0.5
+	knockback_duration = 0.3
 
 	super._ready()
 
 func take_damage(amount: int, knockback_dir := Vector3.ZERO):
 	super.take_damage(amount, Vector3.ZERO)
-
-	# Check for Phase 2 (e.g., when health drops below 50%)
 	if health <= max_health / 2.0 and not is_in_phase_2:
 		enter_phase_2()
+	if knockback_dir != Vector3.ZERO:
+		var knockback_strength := 0.3	
+		velocity = knockback_dir.normalized() * knockback_strength
+		knockback_time = knockback_duration
 
 func enter_phase_2():
 	is_in_phase_2 = true

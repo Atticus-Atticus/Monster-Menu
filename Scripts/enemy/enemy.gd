@@ -9,7 +9,7 @@ var player: CharacterBody3D = null
 var awake := false
 var player_in_hitbox := false
 var knockback_time := 0.5
-var knockback_duration := 0.15
+var knockback_duration := 0.5
 
 
 func _ready():
@@ -47,7 +47,7 @@ func take_damage(amount: int, knockback_dir := Vector3.ZERO):
 	print("Enemy health:", health)
 
 	if knockback_dir != Vector3.ZERO:
-		var knockback_strength := 2	
+		var knockback_strength := 1	
 		velocity = knockback_dir.normalized() * knockback_strength
 		knockback_time = knockback_duration
 

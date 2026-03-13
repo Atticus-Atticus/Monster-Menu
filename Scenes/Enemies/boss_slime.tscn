@@ -9,10 +9,11 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_7iagt"]
 size = Vector3(31.056885, 1, 30.980476)
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_7iagt"]
-radius = 1.066548
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7iagt"]
+radius = 0.61279297
 
 [node name="Boss Slime" type="CharacterBody3D" unique_id=1297845405]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 script = ExtResource("1_7iagt")
 phase_2_speed_multiplier = 11.0
 max_health = 10
@@ -35,8 +36,8 @@ shape = SubResource("BoxShape3D_7iagt")
 [node name="PlayerHitArea" type="Area3D" parent="." unique_id=1704041058]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerHitArea" unique_id=366565111]
-transform = Transform3D(0.9710301, 0.23895718, 0, -0.23895718, 0.9710301, 0, 0, 0, 1, 0, 0, 0)
-shape = SubResource("SphereShape3D_7iagt")
+transform = Transform3D(0.92725575, 0, -0.37442857, 0, 1, 0, 0.37442857, 0, 0.92725575, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_7iagt")
 
 [connection signal="body_entered" from="VisionArea" to="." method="_on_vision_area_body_entered"]
 [connection signal="body_exited" from="VisionArea" to="." method="_on_vision_area_body_exited"]
