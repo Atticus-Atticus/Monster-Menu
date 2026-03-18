@@ -29,3 +29,5 @@ shape = SubResource("RectangleShape2D_xs2sp")
 [node name="Slime" type="Sprite2D" parent="Area2D" unique_id=1381656819]
 position = Vector2(-133, -47.5)
 texture = ExtResource("3_ikq41")
+
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

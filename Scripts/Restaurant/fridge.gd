@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var slinkFridge = preload("res://Assets/Temp Assets/fridge 2.png")
+@onready var slinkFridge = preload("res://Assets/Temp Assets/fridge 2.png")
 
 
 #changing the sprite if slink gets looted.

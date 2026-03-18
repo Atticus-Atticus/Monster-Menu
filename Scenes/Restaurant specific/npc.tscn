@@ -72,8 +72,9 @@ _data = {
 &"Slide onto screen": SubResource("Animation_7duf1")
 }
 
-[node name="NPC" type="Area2D" unique_id=557610033]
+[node name="NPC" type="Area2D" unique_id=557610033 node_paths=PackedStringArray("Appearance_Frames")]
 script = ExtResource("1_wxogn")
+Appearance_Frames = NodePath("CollisionShape2D/Sprites")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=82528523]
 shape = SubResource("RectangleShape2D_3483m")

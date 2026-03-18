@@ -15,10 +15,10 @@
 [ext_resource type="PackedScene" uid="uid://8wd7vypydkyw" path="res://Scenes/Restaurant specific/stove.tscn" id="11_jtn77"]
 
 [node name="Restaurant" type="Node2D" unique_id=1227212215]
-script = ExtResource("1_ex7vx")
 
 [node name="Kitchen" type="Node2D" parent="." unique_id=1996547837]
 position = Vector2(960, 544)
+script = ExtResource("1_ex7vx")
 
 [node name="Cameras" type="Node2D" parent="Kitchen" unique_id=1657161440]
 position = Vector2(-960, -544)

@@ -1,19 +1,16 @@
 extends Area2D
 
+@export var Appearance_Frames: AnimatedSprite2D
+@onready var clickLeft = 3
+#var canCusOrder = get_parent().canCustomerOrder
+
 var RanNumGen = RandomNumberGenerator.new()
 var canInteract = false
 var Appearance = 0
 
-#@onready is shorthand 4 assigning a variable in func _ready()!
-@onready var Appearance_Frames = $CollisionShape2D/Sprites
-@onready var clickLeft = 3
-#@onready var restaurant = $"."
-#var canCusOrder = restaurant.canCustomerOrder
-
 
 func _ready():
 	RandomiseAppearance()
-
 
 #----------------------------------FUNCTIONS-----------------------------
 func RandomiseAppearance():
@@ -28,12 +25,12 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int):
 		on_click()
 
 func on_click():
-	if clickLeft == 0:
-		#canCusOrder = true
-		queue_free()
-	else:
+	if clickLeft != 0:
 		print("Click")
 		clickLeft -= 1
+	else:
+		#get_parent().canCustomerOrder = true
+		queue_free()
 
 #Lets player interact ONLY when NPC is centred
 func _on_animation_player_animation_finished(_anim_name: StringName):
