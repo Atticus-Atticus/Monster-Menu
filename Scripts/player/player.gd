@@ -18,13 +18,12 @@ var last_attack_time := 0
 var combo_window := 800 
 var is_dead := false
 var is_hurting := false
+var last_safe_position: Vector3
 
 var in_dialogue := false
 
 func _ready():
-	# Update UI from PlayerData
-	$Camera3D/ProgressBar.max_value = Playerdata.max_health
-	$Camera3D/ProgressBar.value = Playerdata.health
+	last_safe_position = global_position
 	
 	# Tell the player to listen for the end of any dialogue!
 	DialogueManager.dialogue_ended.connect(_on_dialogue_ended)
@@ -64,7 +63,6 @@ func hurt(hit_points):
 		return
 		
 	Playerdata.health = max(Playerdata.health - hit_points, 0)
-	$Camera3D/ProgressBar.value = Playerdata.health
 	
 	if Playerdata.health == 0:
 		is_dead = true
@@ -82,7 +80,6 @@ func hurt(hit_points):
 
 func restore_health(hit_points):
 	Playerdata.health = min(Playerdata.health + hit_points, Playerdata.max_health)
-	$Camera3D/ProgressBar.value = Playerdata.health
 
 func die():
 	if Playerdata.health <= 0:
@@ -109,7 +106,9 @@ func _physics_process(delta: float) -> void:
 		
 		# Force the idle animation
 		anim.play("idle")
-		return 
+		return
+	if is_on_floor():
+		last_safe_position = global_position
 
 	if not is_on_floor():
 		if velocity.y < 0: # velocity.y < 0 means falling DOWN in 3D

@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://b7o40apg7cc1k" path="res://Knight 2D Pixel Art PLACEHOLDER/Sprites/without_outline/DEATH.png" id="5_jhyir"]
 [ext_resource type="Texture2D" uid="uid://dbiodi7d07war" path="res://Knight 2D Pixel Art PLACEHOLDER/Sprites/without_outline/HURT.png" id="6_jhyir"]
 [ext_resource type="Texture2D" uid="uid://d3ldjoxo8r82e" path="res://Knight 2D Pixel Art PLACEHOLDER/Sprites/without_outline/JUMP.png" id="7_74mp2"]
+[ext_resource type="Script" uid="uid://cbugynpqebhpl" path="res://Scenes/Player/healthbar.gd" id="10_74mp2"]
+[ext_resource type="Texture2D" uid="uid://ypo6ds5scwqa" path="res://Assets/Sprites/HealthUI.png" id="11_oikmp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oikmp"]
 atlas = ExtResource("2_htcer")
@@ -433,10 +435,13 @@ height = 5.818878
 
 [sub_resource type="Compositor" id="Compositor_74mp2"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i3pqv"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_8vj0r"]
+atlas = ExtResource("11_oikmp")
+region = Rect2(0.98501873, 0.28495693, 9.284956, 10.069599)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hqtel"]
-bg_color = Color(1, 0, 0, 1)
+[sub_resource type="AtlasTexture" id="AtlasTexture_j7g5o"]
+atlas = ExtResource("11_oikmp")
+region = Rect2(0.9578142, 66.12133, 9.557633, 10.4076)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_jhyir"]
 height = 0.7027588
@@ -444,6 +449,12 @@ radius = 0.60839844
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_htcer"]
 radius = 0.37158605
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jhyir"]
+albedo_color = Color(0, 0, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_74mp2"]
+material = SubResource("StandardMaterial3D_jhyir")
 
 [node name="player" type="CharacterBody3D" unique_id=1415999693 groups=["player"]]
 transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 0, 0, 0)
@@ -462,19 +473,19 @@ shape = SubResource("CapsuleShape3D_hqtel")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=343637069]
 transform = Transform3D(1, 0, 0, 0, 0.7385495, 0.6741993, 0, -0.6741993, 0.7385495, 0, 1.3545318, 1.4219596)
+cull_mask = 1047553
 attributes = SubResource("CameraAttributesPractical_jhyir")
 compositor = SubResource("Compositor_74mp2")
 current = true
 fov = 97.4
 
-[node name="ProgressBar" type="ProgressBar" parent="Camera3D" unique_id=2005575579]
+[node name="HeartBar" type="HBoxContainer" parent="Camera3D" unique_id=380535604]
 offset_right = 384.0
 offset_bottom = 33.0
-theme_override_styles/background = SubResource("StyleBoxFlat_i3pqv")
-theme_override_styles/fill = SubResource("StyleBoxFlat_hqtel")
-max_value = 3.0
-value = 3.0
-show_percentage = false
+scale = Vector2(5, 5)
+script = ExtResource("10_74mp2")
+full_heart = SubResource("AtlasTexture_8vj0r")
+empty_heart = SubResource("AtlasTexture_j7g5o")
 
 [node name="MeleeHitbox" type="Area3D" parent="." unique_id=1507677051]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0.014227167, 0.1702203, 0.0035686865)
@@ -510,5 +521,9 @@ collision_mask = 16
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ActionableFinder" unique_id=1250034448]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1808203, 0)
 shape = SubResource("SphereShape3D_htcer")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=186904857]
+layers = 2
+mesh = SubResource("SphereMesh_74mp2")
 
 [connection signal="body_entered" from="MeleeHitbox" to="." method="_on_melee_hitbox_body_entered"]

@@ -101,6 +101,12 @@ size = Vector3(3, 0.001, 3)
 radius = 1.0170898
 height = 2.0341797
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5uyk1"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_sv1en"]
+material = SubResource("StandardMaterial3D_5uyk1")
+
 [node name="Slime enemy" type="CharacterBody3D" unique_id=1294842684]
 transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, 0)
 script = ExtResource("1_4gyqm")
@@ -129,6 +135,11 @@ shape = SubResource("CapsuleShape3D_4gyqm")
 
 [node name="DamageTimer" type="Timer" parent="." unique_id=1001526650]
 wait_time = 0.75
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1538364706]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+layers = 2
+mesh = SubResource("SphereMesh_sv1en")
 
 [connection signal="animation_finished" from="AnimatedSprite3D" to="." method="_on_animated_sprite_3d_animation_finished"]
 [connection signal="body_entered" from="VisionArea" to="." method="_on_area_3d_body_entered"]

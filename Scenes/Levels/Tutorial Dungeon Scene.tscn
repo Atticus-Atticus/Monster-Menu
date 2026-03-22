@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cqb0imqf3quff" path="res://Scenes/Menus/game_over.tscn" id="7_rkini"]
 [ext_resource type="PackedScene" uid="uid://bxwscthh1bdc3" path="res://Scenes/Enemies/boss_slime.tscn" id="8_ol0rc"]
 [ext_resource type="PackedScene" uid="uid://ti4gdl0acon5" path="res://squashed_slimetwink.tscn" id="9_qrmmj"]
+[ext_resource type="PackedScene" uid="uid://dyulg7p3d3632" path="res://Scenes/Player/health_potion.tscn" id="10_5q1p8"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rli08"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -57,7 +58,17 @@ albedo_texture = ExtResource("2_rli08")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gpdna"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ac6od"]
+albedo_color = Color(0, 1, 0, 1)
+
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_rkini"]
+material = SubResource("StandardMaterial3D_ac6od")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l5n8w"]
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_ybkxt"]
+material = SubResource("StandardMaterial3D_l5n8w")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_xqf5a"]
 
@@ -98,6 +109,13 @@ shader_parameter/cut_out_z = 0.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gpdna"]
 size = Vector3(1.9986572, 1, 2.0065918)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qrmmj"]
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.0076186024, 0.0076186024, 0.0076186024, 1)
 
 [node name="ControlNode" type="Node3D" unique_id=424758510]
 script = ExtResource("1_qrmmj")
@@ -283,6 +301,11 @@ shape = SubResource("CapsuleShape3D_gpdna")
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Slimetwink" unique_id=260373286]
 mesh = SubResource("CapsuleMesh_rkini")
 
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Slimetwink" unique_id=281883633]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+layers = 2
+mesh = SubResource("SphereMesh_ybkxt")
+
 [node name="Slimetwink2" parent="." unique_id=1864951336 instance=ExtResource("3_qb7kh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 108, 16, -18)
 
@@ -291,6 +314,11 @@ shape = SubResource("CapsuleShape3D_gpdna")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Slimetwink2" unique_id=1603939287]
 mesh = SubResource("CapsuleMesh_rkini")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Slimetwink2" unique_id=539959170]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+layers = 2
+mesh = SubResource("SphereMesh_ybkxt")
 
 [node name="player" parent="." unique_id=1415999693 instance=ExtResource("3_xqf5a")]
 transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -11.156141, 2.0177016, 1.1446285)
@@ -359,6 +387,33 @@ process_mode = 4
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 108, 50, -18)
 phase_2_speed_multiplier = 1.5
 speed = 8
+
+[node name="Minimap_UI" type="CanvasLayer" parent="." unique_id=1122422480]
+
+[node name="PanelContainer" type="PanelContainer" parent="Minimap_UI" unique_id=994589995]
+offset_left = 1579.0
+offset_top = 31.0
+offset_right = 1879.0
+offset_bottom = 331.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_qrmmj")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Minimap_UI/PanelContainer" unique_id=2063531717]
+layout_mode = 2
+
+[node name="SubViewport" type="SubViewport" parent="Minimap_UI/PanelContainer/SubViewportContainer" unique_id=1655604589]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(300, 300)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="Minimap_UI/PanelContainer/SubViewportContainer/SubViewport" unique_id=2126906781]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 23.611084, 150, -80)
+
+[node name="HealthPotion" parent="." unique_id=114972891 instance=ExtResource("10_5q1p8")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -6.743927, 0.5496335, -59.463577)
+
+[node name="HealthPotion2" parent="." unique_id=2013516993 instance=ExtResource("10_5q1p8")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.49954224, 0.54964876, -79.75404)
 
 [connection signal="body_entered" from="Water" to="Slimetwink" method="_on_water_body_entered"]
 

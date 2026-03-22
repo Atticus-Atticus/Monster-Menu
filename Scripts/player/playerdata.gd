@@ -1,8 +1,17 @@
 extends Node
 
+# Add the signal right at the top
+signal health_changed(new_health)
+
 # Core stats
-var health := 5
 var max_health := 5
+
+# Change health to use a setter
+var health := 5:
+	set(value):
+		# clampi forces the value to stay between 0 and max_health!
+		health = clampi(value, 0, max_health) 
+		health_changed.emit(health)
 
 signal trigger_boss_drop
 var boss_defeated := false
