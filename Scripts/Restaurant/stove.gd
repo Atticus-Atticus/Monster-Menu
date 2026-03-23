@@ -5,14 +5,16 @@ extends Area2D
 
 #----------------------------------FUNCTIONS----------------------------------
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int):
-		if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
+		if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed() and RestaurantGlobals.minigameOpen == false:
 			on_click()
 
 func on_click():
-	# activate minigame
-	print("Stove clicked")
-	get_parent().minigameOpen = true
-	spawn_at_center()
+	if RestaurantGlobals.orderFulfilled == false:
+		RestaurantGlobals.minigameOpen = true
+		# activate minigame
+		spawn_at_center()
+	else:
+		print("You don't have to cook anyfin right meow!")
 
 func spawn_at_center():
 	# spawn...

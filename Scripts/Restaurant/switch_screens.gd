@@ -10,16 +10,18 @@ func _ready():
 
 #----------------------------------FUNCTIONS----------------------------------
 func _on_left_button_pressed():
-	print("going left")
-	current_index -= 1
-	print("current index is ", current_index)
-	updateCamera()
+	if RestaurantGlobals.minigameOpen == false:
+		print("going left")
+		current_index -= 1
+		print("current index is ", current_index)
+		updateCamera()
 
 func _on_right_button_pressed():
-	print("going right")
-	current_index += 1
-	print("current index is ", current_index)
-	updateCamera()
+	if RestaurantGlobals.minigameOpen == false:
+		print("going right")
+		current_index += 1
+		print("current index is ", current_index)
+		updateCamera()
 
 
 #attempting camera switch. heh. https://www.youtube.com/watch?v=jlZmKwmguFM

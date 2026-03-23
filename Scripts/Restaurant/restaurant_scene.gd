@@ -7,7 +7,6 @@ extends Node2D
 
 var canCustomerOrder = true
 var orderFulfilled = false
-var minigameOpen = false
 
 #----------------------------------FUNCTIONS----------------------------------
 func _physics_process(delta: float):

@@ -18,6 +18,7 @@ config/icon="res://Assets/Sprites/icon.svg"
 [autoload]
 
 Globals="*uid://bwae0c3pn0vx3"
+RestaurantGlobals="*uid://c617fg1rlwguw"
 
 [display]
 

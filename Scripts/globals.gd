@@ -10,4 +10,13 @@ var health: int = 3
 var resScore: int = 0
 var money: int = 0
 
-var slinkLoot = false
+var slinkLoot: bool = false
+
+# restaurant functions
+func increaseScore(addScore):
+	resScore += addScore
+	print(resScore)
+
+func increaseMoney(addMoney):
+	money += addMoney
+	print(money)
