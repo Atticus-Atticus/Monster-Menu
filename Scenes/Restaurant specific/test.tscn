@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b0gs3y2ltic15" path="res://Assets/Temp Assets/Slime.png" id="3_ikq41"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xs2sp"]
-size = Vector2(185, 76)
+size = Vector2(496, 136)
 
 [node name="Test" type="Node2D" unique_id=1167416085]
 script = ExtResource("1_4bdon")
@@ -19,15 +19,17 @@ texture = ExtResource("1_xs2sp")
 position = Vector2(-69, -31.5)
 texture = ExtResource("2_4bdon")
 
+[node name="Slime" type="Sprite2D" parent="Pan" unique_id=1381656819]
+position = Vector2(-112, -16)
+texture = ExtResource("3_ikq41")
+
 [node name="Area2D" type="Area2D" parent="." unique_id=1012797287]
 position = Vector2(-48, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=310077262]
-position = Vector2(-132.5, -45)
+position = Vector2(-24, -36)
 shape = SubResource("RectangleShape2D_xs2sp")
 
-[node name="Slime" type="Sprite2D" parent="Area2D" unique_id=1381656819]
-position = Vector2(-133, -47.5)
-texture = ExtResource("3_ikq41")
-
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

@@ -1,6 +1,6 @@
 extends Node2D
 
-#when minigame finish successfully, orderFulfilled=true
+@onready var mouseInRange = false
 
 # debug use only - minigame should only exit when COMPLETE
 func _input(event):
@@ -9,11 +9,22 @@ func _input(event):
 		finishGame()
 
 #----------------------------------FUNCTIONS-----------------------------
-func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int):
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed() :
-		print("clicked pan")
+func _process(delta: float) -> void:
+	#if mouseInRange == true:
+	#	print("mouse is in range")
+		$Pan.position = get_viewport().get_mouse_position() - Vector2(960, 540)
+
+#func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int):
+#	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed() :
+#		print("clicked slime")
 
 func finishGame():
 	RestaurantGlobals.minigameOpen = false
 	RestaurantGlobals.orderFulfilled = true
 	queue_free()
+
+func _on_area_2d_mouse_entered() -> void:
+	mouseInRange == true
+
+func _on_area_2d_mouse_exited() -> void:
+	mouseInRange == false

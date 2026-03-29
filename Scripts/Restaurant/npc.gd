@@ -7,6 +7,7 @@ extends Area2D
 var RanNumGen = RandomNumberGenerator.new()
 var canInteract = false
 var hasOrdered = false
+var canLeave = false
 var Appearance = 0
 
 
@@ -40,6 +41,8 @@ func on_click():
 		RestaurantGlobals.orderFulfilled = false
 
 func finishOrder():
+	$AnimationPlayer.play("FadeOut")
+	await get_tree().create_timer($AnimationPlayer.current_animation_length).timeout
 	queue_free()
 
 #Lets player interact ONLY when NPC is centred
