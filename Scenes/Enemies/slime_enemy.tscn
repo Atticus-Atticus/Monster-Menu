@@ -95,11 +95,11 @@ animations = [{
 }]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4gyqm"]
-size = Vector3(3, 0.001, 3)
+size = Vector3(3, 0.42054394, 3)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4gyqm"]
-radius = 1.0170898
-height = 2.0341797
+radius = 1.3969727
+height = 2.7939453
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5uyk1"]
 albedo_color = Color(1, 0, 0, 1)
@@ -124,13 +124,13 @@ animation = &"run"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.009057343)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="VisionArea" unique_id=154565065]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.001, -0.06, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.001, 0.14977197, 0)
 shape = SubResource("BoxShape3D_4gyqm")
 
 [node name="PlayerHitArea" type="Area3D" parent="." unique_id=1287710441]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerHitArea" unique_id=1061506315]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, -0.06159668, 0)
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.0022933483, -0.022078533, 0.004701555)
 shape = SubResource("CapsuleShape3D_4gyqm")
 
 [node name="DamageTimer" type="Timer" parent="." unique_id=1001526650]

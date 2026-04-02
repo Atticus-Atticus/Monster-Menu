@@ -9,7 +9,8 @@ albedo_color = Color(1, 0, 0, 1)
 material = SubResource("StandardMaterial3D_wry1p")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_422mq"]
-height = 1.6281738
+radius = 2.6435547
+height = 10.967102
 
 [node name="HealthPotion" type="Node3D" unique_id=114972891]
 transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
@@ -21,7 +22,7 @@ mesh = SubResource("CapsuleMesh_u541r")
 [node name="Area3D" type="Area3D" parent="." unique_id=885898923]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=2009589086]
-transform = Transform3D(0.20478922, 0, 0, 0, 0.20478922, 0, 0, 0, 0.20478922, 0, -0.00057496876, 0)
+transform = Transform3D(0.20478922, 0, 0, 0, 0.20478922, 0, 0, 0, 0.20478922, 0, -0.05374098, 0)
 shape = SubResource("CapsuleShape3D_422mq")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

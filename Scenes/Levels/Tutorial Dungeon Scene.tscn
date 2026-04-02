@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://qoph1ir5amve"]
 
-[ext_resource type="Script" uid="uid://btvuqdwxpp6dx" path="res://Scenes/Levels/tutorial_dungeon_scene.gd" id="1_qrmmj"]
+[ext_resource type="Script" uid="uid://btvuqdwxpp6dx" path="res://Scenes/Levels/hidden.gd" id="1_qrmmj"]
 [ext_resource type="Texture2D" uid="uid://e7ka3g6pxu41" path="res://Assets/Temp Textures/TempTextureGreen.png" id="2_rli08"]
 [ext_resource type="Shader" uid="uid://cie75p0nqjovd" path="res://Shaders/WaterShader.gdshader" id="3_mykdr"]
 [ext_resource type="PackedScene" uid="uid://bog36erxobt4t" path="res://Scenes/slimetwink.tscn" id="3_qb7kh"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bxwscthh1bdc3" path="res://Scenes/Enemies/boss_slime.tscn" id="8_ol0rc"]
 [ext_resource type="PackedScene" uid="uid://ti4gdl0acon5" path="res://squashed_slimetwink.tscn" id="9_qrmmj"]
 [ext_resource type="PackedScene" uid="uid://dyulg7p3d3632" path="res://Scenes/Player/health_potion.tscn" id="10_5q1p8"]
+[ext_resource type="Shader" uid="uid://c6y7udhf3k15o" path="res://Scripts/items/hidden.gdshader" id="11_ac6od"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rli08"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -77,7 +78,7 @@ render_priority = 0
 shader = ExtResource("3_mykdr")
 shader_parameter/color_shallow = Color(0.01, 0.2, 0.3, 1)
 shader_parameter/color_deep = Color(0.3, 0.5, 0.6, 1)
-shader_parameter/transparency = 1.0
+shader_parameter/transparency = 0.0
 shader_parameter/metallic = 0.0
 shader_parameter/roughness = 0.25
 shader_parameter/max_visible_depth = 20.0
@@ -117,6 +118,59 @@ border_width_right = 5
 border_width_bottom = 5
 border_color = Color(0.0076186024, 0.0076186024, 0.0076186024, 1)
 
+[sub_resource type="GDScript" id="GDScript_ac6od"]
+script/source = "extends Area3D
+
+@onready var hidden_mesh = $hiddenmesh
+
+func _ready():
+	body_entered.connect(_on_body_entered)
+
+func _on_body_entered(body):
+	if body.is_in_group(\"player\"):
+		hidden_mesh.visible = false
+"
+
+[sub_resource type="BoxMesh" id="BoxMesh_5q1p8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5q1p8"]
+render_priority = 0
+shader = ExtResource("11_ac6od")
+shader_parameter/color_shallow = Color(0.01, 0.2, 0.3, 1)
+shader_parameter/color_deep = Color(0.3, 0.5, 0.6, 1)
+shader_parameter/transparency = 0.6
+shader_parameter/metallic = 0.0
+shader_parameter/roughness = 0.25
+shader_parameter/max_visible_depth = 20.0
+shader_parameter/wave_move_direction_a = Vector2(-1, 0)
+shader_parameter/wave_move_direction_b = Vector2(0, 1)
+shader_parameter/wave_noise_scale_a = 15.0
+shader_parameter/wave_noise_scale_b = 15.0
+shader_parameter/wave_time_scale_a = 0.15
+shader_parameter/wave_time_scale_b = 0.15
+shader_parameter/wave_height_scale = 1.0
+shader_parameter/wave_normal_flatness = 50.0
+shader_parameter/surface_normals_move_direction_a = Vector2(-1, 0.2)
+shader_parameter/surface_normals_move_direction_b = Vector2(0.2, 1)
+shader_parameter/surface_texture_roughness = 0.15
+shader_parameter/surface_texture_scale = 0.1
+shader_parameter/surface_texture_time_scale = 0.06
+shader_parameter/ssr_resolution = 1.0
+shader_parameter/ssr_max_travel = 30.0
+shader_parameter/ssr_max_diff = 4.0
+shader_parameter/ssr_mix_strength = 0.7
+shader_parameter/ssr_screen_border_fadeout = 0.3
+shader_parameter/refraction_intensity = 0.4
+shader_parameter/border_color = Color(1, 1, 1, 1)
+shader_parameter/border_scale = 2.0
+shader_parameter/border_near = 0.5
+shader_parameter/border_far = 300.0
+shader_parameter/cut_out_x = 0.0
+shader_parameter/cut_out_z = 0.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_l5n8w"]
+size = Vector3(0.80737305, 6.2404785, 0.7919998)
+
 [node name="ControlNode" type="Node3D" unique_id=424758510]
 script = ExtResource("1_qrmmj")
 
@@ -138,7 +192,7 @@ material_override = SubResource("StandardMaterial3D_mykdr")
 mesh = SubResource("BoxMesh_rli08")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Rooms" unique_id=1994029527]
-transform = Transform3D(38.63703, 0, 7.764571, 0, 1, 0, -10.352762, 0, 28.977774, -55, 0, 17)
+transform = Transform3D(38.63703, 0, 7.764571, 0, 1, 0, -10.352762, 0, 28.977774, -55, 0.32011414, 17)
 shape = SubResource("BoxShape3D_ojimw")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Rooms/CollisionShape3D2" unique_id=1937217940]
@@ -365,7 +419,7 @@ transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 98.71835, 11.332897, -122.921
 transform = Transform3D(158.928, 0, 0, 0, 0.9999838, 0, 0, 0, 156.07802, 0.048503876, -13.798965, -94.52365)
 
 [node name="WaterMesh" type="MeshInstance3D" parent="Water" unique_id=1888594125]
-transform = Transform3D(1.0000001, 0, 0, 0, 1.0000162, 0, 0, 0, 1, -0.0009792852, 1.5258789e-05, -0.001943171)
+transform = Transform3D(1.0000001, 0, 0, 0, 1.0000162, 0, 0, 0, 1, -0.0009792852, 1.5258789e-05, -0.0019431114)
 transparency = 0.36
 cast_shadow = 0
 mesh = SubResource("PlaneMesh_xqf5a")
@@ -415,6 +469,36 @@ transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -6.743927, 0.5496335, -
 [node name="HealthPotion2" parent="." unique_id=2013516993 instance=ExtResource("10_5q1p8")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.49954224, 0.54964876, -79.75404)
 
+[node name="hidden3d" type="Area3D" parent="." unique_id=294525956]
+transform = Transform3D(57.95555, 0, 10.3527565, 0, 1, 0, -15.529136, 0, 38.637035, -34.16938, 0.1505642, -2.1390915)
+script = SubResource("GDScript_ac6od")
+
+[node name="hiddenmesh" type="MeshInstance3D" parent="hidden3d" unique_id=1550806929]
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, -0.295, 30, 0.109)
+layers = 2
+mesh = SubResource("BoxMesh_5q1p8")
+surface_material_override/0 = SubResource("ShaderMaterial_5q1p8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hidden3d" unique_id=1167312013]
+transform = Transform3D(1.0000004, 0, 0, 0, 1, 0, -5.9604645e-08, 0, 1.0000001, -0.4355471, 0, 0.37509167)
+shape = SubResource("BoxShape3D_l5n8w")
+
+[node name="hidden3d2" type="Area3D" parent="." unique_id=96570862]
+transform = Transform3D(33.921925, 0, -15.897578, 0, 1, 0, 21.19677, 0, 25.441442, 55.224, -10, -57.405)
+script = SubResource("GDScript_ac6od")
+
+[node name="hiddenmesh" type="MeshInstance3D" parent="hidden3d2" unique_id=144574072]
+transform = Transform3D(1.0000004, 0, 0, 0, 1, 0, 0, 0, 1.0000001, -0.21455812, 30, 0.060271144)
+layers = 2
+mesh = SubResource("BoxMesh_5q1p8")
+surface_material_override/0 = SubResource("ShaderMaterial_5q1p8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hidden3d2" unique_id=88427800]
+transform = Transform3D(1.0000005, 0, -5.9604645e-08, 0, 1, 0, 5.364418e-07, 0, 1.0000002, -0.046046197, 3.821621, -0.14866543)
+shape = SubResource("BoxShape3D_l5n8w")
+
 [connection signal="body_entered" from="Water" to="Slimetwink" method="_on_water_body_entered"]
+[connection signal="body_entered" from="hidden3d" to="hidden3d" method="_on_body_entered"]
+[connection signal="body_entered" from="hidden3d2" to="hidden3d2" method="_on_body_entered"]
 
 [editable path="GameOver"]

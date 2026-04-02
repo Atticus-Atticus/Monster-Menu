@@ -1,14 +1,32 @@
 [gd_scene format=3 uid="uid://ti4gdl0acon5"]
 
+[ext_resource type="Script" uid="uid://b8pnujrtajw0w" path="res://squashed_slimetwink.gd" id="1_hsgi2"]
+[ext_resource type="Resource" uid="uid://bj3msxuk1d1k5" path="res://Scripts/items/slimeball.tres" id="2_07n3t"]
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_gtvf4"]
+size = Vector3(3, 4, 3)
 
 [sub_resource type="BoxMesh" id="BoxMesh_hsgi2"]
 
 [node name="squashed slimetwink" type="Area3D" unique_id=766555285]
 transform = Transform3D(1.4174405, 0, 0, 0, 0.28170323, 0, 0, 0, 1.4383017, 0, 0, 0)
+script = ExtResource("1_hsgi2")
+item = ExtResource("2_07n3t")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2016336567]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_gtvf4")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=948985600]
 mesh = SubResource("BoxMesh_hsgi2")
+
+[node name="Label3D" type="Label3D" parent="." unique_id=400402856]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 11.282596, 0)
+billboard = 1
+texture_filter = 0
+text = "Press 'E' to Harvest"
+font_size = 100
+horizontal_alignment = 3
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
