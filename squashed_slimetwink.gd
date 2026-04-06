@@ -38,9 +38,9 @@ func harvest():
 func _on_body_entered(body):
 	if body.is_in_group("player"):
 		player_in_range = true
-		interact_label.show() # Show the text when player gets close!
+		interact_label.show() # Show the text when player gets close
 
 func _on_body_exited(body):
 	if body.is_in_group("player"):
 		player_in_range = false
-		interact_label.hide() # Hide the text when player walks away!
+		interact_label.hide() # Hide the text when player walks away

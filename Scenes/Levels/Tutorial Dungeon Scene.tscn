@@ -10,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://bxwscthh1bdc3" path="res://Scenes/Enemies/boss_slime.tscn" id="8_ol0rc"]
 [ext_resource type="PackedScene" uid="uid://ti4gdl0acon5" path="res://squashed_slimetwink.tscn" id="9_qrmmj"]
 [ext_resource type="PackedScene" uid="uid://dyulg7p3d3632" path="res://Scenes/Player/health_potion.tscn" id="10_5q1p8"]
-[ext_resource type="Shader" uid="uid://c6y7udhf3k15o" path="res://Scripts/items/hidden.gdshader" id="11_ac6od"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rli08"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -59,17 +58,17 @@ albedo_texture = ExtResource("2_rli08")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gpdna"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ac6od"]
-albedo_color = Color(0, 1, 0, 1)
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_rkini"]
-material = SubResource("StandardMaterial3D_ac6od")
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l5n8w"]
 albedo_color = Color(1, 1, 0, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_ybkxt"]
 material = SubResource("StandardMaterial3D_l5n8w")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ac6od"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_rkini"]
+material = SubResource("StandardMaterial3D_ac6od")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_xqf5a"]
 
@@ -131,45 +130,14 @@ func _on_body_entered(body):
 		hidden_mesh.visible = false
 "
 
-[sub_resource type="BoxMesh" id="BoxMesh_5q1p8"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ybkxt"]
+albedo_color = Color(0.012617188, 0.012617188, 0.012617188, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_5q1p8"]
-render_priority = 0
-shader = ExtResource("11_ac6od")
-shader_parameter/color_shallow = Color(0.01, 0.2, 0.3, 1)
-shader_parameter/color_deep = Color(0.3, 0.5, 0.6, 1)
-shader_parameter/transparency = 0.6
-shader_parameter/metallic = 0.0
-shader_parameter/roughness = 0.25
-shader_parameter/max_visible_depth = 20.0
-shader_parameter/wave_move_direction_a = Vector2(-1, 0)
-shader_parameter/wave_move_direction_b = Vector2(0, 1)
-shader_parameter/wave_noise_scale_a = 15.0
-shader_parameter/wave_noise_scale_b = 15.0
-shader_parameter/wave_time_scale_a = 0.15
-shader_parameter/wave_time_scale_b = 0.15
-shader_parameter/wave_height_scale = 1.0
-shader_parameter/wave_normal_flatness = 50.0
-shader_parameter/surface_normals_move_direction_a = Vector2(-1, 0.2)
-shader_parameter/surface_normals_move_direction_b = Vector2(0.2, 1)
-shader_parameter/surface_texture_roughness = 0.15
-shader_parameter/surface_texture_scale = 0.1
-shader_parameter/surface_texture_time_scale = 0.06
-shader_parameter/ssr_resolution = 1.0
-shader_parameter/ssr_max_travel = 30.0
-shader_parameter/ssr_max_diff = 4.0
-shader_parameter/ssr_mix_strength = 0.7
-shader_parameter/ssr_screen_border_fadeout = 0.3
-shader_parameter/refraction_intensity = 0.4
-shader_parameter/border_color = Color(1, 1, 1, 1)
-shader_parameter/border_scale = 2.0
-shader_parameter/border_near = 0.5
-shader_parameter/border_far = 300.0
-shader_parameter/cut_out_x = 0.0
-shader_parameter/cut_out_z = 0.0
+[sub_resource type="BoxMesh" id="BoxMesh_5q1p8"]
+material = SubResource("StandardMaterial3D_ybkxt")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_l5n8w"]
-size = Vector3(0.80737305, 6.2404785, 0.7919998)
+size = Vector3(0.95977783, 23.626938, 1.1676035)
 
 [node name="ControlNode" type="Node3D" unique_id=424758510]
 script = ExtResource("1_qrmmj")
@@ -353,12 +321,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5332794, 1.5149307, -0.0312
 shape = SubResource("CapsuleShape3D_gpdna")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Slimetwink" unique_id=260373286]
-mesh = SubResource("CapsuleMesh_rkini")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="Slimetwink" unique_id=281883633]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
 layers = 2
 mesh = SubResource("SphereMesh_ybkxt")
+
+[node name="slinkcam1" type="Camera3D" parent="Slimetwink" unique_id=1949947066]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2073402, 2.927113)
+cull_mask = 1048573
 
 [node name="Slimetwink2" parent="." unique_id=1864951336 instance=ExtResource("3_qb7kh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 108, 16, -18)
@@ -470,31 +441,29 @@ transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -6.743927, 0.5496335, -
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.49954224, 0.54964876, -79.75404)
 
 [node name="hidden3d" type="Area3D" parent="." unique_id=294525956]
-transform = Transform3D(57.95555, 0, 10.3527565, 0, 1, 0, -15.529136, 0, 38.637035, -34.16938, 0.1505642, -2.1390915)
+transform = Transform3D(38.637035, 0, 9.0586605, 0, 1, 0, -10.352755, 0, 33.807407, -33.635345, -1.0260849, 1.9718294)
 script = SubResource("GDScript_ac6od")
 
 [node name="hiddenmesh" type="MeshInstance3D" parent="hidden3d" unique_id=1550806929]
-transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, -0.295, 30, 0.109)
-layers = 2
+transform = Transform3D(1.0000004, 0, 0, 0, 20, 0, -5.9604645e-08, 0, 1.0000001, -0.5907177, 11.4843235, 0.26116544)
+layers = 3
 mesh = SubResource("BoxMesh_5q1p8")
-surface_material_override/0 = SubResource("ShaderMaterial_5q1p8")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="hidden3d" unique_id=1167312013]
-transform = Transform3D(1.0000004, 0, 0, 0, 1, 0, -5.9604645e-08, 0, 1.0000001, -0.4355471, 0, 0.37509167)
+transform = Transform3D(1.0000004, 0, 0, 0, 1, 0, 8.940697e-08, 0, 1.0000001, -0.5503541, 11.089066, 0.2796343)
 shape = SubResource("BoxShape3D_l5n8w")
 
 [node name="hidden3d2" type="Area3D" parent="." unique_id=96570862]
-transform = Transform3D(33.921925, 0, -15.897578, 0, 1, 0, 21.19677, 0, 25.441442, 55.224, -10, -57.405)
+transform = Transform3D(33.921925, 0, -13.247982, 0, 1, 0, 21.19677, 0, 21.201202, 55.224, -14.795025, -60.68296)
 script = SubResource("GDScript_ac6od")
 
 [node name="hiddenmesh" type="MeshInstance3D" parent="hidden3d2" unique_id=144574072]
-transform = Transform3D(1.0000004, 0, 0, 0, 1, 0, 0, 0, 1.0000001, -0.21455812, 30, 0.060271144)
-layers = 2
+transform = Transform3D(1, 0, -1.19209275e-07, 0, 10, 0, 1.19209275e-07, 0, 1, -0.1829952, 9.685171, 0.033974648)
+layers = 3
 mesh = SubResource("BoxMesh_5q1p8")
-surface_material_override/0 = SubResource("ShaderMaterial_5q1p8")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="hidden3d2" unique_id=88427800]
-transform = Transform3D(1.0000005, 0, -5.9604645e-08, 0, 1, 0, 5.364418e-07, 0, 1.0000002, -0.046046197, 3.821621, -0.14866543)
+transform = Transform3D(1.0000005, 0, 0, 0, 1, 0, 5.364418e-07, 0, 1.0000005, -0.084650874, 6.3634987, 0.046830416)
 shape = SubResource("BoxShape3D_l5n8w")
 
 [connection signal="body_entered" from="Water" to="Slimetwink" method="_on_water_body_entered"]

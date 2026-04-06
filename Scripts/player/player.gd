@@ -1,39 +1,69 @@
 extends CharacterBody3D
 
+# --- Nodes ---
 @onready var anim = $AnimatedSprite3D
-@export var attack_duration := 0.3
+@onready var camera = $Camera3D
 @onready var actionable_finder = $ActionableFinder
+@onready var melee_hitbox = $MeleeHitbox
 
+# --- Settings ---
+@export_group("Movement")
 @export var dash_speed := 12
 @export var dash_duration := 0.2
 @export var dash_cooldown := 0.7
 @export var fall_multiplier := 4
 
-var is_dashing := false
-var can_dash := true
-var dash_direction := Vector3.ZERO
-var attacking := false
-var combo_step := 1
-var last_attack_time := 0
-var combo_window := 800 
+@export_group("Combat")
+@export var attack_duration := 0.3
+@export var combo_window := 1.5
+@onready var sword_sound = $SwordSound
+@onready var sword_sounds = [
+	preload("res://Assets/Sounds/sword1.mp3"),
+	preload("res://Assets/Sounds/sword2.mp3"),
+	preload("res://Assets/Sounds/sword3.mp3")
+]
+
+# --- State Variables ---
 var is_dead := false
 var is_hurting := false
-var last_safe_position: Vector3
-
+var is_dashing := false
+var can_dash := true
+var attacking := false
 var in_dialogue := false
+
+var combo_step := 1
+var dash_direction := Vector3.ZERO
+var last_safe_position: Vector3
 
 func _ready():
 	last_safe_position = global_position
-	
-	# Tell the player to listen for the end of any dialogue!
-	DialogueManager.dialogue_ended.connect(_on_dialogue_ended)
+	DialogueManager.dialogue_ended.connect(func(_res): in_dialogue = false)
 
-func _on_dialogue_ended(_resource: DialogueResource):
-	in_dialogue = false
-
-func _setanimation(_delta):
-	if is_dead or is_hurting:
+func _physics_process(delta: float) -> void: # Delta is declared here
+	if is_dead: return
+	if in_dialogue:
+		handle_dialogue_state(delta) # Passed to dialogue
 		return
+
+	apply_gravity(delta) # Passed to gravity
+	handle_jump()
+	handle_movement(delta) # Passed to movement
+	
+	move_and_slide()
+	
+	update_sprite_flip()
+	_setanimation(delta)
+	
+	# 3. Visuals
+func _setanimation(_delta):
+	if is_dead:
+		if anim.animation != "die":
+			anim.play("die")
+		return # Stop everything else if dead
+		
+	if is_hurting:
+		return
+		
 	if attacking:
 		anim.play("attack" + str(combo_step))
 		return
@@ -41,102 +71,51 @@ func _setanimation(_delta):
 	if not is_on_floor():
 		if anim.animation != "jump":
 			anim.play("jump")
-
 	elif velocity.length() > 0.1:
 		if anim.animation != "run":
 			anim.play("run")
 	else:
 		if anim.animation != "idle":
 			anim.play("idle")
-
-func _unhandled_input(_event: InputEvent) -> void:
-	# Check that we aren't already in a dialogue before interacting
-	if Input.is_action_just_pressed("ui_accept") and not in_dialogue:
-		var actionables = actionable_finder.get_overlapping_areas()
-		if actionables.size() > 0:
-			in_dialogue = true # Turn the flag ON
-			actionables[0].action()
-			return
-
-func hurt(hit_points):
-	if is_dead:
-		return
-		
-	Playerdata.health = max(Playerdata.health - hit_points, 0)
+	update_sprite_flip()
 	
-	if Playerdata.health == 0:
-		is_dead = true
-		anim.play("die")
-		await anim.animation_finished
-		die()
+
+# --- Logic Blocks ---
+
+func handle_dialogue_state(delta):
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+	velocity.x = move_toward(velocity.x, 0, Playerdata.speed)
+	velocity.z = move_toward(velocity.z, 0, Playerdata.speed)
+	move_and_slide()
+	anim.play("idle")
+
+func apply_gravity(delta):
+	if not is_on_floor():
+		var gravity_step = get_gravity() * delta
+		if velocity.y < 0:
+			velocity += gravity_step * fall_multiplier
+		else:
+			velocity += gravity_step
 	else:
-		is_hurting = true
-		anim.play("hurt")
-		
-		# Wait for the animation to finish before letting the player idle/run again
-		await anim.animation_finished 
-		
-		is_hurting = false
-
-func restore_health(hit_points):
-	Playerdata.health = min(Playerdata.health + hit_points, Playerdata.max_health)
-
-func die():
-	if Playerdata.health <= 0:
-		get_parent().get_node("GameOver").game_over()
-		self.queue_free()
-
-func add_item(item_data: ItemData):
-	Playerdata.inventory_data.add_item(item_data)
-	print("Added item resource:", item_data.name)
-
-func _physics_process(delta: float) -> void:
-	# --- NEW DIALOGUE CHECK ---
-	if is_dead:
-		return
-	if in_dialogue:
-		# Keep applying gravity so you don't float if you talk while falling
-		if not is_on_floor():
-			velocity += get_gravity() * delta
-			
-		# Rapidly slow the player down to a complete stop
-		velocity.x = move_toward(velocity.x, 0, Playerdata.speed)
-		velocity.z = move_toward(velocity.z, 0, Playerdata.speed)
-		move_and_slide()
-		
-		# Force the idle animation
-		anim.play("idle")
-		return
-	if is_on_floor():
 		last_safe_position = global_position
 
-	if not is_on_floor():
-		if velocity.y < 0: # velocity.y < 0 means falling DOWN in 3D
-			velocity += get_gravity() * fall_multiplier * delta
-		else:              # Moving UP
-			velocity += get_gravity() * delta
-
-	# Jump
+func handle_jump():
 	if Input.is_action_just_pressed("jump") and is_on_floor() and not is_dashing:
 		velocity.y = Playerdata.jump_velocity
 		anim.play("jump")
-		
 
-	# Get Input Direction
+func handle_movement(delta):
 	var input_dir := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 
-	# Dash Input Check
 	if Input.is_action_just_pressed("dash") and can_dash and not is_dashing:
 		start_dash(direction)
 
-	# Movement Logic
 	if is_dashing:
-		# Override normal movement with dash speed
 		velocity.x = dash_direction.x * dash_speed
 		velocity.z = dash_direction.z * dash_speed
 	else:
-		# Normal Movement
 		if direction:
 			velocity.x = direction.x * Playerdata.speed
 			velocity.z = direction.z * Playerdata.speed
@@ -144,71 +123,99 @@ func _physics_process(delta: float) -> void:
 			velocity.x = move_toward(velocity.x, 0, Playerdata.speed)
 			velocity.z = move_toward(velocity.z, 0, Playerdata.speed)
 
-	# Flip sprite based on input direction (or dash direction if no input)
-	var facing_x = input_dir.x if input_dir.x != 0 else velocity.x
-	if facing_x > 0:
-		$AnimatedSprite3D.scale.x = 1
-	elif facing_x < 0:
-		$AnimatedSprite3D.scale.x = -1
+func update_sprite_flip():
+	# Only flip if we are actually moving or dashing
+	if velocity.x != 0:
+		anim.flip_h = velocity.x < 0
 
-	move_and_slide()
-	_setanimation(delta)
+# --- Actions ---
 
 func start_dash(dir: Vector3) -> void:
-	# If the player isn't pressing a direction, dash in the direction they are facing
 	if dir == Vector3.ZERO:
-		dir = Vector3($AnimatedSprite3D.scale.x, 0, 0)
+		dir = Vector3(anim.scale.x, 0, 0)
 		
 	is_dashing = true
 	can_dash = false
 	dash_direction = dir
 	
-	# Wait for the dash to finish
 	await get_tree().create_timer(dash_duration).timeout
 	is_dashing = false
-	
-	# Wait for the cooldown before they can dash again
 	await get_tree().create_timer(dash_cooldown).timeout
 	can_dash = true
 
 func attack():
-	# If we are already attacking OR talking, do nothing
-	if attacking or in_dialogue:
-		return
+	if is_dead or attacking or in_dialogue or is_hurting: return
 
-	# 1. Reset combo to 1 if the player waited too long between clicks
-	if Time.get_ticks_msec() - last_attack_time > combo_window:
+	attacking = true
+	melee_hitbox.monitoring = true
+	sword_sound.stream = sword_sounds[combo_step - 1]
+	sword_sound.play()
+	anim.play("attack" + str(combo_step))
+	
+	# Handle Combo Logic
+	await get_tree().create_timer(attack_duration).timeout
+	
+	melee_hitbox.monitoring = false
+	attacking = false
+	
+	# Prepare next combo step
+	combo_step = (combo_step % 3) + 1
+	
+	# Reset combo if they don't click again soon
+	var current_combo = combo_step
+	await get_tree().create_timer(combo_window).timeout
+	if combo_step == current_combo:
 		combo_step = 1
 
-	# 2. Record the exact time of this new attack
-	last_attack_time = Time.get_ticks_msec()
-
-	# Start the attack!
-	attacking = true
-	$MeleeHitbox.monitoring = true
-	$MeleeHitbox.monitorable = true
-
-	# Wait for the sword swing to finish
-	await get_tree().create_timer(attack_duration).timeout
-
-	# Turn off hitboxes
-	$MeleeHitbox.monitoring = false
-	$MeleeHitbox.monitorable = false
-	attacking = false
-
-	# 3. Queue up the next combo step for their NEXT click
-	if combo_step < 3:
-		combo_step += 1
+func hurt(hit_points):
+	if is_dead: return
+	
+	Playerdata.health = max(Playerdata.health - hit_points, 0)
+	if camera: camera.add_shake(1)
+	
+	if Playerdata.health <= 0:
+		is_dead = true
+		attacking = false 
+		melee_hitbox.monitoring = false
+		
+		anim.play("die")
+		await anim.animation_finished
+		die()
 	else:
-		combo_step = 1 # Reset back to the first attack after the 3rd swing
+		is_hurting = true
+		anim.play("hurt")
+		await anim.animation_finished 
+		is_hurting = false
+
+func restore_health(amount: int):
+	Playerdata.health = min(Playerdata.health + amount, Playerdata.max_health)
+	print("Healed! Current health: ", Playerdata.health)
+
+func die():
+	get_parent().get_node("GameOver").game_over()
+	queue_free()
+
+func add_item(item_data: Resource):
+	if Playerdata.inventory_data:
+		Playerdata.inventory_data.add_item(item_data)
+		print("Added item: ", item_data.name)
+	else:
+		print("Warning: Playerdata has no inventory_data assigned!")
+
+# --- Signals & Input ---
 
 func _input(event):
 	if event.is_action_pressed("Attack"):
 		attack()
+	
+	if event.is_action_pressed("ui_accept") and not in_dialogue:
+		var actionables = actionable_finder.get_overlapping_areas()
+		if actionables.size() > 0:
+			in_dialogue = true
+			actionables[0].action()
 
 func _on_melee_hitbox_body_entered(body: Node3D) -> void:
 	if body.has_method("take_damage"):
-		var dir = (body.global_position - global_position)
-		dir.y = 0  # keep knockback horizontal
-		body.take_damage(Playerdata.attack_damage, dir)
-		print("enemy took damage")
+		var knockback_dir = (body.global_position - global_position).normalized()
+		knockback_dir.y = 0
+		body.take_damage(Playerdata.attack_damage, knockback_dir)

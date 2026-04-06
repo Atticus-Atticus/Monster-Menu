@@ -119,6 +119,7 @@ shape = SubResource("SphereShape3D_4gyqm")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.009057343)
 sprite_frames = SubResource("SpriteFrames_wujgv")
 animation = &"run"
+frame_progress = 0.049258985
 
 [node name="VisionArea" type="Area3D" parent="." unique_id=1132139018]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.009057343)

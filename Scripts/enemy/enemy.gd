@@ -14,21 +14,24 @@ var knockback_duration := 0.5
 
 func _ready():
 	health = max_health
-	$DamageTimer.wait_time = 0.3
+	$DamageTimer.wait_time = 1
 	$DamageTimer.autostart = false
 
 
 func _physics_process(delta):
-	# Gravity
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
+	# Knockback Logic
 	if knockback_time > 0:
 		knockback_time -= delta
+		velocity.x = move_toward(velocity.x, 0, 0.5)
+		velocity.z = move_toward(velocity.z, 0, 0.5)
+		
 		move_and_slide()
-		return
+		return # Skip normal AI movement while being knocked back
 
-	# Normal AI movement
+
 	if awake and player:
 		var direction = player.global_transform.origin - global_transform.origin
 		direction.y = 0
@@ -42,24 +45,24 @@ func _physics_process(delta):
 
 	move_and_slide()
 
-func take_damage(amount: int, knockback_dir := Vector3.ZERO):
+func take_damage(amount, dir):
 	health -= amount
-	print("Enemy health:", health)
-
-	if knockback_dir != Vector3.ZERO:
-		var knockback_strength := 1	
-		velocity = knockback_dir.normalized() * knockback_strength
-		knockback_time = knockback_duration
-
+	print( "Enemy health is ", health)
+	knockback_time = knockback_duration
+	velocity = dir * 15.0 
+	
 	if health <= 0:
 		die()
 
 func die():
 	if pickup_scene:
 		var pickup = pickup_scene.instantiate()
-		pickup.item = drop_resource
-		get_parent().add_child(pickup)
-		pickup.global_position = global_position
+		# Use call_deferred to avoid physics thread errors
+		get_tree().current_scene.add_child(pickup) 
+		pickup.global_position = global_transform.origin
+		# Set the data last
+		if "item" in pickup:
+			pickup.item = drop_resource
 	queue_free()
 
 
@@ -78,13 +81,16 @@ func _on_area_3d_body_exited(body):
 func _on_player_hit_area_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
 		player_in_hitbox = true
-		$DamageTimer.start()  # begin continuous damage
+		get_tree().call_group("player", "hurt", 1)
+		
+		$DamageTimer.start() 
 
 func _on_player_hit_area_body_exited(body: Node3D) -> void:
 	if body.is_in_group("player"):
 		player_in_hitbox = false
-		$DamageTimer.stop()   # stop continuous damage
+		$DamageTimer.stop() 
 
 func _on_damage_timer_timeout() -> void:
+	# This only runs AFTER the first 0.3s has passed
 	if player_in_hitbox:
 		get_tree().call_group("player", "hurt", 1)

@@ -14,20 +14,17 @@ func _ready():
 	super._ready()
 
 func take_damage(amount: int, knockback_dir := Vector3.ZERO):
-	super.take_damage(amount, Vector3.ZERO)
+	super.take_damage(amount, knockback_dir)
 	if health <= max_health / 2.0 and not is_in_phase_2:
 		enter_phase_2()
 	if knockback_dir != Vector3.ZERO:
-		var knockback_strength := 0.3	
-		velocity = knockback_dir.normalized() * knockback_strength
-		knockback_time = knockback_duration
+		var boss_knockback_strength := 15
+		velocity = knockback_dir.normalized() * boss_knockback_strength
 
 func enter_phase_2():
 	is_in_phase_2 = true
 	speed *= phase_2_speed_multiplier
 	print("Boss entered Phase 2! It is moving faster!")
-	
-	# Make the boss attack twice as fast!
 	$DamageTimer.wait_time = 0.15 
 	
 

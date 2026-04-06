@@ -8,13 +8,15 @@ size = Vector3(3, 4, 3)
 
 [sub_resource type="BoxMesh" id="BoxMesh_hsgi2"]
 
+[sub_resource type="SystemFont" id="SystemFont_07n3t"]
+
 [node name="squashed slimetwink" type="Area3D" unique_id=766555285]
 transform = Transform3D(1.4174405, 0, 0, 0, 0.28170323, 0, 0, 0, 1.4383017, 0, 0, 0)
 script = ExtResource("1_hsgi2")
 item = ExtResource("2_07n3t")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2016336567]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_gtvf4")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=948985600]
@@ -22,9 +24,12 @@ mesh = SubResource("BoxMesh_hsgi2")
 
 [node name="Label3D" type="Label3D" parent="." unique_id=400402856]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 11.282596, 0)
+pixel_size = 0.01
 billboard = 1
+alpha_cut = 3
 texture_filter = 0
 text = "Press 'E' to Harvest"
+font = SubResource("SystemFont_07n3t")
 font_size = 100
 horizontal_alignment = 3
 

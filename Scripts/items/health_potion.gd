@@ -13,5 +13,11 @@ func _process(delta: float) -> void:
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
-		get_tree().call_group("player", "restore_health", 2)
-		queue_free()
+		# Check if health is already at max before doing anything
+		if Playerdata.health < Playerdata.max_health:
+			get_tree().call_group("player", "restore_health", 1)
+			
+			if not is_queued_for_deletion():
+				queue_free()
+		else:
+			print("Health is already full, potion remains on ground.")
