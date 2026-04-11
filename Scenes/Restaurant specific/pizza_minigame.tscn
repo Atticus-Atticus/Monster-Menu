@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://leuun4ym8hs7"]
+
+[ext_resource type="Texture2D" uid="uid://cop6vssulw5xm" path="res://Assets/Temp Assets/Hobs.png" id="1_3bno0"]
+[ext_resource type="Script" uid="uid://lgyjxufb2lqc" path="res://Scripts/Restaurant/pizza_minigame.gd" id="1_nt6q8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nt6q8"]
+size = Vector2(288, 141)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rbl0i"]
+size = Vector2(272, 136)
+
+[node name="PizzaMinigame" type="Node2D" unique_id=1281617112]
+script = ExtResource("1_nt6q8")
+
+[node name="Hobs" type="Sprite2D" parent="." unique_id=374715201]
+texture = ExtResource("1_3bno0")
+
+[node name="Area2D" type="Area2D" parent="Hobs" unique_id=1780872122]
+
+[node name="Collision_Left" type="CollisionShape2D" parent="Hobs/Area2D" unique_id=679057090]
+position = Vector2(-200, -1.5)
+shape = SubResource("RectangleShape2D_nt6q8")
+
+[node name="ColorRect" type="ColorRect" parent="Hobs/Area2D/Collision_Left" unique_id=1636381482]
+visible = false
+offset_left = -144.0
+offset_top = -70.5
+offset_right = 144.0
+offset_bottom = 73.5
+mouse_filter = 2
+color = Color(1, 0, 0, 1)
+
+[node name="Collision_Right" type="CollisionShape2D" parent="Hobs/Area2D" unique_id=245600666]
+position = Vector2(208, 4)
+shape = SubResource("RectangleShape2D_rbl0i")
+
+[node name="ColorRect" type="ColorRect" parent="Hobs/Area2D/Collision_Right" unique_id=1424847203]
+offset_left = -136.0
+offset_top = -68.0
+offset_right = 136.0
+offset_bottom = 68.0
+mouse_filter = 2
+color = Color(1, 0, 0, 1)
