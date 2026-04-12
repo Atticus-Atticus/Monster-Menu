@@ -9,11 +9,3 @@ var canCustomerOrder = true
 var orderFulfilled = false
 
 #----------------------------------FUNCTIONS----------------------------------
-func _physics_process(delta: float):
-	if canCustomerOrder == true:
-		canCustomerOrder = false
-		Spawner.spawn()
-		#await NPC.queue_free()
-		#canCustomerOrder = true
-	
-	

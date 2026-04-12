@@ -9,20 +9,93 @@ size = Vector2(288, 141)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rbl0i"]
 size = Vector2(272, 136)
 
+[sub_resource type="Animation" id="Animation_nt6q8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hobs/Area2D_Left/Collision_Left/Left_Rect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_rbl0i"]
+resource_name = "left_fade_out"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hobs/Area2D_Left/Collision_Left/Left_Rect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.03333333, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(1, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3sglk"]
+_data = {
+&"RESET": SubResource("Animation_nt6q8"),
+&"left_fade_out": SubResource("Animation_rbl0i")
+}
+
+[sub_resource type="Animation" id="Animation_3sglk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Hobs/Area2D_Right/Collision_Right/Right_Rect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ojk84"]
+resource_name = "right_fade_out"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Hobs/Area2D_Right/Collision_Right/Right_Rect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.033333335, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(1, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_djafs"]
+_data = {
+&"RESET": SubResource("Animation_3sglk"),
+&"right_fade_out": SubResource("Animation_ojk84")
+}
+
 [node name="PizzaMinigame" type="Node2D" unique_id=1281617112]
 script = ExtResource("1_nt6q8")
 
 [node name="Hobs" type="Sprite2D" parent="." unique_id=374715201]
 texture = ExtResource("1_3bno0")
 
-[node name="Area2D" type="Area2D" parent="Hobs" unique_id=1780872122]
+[node name="Area2D_Left" type="Area2D" parent="Hobs" unique_id=1780872122]
 
-[node name="Collision_Left" type="CollisionShape2D" parent="Hobs/Area2D" unique_id=679057090]
+[node name="Collision_Left" type="CollisionShape2D" parent="Hobs/Area2D_Left" unique_id=679057090]
 position = Vector2(-200, -1.5)
 shape = SubResource("RectangleShape2D_nt6q8")
 
-[node name="Left_Rect" type="ColorRect" parent="Hobs/Area2D/Collision_Left" unique_id=1636381482]
-visible = false
+[node name="Left_Rect" type="ColorRect" parent="Hobs/Area2D_Left/Collision_Left" unique_id=1636381482]
 offset_left = -144.0
 offset_top = -70.5
 offset_right = 144.0
@@ -30,15 +103,17 @@ offset_bottom = 73.5
 mouse_filter = 2
 color = Color(1, 0, 0, 1)
 
-[node name="Left_Timer" type="Timer" parent="Hobs/Area2D/Collision_Left" unique_id=702196919]
-wait_time = 3.0
+[node name="Left_Timer" type="Timer" parent="Hobs/Area2D_Left/Collision_Left" unique_id=702196919]
+wait_time = 2.0
 one_shot = true
 
-[node name="Collision_Right" type="CollisionShape2D" parent="Hobs/Area2D" unique_id=245600666]
+[node name="Area2D_Right" type="Area2D" parent="Hobs" unique_id=1980363770]
+
+[node name="Collision_Right" type="CollisionShape2D" parent="Hobs/Area2D_Right" unique_id=245600666]
 position = Vector2(208, 4)
 shape = SubResource("RectangleShape2D_rbl0i")
 
-[node name="Right_Rect" type="ColorRect" parent="Hobs/Area2D/Collision_Right" unique_id=1424847203]
+[node name="Right_Rect" type="ColorRect" parent="Hobs/Area2D_Right/Collision_Right" unique_id=1424847203]
 offset_left = -136.0
 offset_top = -68.0
 offset_right = 136.0
@@ -46,11 +121,19 @@ offset_bottom = 68.0
 mouse_filter = 2
 color = Color(1, 0, 0, 1)
 
-[node name="Right_Timer" type="Timer" parent="Hobs/Area2D/Collision_Right" unique_id=161105831]
-wait_time = 3.0
+[node name="Right_Timer" type="Timer" parent="Hobs/Area2D_Right/Collision_Right" unique_id=161105831]
+wait_time = 2.0
 one_shot = true
 
 [node name="Random_Timer" type="Timer" parent="." unique_id=40273870]
 autostart = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1799474512]
+[node name="AnimationPlayer_Left" type="AnimationPlayer" parent="." unique_id=1799474512]
+libraries/ = SubResource("AnimationLibrary_3sglk")
+
+[node name="AnimationPlayer_Right" type="AnimationPlayer" parent="." unique_id=415276242]
+root_node = NodePath("../AnimationPlayer_Left")
+libraries/ = SubResource("AnimationLibrary_djafs")
+
+[connection signal="input_event" from="Hobs/Area2D_Left" to="." method="_on_area_2d_left_input_event"]
+[connection signal="input_event" from="Hobs/Area2D_Right" to="." method="_on_area_2d_right_input_event"]

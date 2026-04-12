@@ -3,7 +3,6 @@ extends Area2D
 @export var Appearance_Frames: AnimatedSprite2D
 @onready var clickLeft = 3
 #var canCusOrder = get_parent().canCustomerOrder
-
 var RanNumGen = RandomNumberGenerator.new()
 var canInteract = false
 var hasOrdered = false
@@ -43,6 +42,7 @@ func on_click():
 func finishOrder():
 	$AnimationPlayer.play("FadeOut")
 	await get_tree().create_timer($AnimationPlayer.current_animation_length).timeout
+	get_parent().delaySpawn()
 	queue_free()
 
 #Lets player interact ONLY when NPC is centred
