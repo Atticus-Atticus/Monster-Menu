@@ -3,24 +3,24 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://biwhra47meg37"
-path.s3tc="res://.godot/imported/Lush-Dungeon-Parts_1.png-33edf217373cb59ec28f054ae1b00ee1.s3tc.ctex"
+path.bptc="res://.godot/imported/Lush-Dungeon-Parts_1.png-33edf217373cb59ec28f054ae1b00ee1.bptc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "4f17b7fdc1e20770d36a3275e210fbac"
+"md5": "107bc34bffbd0d398b0eca44e3e85eed"
 }
 
 [deps]
 
 source_file="res://Assets/Models/Lush Dungeon/Lush-Dungeon-Parts_1.png"
-dest_files=["res://.godot/imported/Lush-Dungeon-Parts_1.png-33edf217373cb59ec28f054ae1b00ee1.s3tc.ctex"]
+dest_files=["res://.godot/imported/Lush-Dungeon-Parts_1.png-33edf217373cb59ec28f054ae1b00ee1.bptc.ctex"]
 
 [params]
 
 compress/mode=2
-compress/high_quality=false
+compress/high_quality=true
 compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0

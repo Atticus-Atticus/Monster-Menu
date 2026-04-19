@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://esof4ffx2x8v"]
+
+[ext_resource type="Texture2D" uid="uid://cyy5uemdlxc5e" path="res://Assets/Temp Textures/TempTextureRed.png" id="1_gwlna"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_3ykkv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mbj3e"]
+albedo_texture = ExtResource("1_gwlna")
+
+[sub_resource type="SphereMesh" id="SphereMesh_hlutr"]
+
+[node name="Torch" type="Node3D" unique_id=1112983974]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=947134665]
+transform = Transform3D(0.34641016, 0.50000006, 0, -0.20000003, 0.8660254, 0, 0, 0, 0.4, -0.10607584, -0.16658401, 0)
+mesh = SubResource("CapsuleMesh_3ykkv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=756866992]
+transform = Transform3D(0.35137752, 0.12549728, 0, -0.098556064, 0.44742984, 0, 0, 0, 0.436, 0.33260387, 0.5812586, -0.0010491908)
+material_override = SubResource("StandardMaterial3D_mbj3e")
+mesh = SubResource("SphereMesh_hlutr")
