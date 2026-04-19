@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://ujfjnv0g1n3l" path="res://Assets/Temp Assets/Player.png" id="10_4yuwe"]
 [ext_resource type="Texture2D" uid="uid://bgumdcavc1tdv" path="res://Assets/Temp Assets/register.png" id="10_kirmr"]
 [ext_resource type="PackedScene" uid="uid://8wd7vypydkyw" path="res://Scenes/Restaurant specific/stove.tscn" id="11_jtn77"]
+[ext_resource type="PackedScene" uid="uid://leuun4ym8hs7" path="res://Scenes/Restaurant specific/pizza_minigame.tscn" id="13_jtn77"]
 
 [node name="Restaurant" type="Node2D" unique_id=1227212215]
 
@@ -112,6 +113,7 @@ scale = Vector2(2.13, 1.8)
 z_index = 4
 position = Vector2(-3496.0002, 336)
 scale = Vector2(2.367, 2)
+miniGame = ExtResource("13_jtn77")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1197462834]
 

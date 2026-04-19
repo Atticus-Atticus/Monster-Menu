@@ -26,7 +26,6 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_rbl0i"]
 resource_name = "left_fade_out"
-length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -34,7 +33,7 @@ tracks/0/path = NodePath("Hobs/Area2D_Left/Collision_Left/Left_Rect:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.03333333, 2),
+"times": PackedFloat32Array(0.03333333, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 0, 0, 1), Color(1, 0, 0, 0)]
@@ -63,7 +62,6 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_ojk84"]
 resource_name = "right_fade_out"
-length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -71,7 +69,7 @@ tracks/0/path = NodePath("../Hobs/Area2D_Right/Collision_Right/Right_Rect:color"
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.033333335, 2),
+"times": PackedFloat32Array(0.033333335, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 0, 0, 1), Color(1, 0, 0, 0)]
@@ -104,7 +102,6 @@ mouse_filter = 2
 color = Color(1, 0, 0, 1)
 
 [node name="Left_Timer" type="Timer" parent="Hobs/Area2D_Left/Collision_Left" unique_id=702196919]
-wait_time = 2.0
 one_shot = true
 
 [node name="Area2D_Right" type="Area2D" parent="Hobs" unique_id=1980363770]
@@ -122,10 +119,10 @@ mouse_filter = 2
 color = Color(1, 0, 0, 1)
 
 [node name="Right_Timer" type="Timer" parent="Hobs/Area2D_Right/Collision_Right" unique_id=161105831]
-wait_time = 2.0
 one_shot = true
 
 [node name="Random_Timer" type="Timer" parent="." unique_id=40273870]
+wait_time = 3.0
 autostart = true
 
 [node name="AnimationPlayer_Left" type="AnimationPlayer" parent="." unique_id=1799474512]

@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var testGame = preload("res://Scenes/Restaurant specific/test.tscn")
+@export var miniGame = preload("res://Scenes/Restaurant specific/test.tscn")
 
 
 #----------------------------------FUNCTIONS----------------------------------
@@ -18,7 +18,7 @@ func on_click():
 
 func spawn_at_center():
 	# spawn...
-	var instance = testGame.instantiate()
+	var instance = miniGame.instantiate()
 	add_child(instance)
 	# ...at center
 	var center = $"../Cameras/Camera3".get_screen_center_position()
