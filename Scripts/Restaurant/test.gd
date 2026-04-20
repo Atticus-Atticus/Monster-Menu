@@ -9,7 +9,7 @@ func _input(event):
 		finishGame()
 
 #----------------------------------FUNCTIONS-----------------------------
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	#if mouseInRange == true:
 	#	print("mouse is in range")
 		$Pan.position = get_viewport().get_mouse_position() - Vector2(960, 540)
@@ -24,7 +24,7 @@ func finishGame():
 	queue_free()
 
 func _on_area_2d_mouse_entered() -> void:
-	mouseInRange == true
+	mouseInRange = true
 
 func _on_area_2d_mouse_exited() -> void:
-	mouseInRange == false
+	mouseInRange = false

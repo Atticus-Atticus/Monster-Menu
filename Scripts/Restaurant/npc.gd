@@ -2,7 +2,7 @@ extends Area2D
 
 @export var Appearance_Frames: AnimatedSprite2D
 @onready var clickLeft = 3
-#var canCusOrder = get_parent().canCustomerOrder
+var dialogueResource = preload("res://Scripts/Restaurant/Dialogues/NPCDialogue_1.dialogue")
 var RanNumGen = RandomNumberGenerator.new()
 var canInteract = false
 var hasOrdered = false
@@ -12,6 +12,7 @@ var Appearance = 0
 
 func _ready():
 	RandomiseAppearance()
+	#DialogueManager.dialogue_finished.connect(dialogue_end)
 
 #----------------------------------FUNCTIONS-----------------------------
 func RandomiseAppearance():
@@ -19,25 +20,28 @@ func RandomiseAppearance():
 	Appearance = RanNumGen.randi_range(0, 2)
 	Appearance_Frames.frame = Appearance
 
+func dialogue_end():
+	hasOrdered = true
+	RestaurantGlobals.orderFulfilled = false
+
 #interactable!
 #https://www.reddit.com/r/godot/comments/7xwr22
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed() and canInteract == true:
 		if hasOrdered == false:
 			on_click()
+			DialogueManager.show_example_dialogue_balloon(dialogueResource, "start")
 		elif hasOrdered == true and RestaurantGlobals.orderFulfilled == true:
 			print("Thanks!")
+			DialogueManager.show_example_dialogue_balloon(dialogueResource, "foodMade")
 			finishOrder()
 		else:
 			print("Go fulfill their order!")
+			DialogueManager.show_example_dialogue_balloon(dialogueResource, "foodNotMade")
 
 func on_click():
-	if clickLeft != 0:
-		print("Click")
-		clickLeft -= 1
-	else:
-		hasOrdered = true
-		RestaurantGlobals.orderFulfilled = false
+	hasOrdered = true
+	RestaurantGlobals.orderFulfilled = false
 
 func finishOrder():
 	$AnimationPlayer.play("FadeOut")
