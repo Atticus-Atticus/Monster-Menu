@@ -20,6 +20,7 @@ config/icon="res://Assets/Sprites/icon.svg"
 Globals="*uid://bwae0c3pn0vx3"
 RestaurantGlobals="*uid://c617fg1rlwguw"
 DialogueManager="*uid://c3rodes2l3gxb"
+InsideFridge="*uid://dv74jl602b3f2"
 
 [display]
 

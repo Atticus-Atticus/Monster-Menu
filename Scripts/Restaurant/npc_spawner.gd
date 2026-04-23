@@ -11,7 +11,11 @@ func _ready():
 func spawn():
 	#Stores an instance of the NPC class in variable "obj"
 	var obj = spawnNPC.instantiate()
-	add_child(obj)
+	if Globals.tempSlimeballNum >= 2:
+		add_child(obj)
+	else:
+		# code to end the day will go here
+		pass
 
 func delaySpawn():
 	await get_tree().create_timer(2.0).timeout

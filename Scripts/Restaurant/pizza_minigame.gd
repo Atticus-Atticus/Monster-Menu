@@ -25,6 +25,7 @@ func endMinigame():
 		RestaurantGlobals.minigameOpen = false
 		RestaurantGlobals.orderFulfilled = true
 		Globals.resScore += score
+		Globals.tempSlimeballNum -= 2
 		queue_free()
 
 func _random_timeout():

@@ -8,12 +8,11 @@ func _ready():
 	if Globals.slinkLoot == true:
 		$FridgeText.texture = slinkFridge
 
-
 #----------------------------------FUNCTIONS-----------------------------
+# s/o to this tut /\ https://www.youtube.com/watch?v=Q8oee9tRMSc
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed() and RestaurantGlobals.minigameOpen == false:
 		on_click()
 
 func on_click():
-	#here will be the popup of what ingredience we have
-	print("You clicked the fridge <3")
+	InsideFridge.FridgePopup()
