@@ -69,10 +69,10 @@ tracks/0/path = NodePath("OmniLight3D:light_energy")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.40106815, 0.80508, 1.1950965, 1.6030036, 2),
+"times": PackedFloat32Array(0, 0.4, 0.8, 1.2, 1.6, 2),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [3.038, 3.37, 2.571, 3.312, 2.684, 3.038]
+"values": [3.038, 2.379, 4.02, 2.256, 2.743, 3.038]
 }
 
 [sub_resource type="Animation" id="Animation_ri1u8"]
