@@ -139,6 +139,12 @@ material = SubResource("StandardMaterial3D_ybkxt")
 [sub_resource type="BoxShape3D" id="BoxShape3D_l5n8w"]
 size = Vector3(0.95977783, 23.626938, 1.1676035)
 
+[sub_resource type="BoxMesh" id="BoxMesh_ac6od"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5q1p8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5q1p8"]
+
 [node name="ControlNode" type="Node3D" unique_id=424758510]
 script = ExtResource("1_qrmmj")
 
@@ -151,11 +157,13 @@ shadow_enabled = true
 
 [node name="Rooms" type="StaticBody3D" parent="." unique_id=93866289]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Rooms" unique_id=267818514]
+[node name="StaticBody3D" type="StaticBody3D" parent="Rooms" unique_id=1891933893]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rooms/StaticBody3D" unique_id=267818514]
 transform = Transform3D(40, 0, 0, 0, 1, 0, 0, 0, 20, 0, 0, 0)
 shape = SubResource("BoxShape3D_ojimw")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Rooms/CollisionShape3D" unique_id=1033078274]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Rooms/StaticBody3D/CollisionShape3D" unique_id=1033078274]
 material_override = SubResource("StandardMaterial3D_mykdr")
 mesh = SubResource("BoxMesh_rli08")
 
@@ -465,6 +473,16 @@ mesh = SubResource("BoxMesh_5q1p8")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="hidden3d2" unique_id=88427800]
 transform = Transform3D(1.0000005, 0, 0, 0, 1, 0, 5.364418e-07, 0, 1.0000005, -0.084650874, 6.3634987, 0.046830416)
 shape = SubResource("BoxShape3D_l5n8w")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1893759614]
+transform = Transform3D(40.31985, 0, 0, 0, 21.469507, 0, 0, 0, 20.502438, 0, 10.126797, 20.606524)
+mesh = SubResource("BoxMesh_ac6od")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D" unique_id=837114229]
+physics_material_override = SubResource("PhysicsMaterial_5q1p8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D" unique_id=1242701099]
+shape = SubResource("BoxShape3D_5q1p8")
 
 [connection signal="body_entered" from="Water" to="Slimetwink" method="_on_water_body_entered"]
 [connection signal="body_entered" from="hidden3d" to="hidden3d" method="_on_body_entered"]

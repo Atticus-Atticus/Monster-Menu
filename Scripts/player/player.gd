@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 # --- Nodes ---
 @onready var anim = $AnimatedSprite3D
-@onready var camera = $Camera3D
+@onready var camera = $"cam origin/SpringArm3D/player camera"
 @onready var actionable_finder = $ActionableFinder
 @onready var melee_hitbox = $MeleeHitbox
 
