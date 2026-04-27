@@ -122,9 +122,7 @@ Daniel - 2517102 - Designer
 Laura - 2518587 - Artist
 Jade - 2199932 - Designer
 Jack - 2523534 - Coder
-Cloud - 2122230 - Artist
-Joey - 2532256 - No-Show
-"
+Cloud - 2122230 - Artist"
 label_settings = SubResource("LabelSettings_tcly5")
 horizontal_alignment = 1
 
