@@ -1,18 +1,20 @@
 [gd_scene format=3 uid="uid://ce6aj7qqtnlaq"]
 
 [ext_resource type="Script" uid="uid://ge8jo6gllghd" path="res://Scripts/Restaurant/back_door.gd" id="1_1u7u3"]
-[ext_resource type="Texture2D" uid="uid://b0a0qx4bhr6a2" path="res://Assets/Temp Assets/door.png" id="2_ekh8i"]
+[ext_resource type="Texture2D" uid="uid://c4x8n8fwuyswx" path="res://Assets/Restaurant Assets/Door.png" id="2_1u7u3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gd4no"]
-size = Vector2(352, 528)
+size = Vector2(856, 1000)
 
 [node name="BackDoor" type="Area2D" unique_id=80662571]
 script = ExtResource("1_1u7u3")
 
 [node name="Door" type="Sprite2D" parent="." unique_id=2069309826]
-texture = ExtResource("2_ekh8i")
+position = Vector2(-408, -36)
+texture = ExtResource("2_1u7u3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1629811669]
+position = Vector2(4, 0)
 shape = SubResource("RectangleShape2D_gd4no")
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]

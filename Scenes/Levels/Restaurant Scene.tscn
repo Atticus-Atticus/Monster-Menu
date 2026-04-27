@@ -1,17 +1,17 @@
 [gd_scene format=3 uid="uid://utjh5wocdp0q"]
 
-[ext_resource type="Texture2D" uid="uid://bbg136wlui53i" path="res://Assets/Temp Assets/Counter.png" id="1_6o2kf"]
-[ext_resource type="Texture2D" uid="uid://btoswl80m0rs7" path="res://Assets/Temp Assets/Background.png" id="1_27fwp"]
 [ext_resource type="Script" uid="uid://b3cgi7x8lbftc" path="res://Scripts/Restaurant/restaurant_scene.gd" id="1_ex7vx"]
+[ext_resource type="Texture2D" uid="uid://bk2ebsx3j3p4c" path="res://Assets/Restaurant Assets/Counter.png" id="3_jtn77"]
+[ext_resource type="Texture2D" uid="uid://1qbcx43ecjr7" path="res://Assets/Restaurant Assets/Background.png" id="3_lw2p2"]
 [ext_resource type="PackedScene" uid="uid://w3eucis2p24f" path="res://Scenes/Restaurant specific/npc_spawner.tscn" id="4_251mm"]
-[ext_resource type="Texture2D" uid="uid://dlswgbxs24bnm" path="res://Assets/Temp Assets/kitchen cupboards.png" id="4_ex7vx"]
-[ext_resource type="Texture2D" uid="uid://c0adtq37jb5fd" path="res://Assets/Temp Assets/window.png" id="5_56vm3"]
+[ext_resource type="Texture2D" uid="uid://d1yd0tmvgfiwf" path="res://Assets/Restaurant Assets/Extractor fan.png" id="4_lw2p2"]
+[ext_resource type="Texture2D" uid="uid://bfwnmbbvk5fnc" path="res://Assets/Restaurant Assets/Window.png" id="5_0m6bk"]
 [ext_resource type="PackedScene" uid="uid://bdppl18wd8pe7" path="res://Scenes/Restaurant specific/switch_screens.tscn" id="5_umv8g"]
 [ext_resource type="Texture2D" uid="uid://d016pdcgt0imf" path="res://Assets/Temp Assets/light.png" id="6_7d8ch"]
+[ext_resource type="Texture2D" uid="uid://bpipr5rdthkt3" path="res://Assets/Restaurant Assets/Register.png" id="6_psdnb"]
 [ext_resource type="PackedScene" uid="uid://c6t2vjts21umi" path="res://Scenes/Restaurant specific/fridge.tscn" id="7_56vm3"]
 [ext_resource type="PackedScene" uid="uid://ce6aj7qqtnlaq" path="res://Scenes/Restaurant specific/back_door.tscn" id="9_4yuwe"]
 [ext_resource type="Texture2D" uid="uid://ujfjnv0g1n3l" path="res://Assets/Temp Assets/Player.png" id="10_4yuwe"]
-[ext_resource type="Texture2D" uid="uid://bgumdcavc1tdv" path="res://Assets/Temp Assets/register.png" id="10_kirmr"]
 [ext_resource type="PackedScene" uid="uid://8wd7vypydkyw" path="res://Scenes/Restaurant specific/stove.tscn" id="11_jtn77"]
 [ext_resource type="PackedScene" uid="uid://leuun4ym8hs7" path="res://Scenes/Restaurant specific/pizza_minigame.tscn" id="13_jtn77"]
 
@@ -35,52 +35,45 @@ position = Vector2(-2880, 544)
 
 [node name="BG elements" type="Node2D" parent="Kitchen" unique_id=1727675845]
 
-[node name="Background" type="Sprite2D" parent="Kitchen/BG elements" unique_id=582939804]
+[node name="Background" type="Sprite2D" parent="Kitchen/BG elements" unique_id=2050234255]
 z_index = 1
-scale = Vector2(2.13, 1.8)
-texture = ExtResource("1_27fwp")
+position = Vector2(0, -4)
+texture = ExtResource("3_lw2p2")
 
-[node name="Background2" type="Sprite2D" parent="Kitchen/BG elements" unique_id=1909708591]
+[node name="Background2" type="Sprite2D" parent="Kitchen/BG elements" unique_id=91226415]
 z_index = 1
-position = Vector2(-1920, 0)
-scale = Vector2(2.13, 1.8)
-texture = ExtResource("1_27fwp")
+position = Vector2(-1920, -4)
+texture = ExtResource("3_lw2p2")
 
-[node name="Background3" type="Sprite2D" parent="Kitchen/BG elements" unique_id=120608571]
+[node name="Background3" type="Sprite2D" parent="Kitchen/BG elements" unique_id=1462029602]
 z_index = 1
-position = Vector2(-3840.0002, 0)
-scale = Vector2(2.13, 1.8)
-texture = ExtResource("1_27fwp")
+position = Vector2(-3840, -4)
+texture = ExtResource("3_lw2p2")
 
-[node name="Counter" type="Sprite2D" parent="Kitchen/BG elements" unique_id=1250188291]
+[node name="Counter" type="Sprite2D" parent="Kitchen/BG elements" unique_id=1637425325]
 z_index = 3
-position = Vector2(3.0517578e-05, 2)
-scale = Vector2(2.13, 1.8)
-texture = ExtResource("1_6o2kf")
+position = Vector2(0, -4)
+texture = ExtResource("3_jtn77")
 
-[node name="Counter2" type="Sprite2D" parent="Kitchen/BG elements" unique_id=1617771929]
+[node name="Counter2" type="Sprite2D" parent="Kitchen/BG elements" unique_id=943735839]
 z_index = 3
-position = Vector2(-3841.5, -0.7999878)
-scale = Vector2(2.13, 1.8)
-texture = ExtResource("1_6o2kf")
+position = Vector2(-3840, -4)
+texture = ExtResource("3_jtn77")
 
-[node name="KitchenCupboards" type="Sprite2D" parent="Kitchen/BG elements" unique_id=331155985]
+[node name="ExtractorFan" type="Sprite2D" parent="Kitchen/BG elements" unique_id=1248562287]
 z_index = 2
-position = Vector2(-3585.4998, -392.8)
-scale = Vector2(2.13, 1.8)
-texture = ExtResource("4_ex7vx")
+position = Vector2(-3840, -4)
+texture = ExtResource("4_lw2p2")
 
-[node name="Window" type="Sprite2D" parent="Kitchen/BG elements" unique_id=1832232843]
+[node name="Window" type="Sprite2D" parent="Kitchen/BG elements" unique_id=903687095]
 z_index = 3
-position = Vector2(-2392, -16)
-scale = Vector2(2.13, 1.8)
-texture = ExtResource("5_56vm3")
+position = Vector2(-1920, -4)
+texture = ExtResource("5_0m6bk")
 
-[node name="Register" type="Sprite2D" parent="Kitchen/BG elements" unique_id=1127318817]
+[node name="Register" type="Sprite2D" parent="Kitchen/BG elements" unique_id=1681251964]
 z_index = 3
-position = Vector2(-168, 56)
-scale = Vector2(2.13, 1.8)
-texture = ExtResource("10_kirmr")
+position = Vector2(0, -3)
+texture = ExtResource("6_psdnb")
 
 [node name="Player" type="Sprite2D" parent="Kitchen/BG elements" unique_id=1775997161]
 z_index = 3
@@ -101,18 +94,15 @@ scale = Vector2(2.13, 1.8)
 
 [node name="Fridge" parent="Kitchen" unique_id=1085246631 instance=ExtResource("7_56vm3")]
 z_index = 4
-position = Vector2(-4488, 112)
-scale = Vector2(2.13, 1.8)
+position = Vector2(-4360, 92)
 
 [node name="BackDoor" parent="Kitchen" unique_id=80662571 instance=ExtResource("9_4yuwe")]
 z_index = 4
-position = Vector2(-1504, 56)
-scale = Vector2(2.13, 1.8)
+position = Vector2(-1504, 32)
 
 [node name="Stove" parent="Kitchen" unique_id=1997832154 instance=ExtResource("11_jtn77")]
 z_index = 4
-position = Vector2(-3496.0002, 336)
-scale = Vector2(2.367, 2)
+position = Vector2(-3400, 312)
 miniGame = ExtResource("13_jtn77")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1197462834]

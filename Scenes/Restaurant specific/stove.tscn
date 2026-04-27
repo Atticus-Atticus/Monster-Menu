@@ -1,20 +1,19 @@
 [gd_scene format=3 uid="uid://8wd7vypydkyw"]
 
 [ext_resource type="Script" uid="uid://b0y6vhuivoaqv" path="res://Scripts/Restaurant/stove.gd" id="1_c5crc"]
-[ext_resource type="Texture2D" uid="uid://b4clqp8uecq4s" path="res://Assets/Temp Assets/oven.png" id="1_sa4o3"]
+[ext_resource type="Texture2D" uid="uid://t6fbocdmhqmf" path="res://Assets/Restaurant Assets/Stove.png" id="2_c5crc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c5crc"]
-size = Vector2(256, 224)
+size = Vector2(496, 440)
 
 [node name="Stove" type="Area2D" unique_id=1997832154]
 script = ExtResource("1_c5crc")
 
 [node name="Oven" type="Sprite2D" parent="." unique_id=1628454051]
-position = Vector2(0, -8)
-texture = ExtResource("1_sa4o3")
+position = Vector2(-480, -316)
+texture = ExtResource("2_c5crc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=319596731]
-position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_c5crc")
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]

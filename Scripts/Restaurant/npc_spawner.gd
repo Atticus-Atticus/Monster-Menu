@@ -15,7 +15,8 @@ func spawn():
 		add_child(obj)
 	else:
 		# code to end the day will go here
-		pass
+		RestaurantGlobals.dayFinished = true
+
 
 func delaySpawn():
 	await get_tree().create_timer(2.0).timeout
