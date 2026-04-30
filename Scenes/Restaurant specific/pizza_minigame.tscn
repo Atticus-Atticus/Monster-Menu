@@ -2,6 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://cop6vssulw5xm" path="res://Assets/Temp Assets/Hobs.png" id="1_3bno0"]
 [ext_resource type="Script" uid="uid://lgyjxufb2lqc" path="res://Scripts/Restaurant/pizza_minigame.gd" id="1_nt6q8"]
+[ext_resource type="AudioStream" uid="uid://icrh4a2oarf1" path="res://Assets/Sound Effects/intense fire.mp3" id="3_ojk84"]
+[ext_resource type="AudioStream" uid="uid://b2urr66ul1f3i" path="res://Assets/Sound Effects/constant crackling.mp3" id="3_rbl0i"]
+[ext_resource type="AudioStream" uid="uid://b0pkpkcnk33o6" path="res://Assets/Sound Effects/woosh.mp3" id="5_djafs"]
+[ext_resource type="AudioStream" uid="uid://cfi4b122c1u1o" path="res://Assets/Sound Effects/fire out.mp3" id="6_djafs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nt6q8"]
 size = Vector2(288, 141)
@@ -131,6 +135,26 @@ libraries/ = SubResource("AnimationLibrary_3sglk")
 [node name="AnimationPlayer_Right" type="AnimationPlayer" parent="." unique_id=415276242]
 root_node = NodePath("../AnimationPlayer_Left")
 libraries/ = SubResource("AnimationLibrary_djafs")
+
+[node name="Audio" type="Node2D" parent="." unique_id=318672214]
+
+[node name="Audio_Constant" type="AudioStreamPlayer2D" parent="Audio" unique_id=1192205322]
+stream = ExtResource("3_ojk84")
+volume_db = -10.0
+autoplay = true
+parameters/looping = false
+
+[node name="Audio_ConstantLower" type="AudioStreamPlayer2D" parent="Audio" unique_id=788814743]
+stream = ExtResource("3_rbl0i")
+parameters/looping = false
+
+[node name="Audio_BlowWind" type="AudioStreamPlayer2D" parent="Audio" unique_id=1969274671]
+stream = ExtResource("5_djafs")
+pitch_scale = 1.5
+
+[node name="Audio_FireOut" type="AudioStreamPlayer2D" parent="Audio" unique_id=2079309817]
+stream = ExtResource("6_djafs")
+volume_db = -5.0
 
 [connection signal="input_event" from="Hobs/Area2D_Left" to="." method="_on_area_2d_left_input_event"]
 [connection signal="input_event" from="Hobs/Area2D_Right" to="." method="_on_area_2d_right_input_event"]

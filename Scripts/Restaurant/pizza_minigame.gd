@@ -48,11 +48,13 @@ func _random_timeout():
 
 func left_timeout():
 	score -= 100
+	$Audio/Audio_FireOut.play()
 	$AnimationPlayer_Left.play("RESET")
 	leftInteractable = false
 
 func right_timeout():
 	score -= 100
+	$Audio/Audio_FireOut.play()
 	$AnimationPlayer_Right.play("RESET")
 	rightInteractable = false
 
@@ -61,6 +63,7 @@ func _on_area_2d_left_input_event(_viewport: Node, event: InputEvent, _shape_idx
 		score = score - int(((leftTimer.wait_time - leftTimer.time_left) / leftTimer.wait_time) * 100)
 		print(score)
 		leftTimer.stop()
+		$Audio/Audio_BlowWind.play()
 		$AnimationPlayer_Left.play("RESET")
 		leftInteractable = false
 
@@ -69,5 +72,6 @@ func _on_area_2d_right_input_event(_viewport: Node, event: InputEvent, _shape_id
 		score = score - int(((rightTimer.wait_time - rightTimer.time_left) / rightTimer.wait_time) * 100)
 		print(score)
 		rightTimer.stop()
+		$Audio/Audio_BlowWind.play()
 		$AnimationPlayer_Right.play("RESET")
 		rightInteractable = false

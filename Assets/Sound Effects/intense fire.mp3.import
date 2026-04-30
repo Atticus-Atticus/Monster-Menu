@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://icrh4a2oarf1"
+path="res://.godot/imported/intense fire.mp3-a85a2fd65ab573e7f2b031c1e891f6ef.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sound Effects/intense fire.mp3"
+dest_files=["res://.godot/imported/intense fire.mp3-a85a2fd65ab573e7f2b031c1e891f6ef.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
