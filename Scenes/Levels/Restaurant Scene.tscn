@@ -7,9 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://d1yd0tmvgfiwf" path="res://Assets/Restaurant Assets/Extractor fan.png" id="4_lw2p2"]
 [ext_resource type="Texture2D" uid="uid://bfwnmbbvk5fnc" path="res://Assets/Restaurant Assets/Window.png" id="5_0m6bk"]
 [ext_resource type="PackedScene" uid="uid://bdppl18wd8pe7" path="res://Scenes/Restaurant specific/switch_screens.tscn" id="5_umv8g"]
-[ext_resource type="Texture2D" uid="uid://d016pdcgt0imf" path="res://Assets/Temp Assets/light.png" id="6_7d8ch"]
 [ext_resource type="Texture2D" uid="uid://bpipr5rdthkt3" path="res://Assets/Restaurant Assets/Register.png" id="6_psdnb"]
 [ext_resource type="PackedScene" uid="uid://c6t2vjts21umi" path="res://Scenes/Restaurant specific/fridge.tscn" id="7_56vm3"]
+[ext_resource type="Texture2D" uid="uid://cemsnnggqvxxp" path="res://Assets/Restaurant Assets/light on.png" id="8_jtn77"]
 [ext_resource type="PackedScene" uid="uid://ce6aj7qqtnlaq" path="res://Scenes/Restaurant specific/back_door.tscn" id="9_4yuwe"]
 [ext_resource type="Texture2D" uid="uid://ujfjnv0g1n3l" path="res://Assets/Temp Assets/Player.png" id="10_4yuwe"]
 [ext_resource type="PackedScene" uid="uid://8wd7vypydkyw" path="res://Scenes/Restaurant specific/stove.tscn" id="11_jtn77"]
@@ -61,6 +61,7 @@ position = Vector2(-3840, -4)
 texture = ExtResource("3_jtn77")
 
 [node name="ExtractorFan" type="Sprite2D" parent="Kitchen/BG elements" unique_id=1248562287]
+visible = false
 z_index = 2
 position = Vector2(-3840, -4)
 texture = ExtResource("4_lw2p2")
@@ -77,15 +78,14 @@ texture = ExtResource("6_psdnb")
 
 [node name="Player" type="Sprite2D" parent="Kitchen/BG elements" unique_id=1775997161]
 z_index = 3
-position = Vector2(-632, 136)
+position = Vector2(-632, 128)
 scale = Vector2(2.13, 2)
 texture = ExtResource("10_4yuwe")
 
-[node name="Light" type="Sprite2D" parent="Kitchen/BG elements" unique_id=909798742]
-z_index = 3
-position = Vector2(-1920.0001, -488)
-scale = Vector2(2.13, 1.8)
-texture = ExtResource("6_7d8ch")
+[node name="LightOn" type="Sprite2D" parent="Kitchen/BG elements" unique_id=1550717568]
+z_index = 4
+position = Vector2(-1920, -4)
+texture = ExtResource("8_jtn77")
 
 [node name="NPC_Spawner" parent="Kitchen" unique_id=872110875 instance=ExtResource("4_251mm")]
 z_index = 2

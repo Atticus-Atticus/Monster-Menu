@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c6dblhkids7go"
-path="res://.godot/imported/Stove.png-0c2321da968545773f3e77216ed1e76d.ctex"
+uid="uid://bvuecuke0s2vc"
+path="res://.godot/imported/Stove Closeup.png-f1df9d0bbcb51e4ce1b532038a2e0f7d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Restaurant Assets/Stove.png"
-dest_files=["res://.godot/imported/Stove.png-0c2321da968545773f3e77216ed1e76d.ctex"]
+source_file="res://Assets/Restaurant Assets/Stove Closeup.png"
+dest_files=["res://.godot/imported/Stove Closeup.png-f1df9d0bbcb51e4ce1b532038a2e0f7d.ctex"]
 
 [params]
 
