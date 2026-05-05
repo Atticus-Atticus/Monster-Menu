@@ -41,20 +41,13 @@ script = ExtResource("1_xpcdj")
 
 [node name="Knight_Body" parent="." unique_id=2020508082 instance=ExtResource("6_dd0ac")]
 
-[node name="Skeleton3D" parent="Knight_Body/Armature" parent_id_path=PackedInt32Array(2020508082, 1274482698) index="0" unique_id=710843057]
-bones/5/rotation = Quaternion(-0.17518093, 0.012737639, -0.0053590965, 0.9844393)
-bones/13/rotation = Quaternion(-0.06626138, -0.006167669, 0.13791928, 0.98820525)
-bones/19/rotation = Quaternion(0.065909795, 0.0013316484, -0.029149504, 0.99739885)
-
-[node name="BoneAttachment3D" parent="Knight_Body/Armature/Skeleton3D" index="2" unique_id=700982425]
-transform = Transform3D(0.9809414, -0.19425298, 0.004458083, -0.19369824, -0.9758155, 0.10132016, -0.015331477, -0.10025271, -0.9948441, -0.24952008, 0.30993986, -0.02277928)
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1401308739]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.27139974, 0)
 shape = SubResource("CapsuleShape3D_hqtel")
 
 [node name="MeleeHitbox" type="Area3D" parent="." unique_id=1507677051]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0.014227167, 0.1702203, 0.0035686865)
+visible = false
 monitoring = false
 monitorable = false
 
@@ -85,6 +78,7 @@ anchor_bottom = 0.043518517
 metadata/_edit_use_anchors_ = true
 
 [node name="ActionableFinder" type="Area3D" parent="." unique_id=274848868]
+visible = false
 collision_layer = 16
 collision_mask = 16
 
@@ -93,6 +87,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1808203, 0)
 shape = SubResource("SphereShape3D_htcer")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=186904857]
+visible = false
 layers = 2
 mesh = SubResource("SphereMesh_74mp2")
 
