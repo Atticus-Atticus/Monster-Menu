@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://8rdokqu6lo8b"
+path="res://.godot/imported/NPCDialogue_1.dialogue-5e222d8491fbb17d6cc3df46c9543fea.tres"
+
+[deps]
+
+source_file="res://Scripts/Restaurant/Dialogues/NPCDialogue_1.dialogue"
+dest_files=["res://.godot/imported/NPCDialogue_1.dialogue-5e222d8491fbb17d6cc3df46c9543fea.tres"]
+
+[params]
+
+defaults=true

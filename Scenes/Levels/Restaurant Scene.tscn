@@ -1,3 +1,114 @@
 [gd_scene format=3 uid="uid://utjh5wocdp0q"]
 
-[node name="Node2D" type="Node2D" unique_id=1227212215]
+[ext_resource type="Script" uid="uid://b3cgi7x8lbftc" path="res://Scripts/Restaurant/restaurant_scene.gd" id="1_ex7vx"]
+[ext_resource type="Texture2D" uid="uid://bk2ebsx3j3p4c" path="res://Assets/Restaurant Assets/Counter.png" id="3_jtn77"]
+[ext_resource type="Texture2D" uid="uid://1qbcx43ecjr7" path="res://Assets/Restaurant Assets/Background.png" id="3_lw2p2"]
+[ext_resource type="PackedScene" uid="uid://w3eucis2p24f" path="res://Scenes/Restaurant specific/npc_spawner.tscn" id="4_251mm"]
+[ext_resource type="Texture2D" uid="uid://d1yd0tmvgfiwf" path="res://Assets/Restaurant Assets/Extractor fan.png" id="4_lw2p2"]
+[ext_resource type="Texture2D" uid="uid://bfwnmbbvk5fnc" path="res://Assets/Restaurant Assets/Window.png" id="5_0m6bk"]
+[ext_resource type="PackedScene" uid="uid://bdppl18wd8pe7" path="res://Scenes/Restaurant specific/switch_screens.tscn" id="5_umv8g"]
+[ext_resource type="Texture2D" uid="uid://bpipr5rdthkt3" path="res://Assets/Restaurant Assets/Register.png" id="6_psdnb"]
+[ext_resource type="PackedScene" uid="uid://c6t2vjts21umi" path="res://Scenes/Restaurant specific/fridge.tscn" id="7_56vm3"]
+[ext_resource type="Texture2D" uid="uid://cemsnnggqvxxp" path="res://Assets/Restaurant Assets/light on.png" id="8_jtn77"]
+[ext_resource type="PackedScene" uid="uid://ce6aj7qqtnlaq" path="res://Scenes/Restaurant specific/back_door.tscn" id="9_4yuwe"]
+[ext_resource type="Texture2D" uid="uid://ujfjnv0g1n3l" path="res://Assets/Temp Assets/Player.png" id="10_4yuwe"]
+[ext_resource type="PackedScene" uid="uid://8wd7vypydkyw" path="res://Scenes/Restaurant specific/stove.tscn" id="11_jtn77"]
+
+[node name="Restaurant" type="Node2D" unique_id=1227212215]
+
+[node name="Kitchen" type="Node2D" parent="." unique_id=1996547837]
+position = Vector2(960, 544)
+script = ExtResource("1_ex7vx")
+
+[node name="Cameras" type="Node2D" parent="Kitchen" unique_id=1657161440]
+position = Vector2(-960, -544)
+
+[node name="Camera1" type="Camera2D" parent="Kitchen/Cameras" unique_id=396861858]
+position = Vector2(960, 544)
+
+[node name="Camera2" type="Camera2D" parent="Kitchen/Cameras" unique_id=2088306497]
+position = Vector2(-960, 544)
+
+[node name="Camera3" type="Camera2D" parent="Kitchen/Cameras" unique_id=1856266813]
+position = Vector2(-2880, 544)
+
+[node name="BG elements" type="Node2D" parent="Kitchen" unique_id=1727675845]
+
+[node name="Background" type="Sprite2D" parent="Kitchen/BG elements" unique_id=2050234255]
+z_index = 1
+position = Vector2(0, -4)
+texture = ExtResource("3_lw2p2")
+
+[node name="Background2" type="Sprite2D" parent="Kitchen/BG elements" unique_id=91226415]
+z_index = 1
+position = Vector2(-1920, -4)
+texture = ExtResource("3_lw2p2")
+
+[node name="Background3" type="Sprite2D" parent="Kitchen/BG elements" unique_id=1462029602]
+z_index = 1
+position = Vector2(-3840, -4)
+texture = ExtResource("3_lw2p2")
+
+[node name="Counter" type="Sprite2D" parent="Kitchen/BG elements" unique_id=1637425325]
+z_index = 3
+position = Vector2(0, -4)
+texture = ExtResource("3_jtn77")
+
+[node name="Counter2" type="Sprite2D" parent="Kitchen/BG elements" unique_id=943735839]
+z_index = 3
+position = Vector2(-3840, -4)
+texture = ExtResource("3_jtn77")
+
+[node name="ExtractorFan" type="Sprite2D" parent="Kitchen/BG elements" unique_id=1248562287]
+visible = false
+z_index = 2
+position = Vector2(-3840, -4)
+texture = ExtResource("4_lw2p2")
+
+[node name="Window" type="Sprite2D" parent="Kitchen/BG elements" unique_id=903687095]
+z_index = 3
+position = Vector2(-1920, -4)
+texture = ExtResource("5_0m6bk")
+
+[node name="Register" type="Sprite2D" parent="Kitchen/BG elements" unique_id=1681251964]
+z_index = 3
+position = Vector2(0, -3)
+texture = ExtResource("6_psdnb")
+
+[node name="Player" type="Sprite2D" parent="Kitchen/BG elements" unique_id=1775997161]
+z_index = 3
+position = Vector2(-632, 128)
+scale = Vector2(2.13, 2)
+texture = ExtResource("10_4yuwe")
+
+[node name="LightOn" type="Sprite2D" parent="Kitchen/BG elements" unique_id=1550717568]
+z_index = 4
+position = Vector2(-1920, -4)
+texture = ExtResource("8_jtn77")
+
+[node name="NPC_Spawner" parent="Kitchen" unique_id=872110875 instance=ExtResource("4_251mm")]
+z_index = 2
+position = Vector2(280, 56)
+scale = Vector2(2.13, 1.8)
+
+[node name="Fridge" parent="Kitchen" unique_id=1085246631 instance=ExtResource("7_56vm3")]
+z_index = 4
+position = Vector2(-4360, 92)
+
+[node name="BackDoor" parent="Kitchen" unique_id=80662571 instance=ExtResource("9_4yuwe")]
+z_index = 4
+position = Vector2(-1504, 32)
+
+[node name="Stove" parent="Kitchen" unique_id=1997832154 instance=ExtResource("11_jtn77")]
+z_index = 4
+position = Vector2(-3400, 312)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1197462834]
+
+[node name="Switch_Screens" parent="CanvasLayer" unique_id=518497589 node_paths=PackedStringArray("cameras") instance=ExtResource("5_umv8g")]
+z_index = 4
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+cameras = [NodePath("../../Kitchen/Cameras/Camera1"), NodePath("../../Kitchen/Cameras/Camera3"), NodePath("../../Kitchen/Cameras/Camera2")]
