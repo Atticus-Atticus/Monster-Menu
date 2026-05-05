@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://bog36erxobt4t"]
+
+[ext_resource type="Script" uid="uid://l47kyr2ip6ob" path="res://Scripts/misc/slimetwink.gd" id="1_eerrp"]
+[ext_resource type="Resource" uid="uid://c4yeq782ftl" path="res://Dialogue/start_dialogue.dialogue" id="2_w0xmq"]
+[ext_resource type="ArrayMesh" uid="uid://doubil023jv6t" path="res://Assets/Sprites/Slink.obj" id="3_22ewk"]
+[ext_resource type="Texture2D" uid="uid://d2xdg5tnthusm" path="res://Assets/Sprites/Slink_Slink Skin Base Color.png" id="4_4s8ib"]
+[ext_resource type="Texture2D" uid="uid://daug0durspo6l" path="res://Assets/Sprites/Slink_Slink Shirt Base Color.png" id="5_wnlbd"]
+[ext_resource type="Texture2D" uid="uid://sp3lkyn08smg" path="res://Assets/Sprites/Slink_Slink Accessories Base Color.png" id="6_br4mu"]
+[ext_resource type="Texture2D" uid="uid://t5rhmpt7gvhn" path="res://Assets/Sprites/Slink_Slink Trousers Base Color.png" id="7_7n4j8"]
+[ext_resource type="Texture2D" uid="uid://dm8u1d0wreubm" path="res://Assets/Sprites/Slink_Image.png" id="8_xwv8l"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rbpvv"]
+radius = 3.5107422
+height = 7.0214844
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a0nn6"]
+albedo_texture = ExtResource("4_4s8ib")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4h55s"]
+albedo_texture = ExtResource("5_wnlbd")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xhtau"]
+albedo_texture = ExtResource("6_br4mu")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5hpl0"]
+albedo_texture = ExtResource("7_7n4j8")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wtnf6"]
+albedo_texture = ExtResource("8_xwv8l")
+
+[node name="Actionable" type="Area3D" unique_id=432569736]
+collision_layer = 16
+collision_mask = 16
+script = ExtResource("1_eerrp")
+dialogue_resource = ExtResource("2_w0xmq")
+dialogue_start = "start"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1323390774]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.10817459, 1.0399665, -0.10190296)
+shape = SubResource("CapsuleShape3D_rbpvv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1483576686]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, -1.5597011, 0)
+mesh = ExtResource("3_22ewk")
+surface_material_override/0 = SubResource("StandardMaterial3D_a0nn6")
+surface_material_override/1 = SubResource("StandardMaterial3D_4h55s")
+surface_material_override/2 = SubResource("StandardMaterial3D_xhtau")
+surface_material_override/3 = SubResource("StandardMaterial3D_5hpl0")
+surface_material_override/4 = SubResource("StandardMaterial3D_wtnf6")
