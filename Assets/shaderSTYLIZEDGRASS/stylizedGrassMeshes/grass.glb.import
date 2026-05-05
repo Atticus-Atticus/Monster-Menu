@@ -3,6 +3,15 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
+<<<<<<<< HEAD:Assets/Models/Lush Dungeon/Hush-Dungeon-Parts.gltf.import
+uid="uid://nh4wdlmftndd"
+path="res://.godot/imported/Hush-Dungeon-Parts.gltf-05553a33cbfdf0c55ba69c8c90270ceb.scn"
+
+[deps]
+
+source_file="res://Assets/Models/Lush Dungeon/Hush-Dungeon-Parts.gltf"
+dest_files=["res://.godot/imported/Hush-Dungeon-Parts.gltf-05553a33cbfdf0c55ba69c8c90270ceb.scn"]
+========
 uid="uid://cmn85qoc24ujn"
 path="res://.godot/imported/grass.glb-88d97c3505fd18b0a962efd283d1a54d.scn"
 
@@ -10,6 +19,7 @@ path="res://.godot/imported/grass.glb-88d97c3505fd18b0a962efd283d1a54d.scn"
 
 source_file="res://Assets/shaderSTYLIZEDGRASS/stylizedGrassMeshes/grass.glb"
 dest_files=["res://.godot/imported/grass.glb-88d97c3505fd18b0a962efd283d1a54d.scn"]
+>>>>>>>> f0ce92bdaff1e3befbd957d530cc9dab51529a11:Assets/shaderSTYLIZEDGRASS/stylizedGrassMeshes/grass.glb.import
 
 [params]
 
@@ -37,6 +47,9 @@ import_script/path=""
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
+<<<<<<<< HEAD:Assets/Models/Lush Dungeon/Hush-Dungeon-Parts.gltf.import
+_subresources={}
+========
 _subresources={
 "meshes": {
 "grass_Plane_010": {
@@ -50,5 +63,6 @@ _subresources={
 }
 }
 }
+>>>>>>>> f0ce92bdaff1e3befbd957d530cc9dab51529a11:Assets/shaderSTYLIZEDGRASS/stylizedGrassMeshes/grass.glb.import
 gltf/naming_version=2
 gltf/embedded_image_handling=1

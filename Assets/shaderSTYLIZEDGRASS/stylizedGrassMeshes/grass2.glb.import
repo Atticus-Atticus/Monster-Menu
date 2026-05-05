@@ -3,6 +3,15 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
+<<<<<<<< HEAD:Assets/Models/Clutter/GameJam Objects.glb.import
+uid="uid://fp01fiabdtpi"
+path="res://.godot/imported/GameJam Objects.glb-0e7f70d5834dd67c624fe8499b6680f6.scn"
+
+[deps]
+
+source_file="res://Assets/Models/Clutter/GameJam Objects.glb"
+dest_files=["res://.godot/imported/GameJam Objects.glb-0e7f70d5834dd67c624fe8499b6680f6.scn"]
+========
 uid="uid://oil6c37xag7u"
 path="res://.godot/imported/grass2.glb-9a835dd6fd6c9fa339672838df4ab4be.scn"
 
@@ -10,6 +19,7 @@ path="res://.godot/imported/grass2.glb-9a835dd6fd6c9fa339672838df4ab4be.scn"
 
 source_file="res://Assets/shaderSTYLIZEDGRASS/stylizedGrassMeshes/grass2.glb"
 dest_files=["res://.godot/imported/grass2.glb-9a835dd6fd6c9fa339672838df4ab4be.scn"]
+>>>>>>>> f0ce92bdaff1e3befbd957d530cc9dab51529a11:Assets/shaderSTYLIZEDGRASS/stylizedGrassMeshes/grass2.glb.import
 
 [params]
 
