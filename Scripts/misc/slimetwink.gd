@@ -22,7 +22,7 @@ func _on_water_body_entered(body: Node3D) -> void:
 			body.velocity = Vector3.ZERO
 
 func _on_dialogue_ended(_resource: DialogueResource) -> void:
-	# This looks for any camera you've tagged as the "player_camera"
+	# This looks for any camera tagged as the "player_camera"
 	var player_cam = get_tree().get_first_node_in_group("main_camera")
 	
 	if player_cam:

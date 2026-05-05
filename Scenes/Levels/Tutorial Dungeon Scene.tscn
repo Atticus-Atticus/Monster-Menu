@@ -57,6 +57,8 @@ albedo_texture = ExtResource("2_rli08")
 [sub_resource type="BoxMesh" id="BoxMesh_mykdr"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gpdna"]
+radius = 2.2802734
+height = 4.560547
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l5n8w"]
 albedo_color = Color(1, 1, 0, 1)
@@ -140,6 +142,8 @@ material = SubResource("StandardMaterial3D_ybkxt")
 size = Vector3(0.95977783, 23.626938, 1.1676035)
 
 [sub_resource type="BoxMesh" id="BoxMesh_ac6od"]
+
+[sub_resource type="Skin" id="Skin_5q1p8"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5q1p8"]
 
@@ -326,6 +330,7 @@ mesh = SubResource("BoxMesh_mykdr")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5332794, 1.5149307, -0.03123951)
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Slimetwink" unique_id=2098481506]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9423828, 0)
 shape = SubResource("CapsuleShape3D_gpdna")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Slimetwink" unique_id=260373286]
@@ -353,10 +358,12 @@ transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
 layers = 2
 mesh = SubResource("SphereMesh_ybkxt")
 
+[node name="slinkcam1" type="Camera3D" parent="Slimetwink2" unique_id=198295981]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2073402, 2.927113)
+cull_mask = 1048573
+
 [node name="player" parent="." unique_id=1415999693 instance=ExtResource("3_xqf5a")]
 transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -11.156141, 2.0177016, 1.1446285)
-dash_speed = 40
-dash_cooldown = 0.5
 
 [node name="enemy" parent="." unique_id=1294842684 instance=ExtResource("6_gpdna")]
 transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 42, -4, -18)
@@ -475,8 +482,9 @@ transform = Transform3D(1.0000005, 0, 0, 0, 1, 0, 5.364418e-07, 0, 1.0000005, -0
 shape = SubResource("BoxShape3D_l5n8w")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1893759614]
-transform = Transform3D(40.31985, 0, 0, 0, 21.469507, 0, 0, 0, 20.502438, 0, 10.126797, 20.606524)
+transform = Transform3D(40.31985, 0, 0, 0, 21.469507, 0, 0, 0, 2.6811788, 0, 10.126797, 10.955843)
 mesh = SubResource("BoxMesh_ac6od")
+skin = SubResource("Skin_5q1p8")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D" unique_id=837114229]
 physics_material_override = SubResource("PhysicsMaterial_5q1p8")
