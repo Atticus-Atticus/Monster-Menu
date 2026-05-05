@@ -15,7 +15,7 @@ func spawn():
 		add_child(obj)
 	else:
 		# code to end the day will go here
-		RestaurantGlobals.dayFinished = true
+		RestaurantGlobals.noMoreCustomers()
 
 
 func delaySpawn():
