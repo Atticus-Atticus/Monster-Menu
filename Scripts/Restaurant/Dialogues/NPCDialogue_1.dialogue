@@ -1,0 +1,22 @@
+~ start
+%
+	Heya.
+	This is the first test dialogue.
+	I think I'd like a pizza.
+%
+	Hi.
+	This is the second test dialogue.
+	I need a pizza
+%
+	What's up
+	This is the third test dialogue.
+	I want a pizza.
+=> END
+
+~ foodNotMade
+Where's my food...?
+=> END
+
+~ foodMade
+Thanks!
+=> END

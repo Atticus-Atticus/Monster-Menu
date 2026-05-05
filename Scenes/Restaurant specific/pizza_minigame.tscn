@@ -1,0 +1,226 @@
+[gd_scene format=3 uid="uid://leuun4ym8hs7"]
+
+[ext_resource type="Script" uid="uid://lgyjxufb2lqc" path="res://Scripts/Restaurant/pizza_minigame.gd" id="1_nt6q8"]
+[ext_resource type="Texture2D" uid="uid://bvuecuke0s2vc" path="res://Assets/Restaurant Assets/Stove Closeup.png" id="2_3wjq5"]
+[ext_resource type="AudioStream" uid="uid://icrh4a2oarf1" path="res://Assets/Sound Effects/intense fire.mp3" id="3_ojk84"]
+[ext_resource type="AudioStream" uid="uid://b2urr66ul1f3i" path="res://Assets/Sound Effects/constant crackling.mp3" id="3_rbl0i"]
+[ext_resource type="Texture2D" uid="uid://cnso0nfu7ke48" path="res://Assets/Restaurant Assets/fire.png" id="4_2wcl5"]
+[ext_resource type="AudioStream" uid="uid://b0pkpkcnk33o6" path="res://Assets/Sound Effects/woosh.mp3" id="5_djafs"]
+[ext_resource type="AudioStream" uid="uid://cfi4b122c1u1o" path="res://Assets/Sound Effects/fire out.mp3" id="6_djafs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nt6q8"]
+size = Vector2(472, 520)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rbl0i"]
+size = Vector2(472, 528)
+
+[sub_resource type="Animation" id="Animation_nt6q8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Area2D_Left/Collision_Left/Left_Rect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Area2D_Left/Collision_Left/Left_Fire:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_rbl0i"]
+resource_name = "left_fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Area2D_Left/Collision_Left/Left_Rect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(1, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Area2D_Left/Collision_Left/Left_Fire:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3sglk"]
+_data = {
+&"RESET": SubResource("Animation_nt6q8"),
+&"left_fade_out": SubResource("Animation_rbl0i")
+}
+
+[sub_resource type="Animation" id="Animation_3sglk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Area2D_Right/Collision_Right/Right_Rect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Area2D_Right/Collision_Right/Right_fire:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ojk84"]
+resource_name = "right_fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Area2D_Right/Collision_Right/Right_Rect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(1, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Area2D_Right/Collision_Right/Right_fire:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_djafs"]
+_data = {
+&"RESET": SubResource("Animation_3sglk"),
+&"right_fade_out": SubResource("Animation_ojk84")
+}
+
+[node name="PizzaMinigame" type="Node2D" unique_id=1281617112]
+script = ExtResource("1_nt6q8")
+
+[node name="StoveCloseup" type="Sprite2D" parent="." unique_id=1274041770]
+position = Vector2(-3.0517578e-05, 1.5258789e-05)
+scale = Vector2(0.72962964, 0.72962964)
+texture = ExtResource("2_3wjq5")
+
+[node name="Area2D_Left" type="Area2D" parent="." unique_id=1780872122]
+
+[node name="Collision_Left" type="CollisionShape2D" parent="Area2D_Left" unique_id=679057090]
+position = Vector2(-320, 40)
+shape = SubResource("RectangleShape2D_nt6q8")
+
+[node name="Left_Rect" type="ColorRect" parent="Area2D_Left/Collision_Left" unique_id=1636381482]
+visible = false
+offset_left = -144.0
+offset_top = -70.5
+offset_right = 144.0
+offset_bottom = 73.5
+mouse_filter = 2
+color = Color(1, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Left_Timer" type="Timer" parent="Area2D_Left/Collision_Left" unique_id=702196919]
+one_shot = true
+
+[node name="Left_Fire" type="Sprite2D" parent="Area2D_Left/Collision_Left" unique_id=98491714]
+position = Vector2(4, 3.9999962)
+rotation = -3.1415925
+scale = Vector2(0.741, -0.741)
+texture = ExtResource("4_2wcl5")
+
+[node name="Area2D_Right" type="Area2D" parent="." unique_id=1980363770]
+
+[node name="Collision_Right" type="CollisionShape2D" parent="Area2D_Right" unique_id=245600666]
+position = Vector2(304, 40)
+shape = SubResource("RectangleShape2D_rbl0i")
+
+[node name="Right_Rect" type="ColorRect" parent="Area2D_Right/Collision_Right" unique_id=1424847203]
+visible = false
+offset_left = -136.0
+offset_top = -68.0
+offset_right = 136.0
+offset_bottom = 68.0
+mouse_filter = 2
+color = Color(1, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Right_Timer" type="Timer" parent="Area2D_Right/Collision_Right" unique_id=161105831]
+one_shot = true
+
+[node name="Right_fire" type="Sprite2D" parent="Area2D_Right/Collision_Right" unique_id=1850447401]
+position = Vector2(-3.9999695, 0)
+scale = Vector2(0.7407408, 0.74074095)
+texture = ExtResource("4_2wcl5")
+
+[node name="Random_Timer" type="Timer" parent="." unique_id=40273870]
+wait_time = 3.0
+autostart = true
+
+[node name="AnimationPlayer_Left" type="AnimationPlayer" parent="." unique_id=1799474512]
+libraries/ = SubResource("AnimationLibrary_3sglk")
+
+[node name="AnimationPlayer_Right" type="AnimationPlayer" parent="." unique_id=415276242]
+root_node = NodePath("../AnimationPlayer_Left")
+libraries/ = SubResource("AnimationLibrary_djafs")
+
+[node name="Audio" type="Node2D" parent="." unique_id=318672214]
+
+[node name="Audio_Constant" type="AudioStreamPlayer2D" parent="Audio" unique_id=1192205322]
+stream = ExtResource("3_ojk84")
+volume_db = -10.0
+autoplay = true
+parameters/looping = false
+
+[node name="Audio_ConstantLower" type="AudioStreamPlayer2D" parent="Audio" unique_id=788814743]
+stream = ExtResource("3_rbl0i")
+parameters/looping = false
+
+[node name="Audio_BlowWind" type="AudioStreamPlayer2D" parent="Audio" unique_id=1969274671]
+stream = ExtResource("5_djafs")
+pitch_scale = 1.5
+
+[node name="Audio_FireOut" type="AudioStreamPlayer2D" parent="Audio" unique_id=2079309817]
+stream = ExtResource("6_djafs")
+volume_db = -5.0
+
+[connection signal="input_event" from="Area2D_Left" to="." method="_on_area_2d_left_input_event"]
+[connection signal="input_event" from="Area2D_Right" to="." method="_on_area_2d_right_input_event"]
