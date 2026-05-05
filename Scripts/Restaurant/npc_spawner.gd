@@ -11,7 +11,7 @@ func _ready():
 func spawn():
 	#Stores an instance of the NPC class in variable "obj"
 	var obj = spawnNPC.instantiate()
-	if Globals.tempSlimeballNum >= 2:
+	if Playerdata.slimeballs_collected >= 2:
 		add_child(obj)
 	else:
 		# code to end the day will go here

@@ -20,3 +20,10 @@ Where's my food...?
 ~ foodMade
 Thanks!
 => END
+
+~ endOfDayDialogue
+You've run out of slimeballs, you can't serve any more customers.
+Check the fridge if you don't believe me!
+Click the door to exit to the main menu.
+Thanks for playing our game <3
+=> END
