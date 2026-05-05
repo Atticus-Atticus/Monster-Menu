@@ -1,0 +1,125 @@
+[gd_scene format=3 uid="uid://co0j1h3knvxb8"]
+
+[ext_resource type="Script" uid="uid://8jjl8bvka625" path="res://Scripts/player/player.gd" id="1_xpcdj"]
+[ext_resource type="PackedScene" uid="uid://kie42x1272by" path="res://Scenes/Player/inventory.tscn" id="4_mtuoh"]
+[ext_resource type="PackedScene" uid="uid://cjx1awwrnbasi" path="res://Scenes/Player/Knight_Body.tscn" id="6_dd0ac"]
+[ext_resource type="Script" uid="uid://b7i1ata4bnegy" path="res://Scenes/Player/camershake.gd" id="10_06tpx"]
+[ext_resource type="Script" uid="uid://cbugynpqebhpl" path="res://Scenes/Player/healthbar.gd" id="10_74mp2"]
+[ext_resource type="Texture2D" uid="uid://ypo6ds5scwqa" path="res://Assets/Sprites/HealthUI.png" id="11_oikmp"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hqtel"]
+radius = 1.4853516
+height = 6.4309235
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_jhyir"]
+height = 0.7027588
+radius = 0.60839844
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_htcer"]
+radius = 0.37158605
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jhyir"]
+albedo_color = Color(0, 0, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_74mp2"]
+material = SubResource("StandardMaterial3D_jhyir")
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_jhyir"]
+
+[sub_resource type="Compositor" id="Compositor_74mp2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8vj0r"]
+atlas = ExtResource("11_oikmp")
+region = Rect2(0.98501873, 0.28495693, 9.284956, 10.069599)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j7g5o"]
+atlas = ExtResource("11_oikmp")
+region = Rect2(0.9578142, 66.12133, 9.557633, 10.4076)
+
+[node name="player" type="CharacterBody3D" unique_id=1415999693 groups=["player"]]
+script = ExtResource("1_xpcdj")
+
+[node name="Knight_Body" parent="." unique_id=2020508082 instance=ExtResource("6_dd0ac")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1401308739]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.27139974, 0)
+shape = SubResource("CapsuleShape3D_hqtel")
+
+[node name="MeleeHitbox" type="Area3D" parent="." unique_id=1507677051]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0.014227167, 0.1702203, 0.0035686865)
+visible = false
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeleeHitbox" unique_id=1156702933]
+transform = Transform3D(0.59999967, 0, 0, 0, 0.59999967, 0, 0, 0, 0.59999967, 0, 0.11209726, 0)
+shape = SubResource("CylinderShape3D_jhyir")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1301226535]
+
+[node name="InventoryInterface" type="Control" parent="CanvasLayer" unique_id=30478407]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 60.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="PlayerInventory" parent="CanvasLayer/InventoryInterface" unique_id=470278532 instance=ExtResource("4_mtuoh")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.005729167
+anchor_top = 0.019444445
+anchor_right = 0.0203125
+anchor_bottom = 0.043518517
+metadata/_edit_use_anchors_ = true
+
+[node name="ActionableFinder" type="Area3D" parent="." unique_id=274848868]
+visible = false
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ActionableFinder" unique_id=1250034448]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1808203, 0)
+shape = SubResource("SphereShape3D_htcer")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=186904857]
+visible = false
+layers = 2
+mesh = SubResource("SphereMesh_74mp2")
+
+[node name="SwordSound" type="AudioStreamPlayer3D" parent="." unique_id=190973871]
+
+[node name="cam origin" type="Node3D" parent="." unique_id=988751421]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.64465064, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="." unique_id=1095507065]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3279743, 0)
+spring_length = 1.5
+margin = 0.5
+
+[node name="player camera" type="Camera3D" parent="SpringArm3D" unique_id=343637069 groups=["main_camera"]]
+transform = Transform3D(0.14285715, 0, 0, 0, 0.105493635, 0.09632891, 0, -0.09632891, 0.105493635, 0, 0, 0)
+cull_mask = 1047553
+attributes = SubResource("CameraAttributesPractical_jhyir")
+compositor = SubResource("Compositor_74mp2")
+current = true
+fov = 97.4
+script = ExtResource("10_06tpx")
+
+[node name="HeartBar" type="HBoxContainer" parent="SpringArm3D/player camera" unique_id=380535604]
+offset_right = 384.0
+offset_bottom = 33.0
+scale = Vector2(5, 5)
+script = ExtResource("10_74mp2")
+full_heart = SubResource("AtlasTexture_8vj0r")
+empty_heart = SubResource("AtlasTexture_j7g5o")
+
+[node name="RayCast3D" type="RayCast3D" parent="SpringArm3D/player camera" unique_id=1144462906]
+
+[connection signal="body_entered" from="MeleeHitbox" to="." method="_on_melee_hitbox_body_entered"]
+
+[editable path="Knight_Body"]

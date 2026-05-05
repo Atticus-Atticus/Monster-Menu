@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://d2rjb8tso4jml"]
+
+[ext_resource type="PackedScene" uid="uid://dhb7f5sp6pkh6" path="res://Assets/Sprites/obj/Blade.blend" id="1_41oi6"]
+[ext_resource type="Texture2D" uid="uid://b46xuewe7y1mf" path="res://Assets/Materials/blade textures/Textures/Diffuse02.png" id="2_utrnp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o6avh"]
+albedo_texture = ExtResource("2_utrnp")
+
+[node name="Blade2" unique_id=467510471 instance=ExtResource("1_41oi6")]
+
+[node name="Blade" parent="." index="0" unique_id=1599362973]
+surface_material_override/0 = SubResource("StandardMaterial3D_o6avh")

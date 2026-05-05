@@ -1,0 +1,36 @@
+~ start
+
+
+if Playerdata.slimetwink_quest_status == "active":
+	if Playerdata.slimeballs_collected >= 10:
+		Slimetwink: Whoa, you actually got them! All 10 slimeballs!
+		Slimetwink: Now i can finally feed my children :3
+		set Playerdata.slimetwink_quest_status = "completed"
+		do Playerdata.start_boss_event()
+		=> END
+	else:
+		Slimetwink: You only have {{Playerdata.slimeballs_collected}} slimeballs! Remember, I need 10.
+		Slimetwink: Just use Left Click to smash the slimes, and WASD to dodge.
+		=> END
+
+# If the quest is "not_started", the code ignores the above and plays the intro:
+Slimetwink: Oh! [[Hello|Hi|Hey]] there, new arrival! I haven't seen you around these parts before.
+Slimetwink: I'm Slimetwink! I'm here to help you get your bearings.
+~ goto
+Slimetwink: First things first: getting around. You can use the W, A, S, and D keys to move, and Shift to dash!
+Slimetwink: If you run into anything nasty out there in the wild, just Left Click to swing your weapon and attack!
+Slimetwink: Actually... since you look capable, I could use a massive favor.
+Slimetwink: The local slimes are getting totally out of hand. Could you hunt some down and bring me 10 slimeballs?
+
+- I'm on it!
+	set Playerdata.slimetwink_quest_status = "active"
+	Slimetwink: Fantastic! You can find me by the exit when you have 10 slimeballs!
+	=> END
+- Wait, how do I do things again?
+	Slimetwink: No problem, it takes a second to get used to your new body.
+	=> goto
+	
+- Why are you called Slimetwink?
+	Slimetwink: ...We don't talk about that. Just get the 10 slimeballs, please.
+	set Playerdata.slimetwink_quest_status = "active"
+	=> END

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://bj3msxuk1d1k5"]
+
+[ext_resource type="Script" uid="uid://dy7r4ynfc3ngf" path="res://Scripts/items/item_data.gd" id="1_sf0wk"]
+[ext_resource type="Texture2D" uid="uid://dal4vs6x0ii64" path="res://Assets/Sprites/slimeball.webp" id="2_3exca"]
+
+[resource]
+script = ExtResource("1_sf0wk")
+name = " slimeball"
+stackable = true
+texture = ExtResource("2_3exca")
+metadata/_custom_type_script = "uid://dy7r4ynfc3ngf"
