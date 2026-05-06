@@ -7,9 +7,9 @@ func _ready() -> void:
 
 #----------------------------------FUNCTIONS-----------------------------
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int):
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed() and RestaurantGlobals.dayFinished == true:
 		on_click()
 
 func on_click():
-	#here you'll be able to leave the kitchen to go to the dungeons
-	print("You clicked on the backdoor.")
+	# leave the kitchen to go to the dungeons
+	get_tree().change_scene_to_file("res://Scenes/Menus/Main Menu.tscn")

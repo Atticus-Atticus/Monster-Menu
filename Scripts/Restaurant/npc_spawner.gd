@@ -3,20 +3,21 @@ extends Area2D
 #https://www.youtube.com/watch?v=Qs8oSGmhx-U <- instantiation tut :p
 #Fetches our NPC class
 var spawnNPC = preload("res://Scenes/Restaurant specific/npc.tscn")
+var dialogueResource = preload("res://Scripts/Restaurant/Dialogues/NPCDialogue_1.dialogue")
 
 func _ready():
 	spawn()
 
 #----------------------------------FUNCTIONS----------------------------------
 func spawn():
-	#Stores an instance of the NPC class in variable "obj"
+	# Stores an instance of the NPC class in variable "obj"
 	var obj = spawnNPC.instantiate()
 	if Playerdata.slimeballs_collected >= 2:
 		add_child(obj)
 	else:
-		# code to end the day will go here
+		# end of day code
+		DialogueManager.show_example_dialogue_balloon(dialogueResource, "endOfDayDialogue")
 		RestaurantGlobals.noMoreCustomers()
-
 
 func delaySpawn():
 	await get_tree().create_timer(2.0).timeout
