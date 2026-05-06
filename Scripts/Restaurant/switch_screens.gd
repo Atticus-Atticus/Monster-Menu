@@ -5,10 +5,17 @@ var current_index = 0
 var temp_index = 0
 
 func _ready():
-	#initialising, just in case
+	# initialising
 	updateCamera()
+	Globals.scoreChanged.connect(increaseStars)
 
 #----------------------------------FUNCTIONS----------------------------------
+# Star rating
+func increaseStars():
+	$MarginContainer/VBoxContainer/TextureProgressBar.value = Globals.resScore
+	print($MarginContainer/VBoxContainer/TextureProgressBar.value)
+
+# Cameras
 func _on_left_button_pressed():
 	if RestaurantGlobals.minigameOpen == false:
 		print("going left")

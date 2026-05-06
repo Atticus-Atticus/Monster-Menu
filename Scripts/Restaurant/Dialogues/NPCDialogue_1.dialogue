@@ -4,12 +4,14 @@
 	I'd like to order a pizza, please!
 %
 	Hi.
-	This is the second test dialogue.
-	I need a pizza
+	I'm not looking for much.
+	Just a pizza will do.
 %
-	What's up
-	This is the third test dialogue.
-	I want a pizza.
+	Um...
+	Is it okay if I get uhhh...
+	Let me think.
+	Pizza?
+	Is that fine?
 => END
 
 ~ foodNotMade

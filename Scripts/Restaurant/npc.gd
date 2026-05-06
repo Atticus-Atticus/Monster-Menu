@@ -1,7 +1,6 @@
 extends Area2D
 
 @export var Appearance_Frames: AnimatedSprite2D
-@onready var clickLeft = 3
 var dialogueResource = preload("res://Scripts/Restaurant/Dialogues/NPCDialogue_1.dialogue")
 var RanNumGen = RandomNumberGenerator.new()
 var canInteract = false
