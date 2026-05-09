@@ -1,37 +1,30 @@
 [gd_scene format=3 uid="uid://k3vhdiuji6ls"]
 
 [ext_resource type="Script" uid="uid://cvnlln8frsdr0" path="res://Scripts/Restaurant/npc.gd" id="1_wxogn"]
-[ext_resource type="Texture2D" uid="uid://cu1ohgl87ltnj" path="res://Assets/Temp Assets/NPC Spritesheet.png" id="3_7duf1"]
+[ext_resource type="Texture2D" uid="uid://df771g7akelby" path="res://Assets/Restaurant Assets/Spritesheet.png" id="2_wxogn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3483m"]
-size = Vector2(192, 460)
+size = Vector2(688, 704)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7duf1"]
+atlas = ExtResource("2_wxogn")
+region = Rect2(0, 0, 1065, 1080)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3rofn"]
-atlas = ExtResource("3_7duf1")
-region = Rect2(0, 0, 300, 600)
+atlas = ExtResource("2_wxogn")
+region = Rect2(1065, 0, 1065, 1080)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6uqfc"]
-atlas = ExtResource("3_7duf1")
-region = Rect2(300, 0, 300, 600)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_g5e83"]
-atlas = ExtResource("3_7duf1")
-region = Rect2(600, 0, 300, 600)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_hl7va"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_6uqfc"]
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_7duf1")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_3rofn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6uqfc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_g5e83")
 }],
 "loop": true,
-"name": &"Appearance",
+"name": &"default",
 "speed": 5.0
 }]
 
@@ -77,21 +70,45 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
 
 [sub_resource type="Animation" id="Animation_7duf1"]
 resource_name = "Slide onto screen"
 length = 4.0
 tracks/0/type = "value"
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/path = NodePath("..:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 4),
+"times": PackedFloat32Array(0, 3.8),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(840, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(832, -192), Vector2(-256, -192)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3rofn"]
@@ -109,9 +126,9 @@ Appearance_Frames = NodePath("CollisionShape2D/Sprites")
 shape = SubResource("RectangleShape2D_3483m")
 
 [node name="Sprites" type="AnimatedSprite2D" parent="CollisionShape2D" unique_id=1883142121]
-position = Vector2(4, -72)
-sprite_frames = SubResource("SpriteFrames_hl7va")
-animation = &"Appearance"
+position = Vector2(0, -8)
+scale = Vector2(0.67053986, 0.67053986)
+sprite_frames = SubResource("SpriteFrames_6uqfc")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=401031558]
 libraries/ = SubResource("AnimationLibrary_3rofn")

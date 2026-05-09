@@ -43,6 +43,7 @@ func on_click():
 	RestaurantGlobals.orderFulfilled = false
 
 func finishOrder():
+	Globals.decreaseCustomers()
 	$AnimationPlayer.play("FadeOut")
 	await get_tree().create_timer($AnimationPlayer.current_animation_length).timeout
 	get_parent().delaySpawn()

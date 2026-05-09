@@ -89,7 +89,6 @@ texture = ExtResource("8_jtn77")
 [node name="NPC_Spawner" parent="Kitchen" unique_id=872110875 instance=ExtResource("4_251mm")]
 z_index = 2
 position = Vector2(280, 56)
-scale = Vector2(2.13, 1.8)
 
 [node name="Fridge" parent="Kitchen" unique_id=1085246631 instance=ExtResource("7_56vm3")]
 z_index = 4

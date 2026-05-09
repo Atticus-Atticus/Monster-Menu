@@ -1,14 +1,15 @@
 extends Control
 
-@onready var SlimeNum = $UI/PopupPanel/MarginContainer/VBoxContainer/ColorRect2/MarginContainer/HBoxContainer/SlimeNumber
-var NumberOfSlimeballs = 0
+@onready var slimeNum = $UI/PopupPanel/MarginContainer/VBoxContainer/ColorRect2/MarginContainer/HBoxContainer/SlimeNumber
+var numberOfSlimeballs = 0
 
 #----------------------------------FUNCTIONS----------------------------------
 func _on_button_pressed() -> void:
 	%PopupPanel.hide()
 
 func FridgePopup():
-	NumberOfSlimeballs = Playerdata.slimeballs_collected
-	SlimeNum.text = str(NumberOfSlimeballs)
+	numberOfSlimeballs = Playerdata.slimeballs_collected
+	slimeNum.text = str(numberOfSlimeballs)
 	print("slime balls left:" + str(Playerdata.slimeballs_collected))
 	%PopupPanel.popup()
+	%PopupPanel.popup_centered()

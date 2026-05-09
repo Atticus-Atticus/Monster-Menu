@@ -9,7 +9,9 @@ var health: int = 3
 #Restaurant score + money. Shortened bc none of us can spell restrant.
 var resScore: int = 0
 var money: int = 0
+var customersLeft = 0
 signal scoreChanged
+signal customersChanged
 
 var slinkLoot: bool = false
 
@@ -21,3 +23,7 @@ func increaseScore(addScore):
 func increaseMoney(addMoney):
 	money += addMoney
 	print(money)
+
+func decreaseCustomers():
+	customersLeft -= 1
+	customersChanged.emit()

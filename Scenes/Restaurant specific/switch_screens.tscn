@@ -37,9 +37,37 @@ theme_override_constants/margin_bottom = 0
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=160840485]
 layout_mode = 2
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="MarginContainer/VBoxContainer" unique_id=671948925]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=890449248]
 layout_mode = 2
-size_flags_horizontal = 8
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1207146447]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer" unique_id=603861531]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.23921569, 0.59607846, 0.25882354, 0.6666667)
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer" unique_id=797807233]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="customers_left" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer" unique_id=527992597]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0.7137255, 0.99215686, 0.70980394, 0.6666667)
+theme_override_font_sizes/font_size = 35
+text = "Customers left: 0"
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=671948925]
+layout_mode = 2
+size_flags_horizontal = 10
 size_flags_vertical = 0
 max_value = 2000.0
 texture_under = ExtResource("2_d6ole")
