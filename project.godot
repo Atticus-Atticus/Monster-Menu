@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Monster Menu"
-run/main_scene="uid://utjh5wocdp0q"
+run/main_scene="uid://b7tik7rqfbccg"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://Assets/Sprites/icon.svg"
 
@@ -27,16 +27,14 @@ Playerdata="*uid://du35vs4fc80i3"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/size/mode=4
+window/size/initial_position_type=0
 window/size/resizable=false
 window/stretch/mode="canvas_items"
 
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
-
-[filesystem]
-
-import/blender/enabled=false
 
 [gui]
 

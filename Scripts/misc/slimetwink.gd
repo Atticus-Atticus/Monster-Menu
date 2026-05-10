@@ -5,7 +5,7 @@ extends Area3D
 @onready var slinkcam1: Camera3D = $slinkcam1
 # References to the other nodes in your Tutorial Dungeon Scene 2
 @onready var boss_slime = $"../Boss Slime"
-@onready var squashed_twink = $"../squashed slime"
+@onready var squashed_twink = $"../squashed slimetwink"
 
 func _ready() -> void:
 	# Connect to the signal in playerdata.gd
