@@ -59,7 +59,7 @@ func _on_damage_timer_timeout():
 	pass 
 
 func _on_boss_spawn_triggered():
-	global_position.y += 20.0 
+	global_position.y += 10 
 	visible = true
 	set_physics_process(true)
 	is_falling_event = true
@@ -76,18 +76,18 @@ func die():
 	super.die()
 
 func trigger_squash_logic():
-	# Impact Shake
+	# 1. Immediate Impact (Shake the camera right away)
 	var cam = get_viewport().get_camera_3d()
 	if cam and cam.has_method("add_shake"):
 		cam.add_shake(1.0)
-
-	await get_tree().create_timer(0.05).timeout 
 	
+	# 2. Handle the NPC
 	var npc = get_tree().get_first_node_in_group("npc_slimetwink")
 	if npc:
 		npc.hide()
 		npc.process_mode = Node.PROCESS_MODE_DISABLED
-
+	
+	# 3. Handle the "Squashed" version
 	var squashed = get_tree().get_first_node_in_group("squashed")
 	if squashed:
 		squashed.show()

@@ -12,6 +12,8 @@ var player_in_hitbox := false
 var knockback_time := 0.0 # Changed to 0.0 for cleaner initialization
 var knockback_duration := 0.5
 @onready var sprite = $AnimatedSprite3D
+@onready var death_sound = $DeathSound
+@onready var hit_sound = $HitSound
 func _ready():
 	health = max_health
 	$DamageTimer.wait_time = 1
@@ -82,14 +84,22 @@ func take_damage(amount, dir):
 	knockback_time = knockback_duration
 	velocity = dir * 15.0
 	sprite.play("hurt")
+	hit_sound.play()
 	
 	if health <= 0:
 		die()
 func die():
+	# --- 1. FREEZE THE ENEMY IMMEDIATELY ---
+	set_physics_process(false)
+	velocity = Vector3.ZERO
+	$CollisionShape3D.set_deferred("disabled", true)
+	if has_node("PlayerHitArea"): 
+		$PlayerHitArea.monitoring = false
+	death_sound.play()
 	print("!!! DIE CALLED !!!")
 	print("pickup_scene exists? ", pickup_scene != null)
 	print("drop_resource exists? ", drop_resource != null)
-	
+	await death_sound.finished
 	if pickup_scene:
 		print(">>> Creating pickup instance...")
 		var pickup = pickup_scene.instantiate()
@@ -102,12 +112,13 @@ func die():
 		
 		# 2. Set position BEFORE adding to scene
 		var spawn_pos = global_transform.origin + Vector3(0, 0, 0)
-		print(">>> Setting position to: ", spawn_pos)
-		pickup.global_position = spawn_pos
-		
-		# 3. Add to the scene tree
-		print(">>> Adding to scene tree...")
+# 1. Add to the scene tree FIRST
 		get_tree().root.add_child(pickup)
+
+# 2. NOW you can set global_position
+		pickup.global_position = spawn_pos 
+
+		print(">>> Added to scene! Parent: ", pickup.get_parent())
 		print(">>> Added to scene! Parent: ", pickup.get_parent())
 		
 		print("✓ Slimeball spawned successfully at: ", pickup.global_position)
@@ -115,25 +126,28 @@ func die():
 		print("✗✗✗ ERROR: pickup_scene is NULL! ✗✗✗")
 			
 	queue_free()
+
 func _on_area_3d_body_entered(body):
 	if body.is_in_group("player"):
 		player = body
 		awake = true
+
 func _on_area_3d_body_exited(body):
 	if body == player:
 		player = null
 		awake = false
-		# Optional: Reset has_awakened if you want him to sleep again
-		# has_awakened = false 
+
 func _on_player_hit_area_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
 		player_in_hitbox = true
 		get_tree().call_group("player", "hurt", 1)
 		$DamageTimer.start()
+
 func _on_player_hit_area_body_exited(body: Node3D) -> void:
 	if body.is_in_group("player"):
 		player_in_hitbox = false
 		$DamageTimer.stop()
+
 func _on_damage_timer_timeout() -> void:
 	if player_in_hitbox:
 		get_tree().call_group("player", "hurt", 1)

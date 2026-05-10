@@ -6,6 +6,7 @@ extends Area3D
 # References to the other nodes in your Tutorial Dungeon Scene 2
 @onready var boss_slime = $"../Boss Slime"
 @onready var squashed_twink = $"../squashed slime"
+
 func _ready() -> void:
 	# Connect to the signal in playerdata.gd
 	Playerdata.trigger_boss_drop.connect(_on_boss_triggered)
@@ -17,22 +18,26 @@ func _ready() -> void:
 	
 	if squashed_twink:
 		squashed_twink.hide()
+
 func action() -> void:
 	slinkcam1.make_current()
 	DialogueManager.show_example_dialogue_balloon(dialogue_resource, dialogue_start)
 	if not DialogueManager.dialogue_ended.is_connected(_on_dialogue_ended):
 		DialogueManager.dialogue_ended.connect(_on_dialogue_ended)
+
 func _on_boss_triggered() -> void:
-	# 1. Hide the healthy Slimetwink (this NPC)
+	await get_tree().create_timer(1.5).timeout 
+	
+	# 2. Now hide the healthy Slimetwink
 	self.hide()
 	# Disable collisions so the player doesn't keep talking to an invisible NPC
 	self.process_mode = Node.PROCESS_MODE_DISABLED 
 	
-	# 2. Show the "Squashed" version
+	# 3. Show the "Squashed" version
 	if squashed_twink:
 		squashed_twink.show()
 	
-	# 3. Drop the Boss Slime
+	# 4. Drop the Boss Slime
 	if boss_slime:
 		boss_slime.show()
 		boss_slime.process_mode = Node.PROCESS_MODE_INHERIT

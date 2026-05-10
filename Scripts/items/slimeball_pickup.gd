@@ -1,5 +1,6 @@
 extends Area3D
-
+@onready var pickupsound = $PickUpSound
+@onready var sprite = $CollisionShape3D/Sprite3D
 @export var item: ItemData:
 	set(value):
 		item = value
@@ -20,7 +21,10 @@ func _ready():
 func _on_body_entered(body: Node3D) -> void:
 	if picked_up: return
 	if body.is_in_group("player"):
+		pickupsound.play()
+		sprite.hide()
 		picked_up = true
 		body.add_item(item)
 		Playerdata.slimeballs_collected += 1
+		await pickupsound.finished
 		queue_free()

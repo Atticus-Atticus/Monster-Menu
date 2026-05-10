@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://b43oggiehh4m" path="res://Assets/Sprites/PLACEHOLDER_slime.png" id="1_7k104"]
 [ext_resource type="Resource" uid="uid://bj3msxuk1d1k5" path="res://Scripts/items/slimeball.tres" id="2_1u7tg"]
 [ext_resource type="PackedScene" uid="uid://guvi0egexwy8" path="res://Scenes/Enemies/slimeball.tscn" id="3_jwhlm"]
+[ext_resource type="AudioStream" uid="uid://b7exqevywth7c" path="res://Assets/Sounds/slime_death.mp3" id="5_rh62s"]
+[ext_resource type="AudioStream" uid="uid://cf4mmf6xmqvw" path="res://Assets/Sounds/slime_hit.mp3" id="6_n4i4n"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_4gyqm"]
 radius = 0.18935311
@@ -24,21 +26,21 @@ region = Rect2(48, 0, 24, 24)
 atlas = ExtResource("1_7k104")
 region = Rect2(72, 0, 24, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5uyk1"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_rh62s"]
 atlas = ExtResource("1_7k104")
-region = Rect2(0, 48, 24, 24)
+region = Rect2(72, 48, 24, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_sv1en"]
-atlas = ExtResource("1_7k104")
-region = Rect2(24, 48, 24, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1u7tg"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_n4i4n"]
 atlas = ExtResource("1_7k104")
 region = Rect2(48, 48, 24, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jwhlm"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ld0qu"]
 atlas = ExtResource("1_7k104")
-region = Rect2(72, 48, 24, 24)
+region = Rect2(24, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cmhxm"]
+atlas = ExtResource("1_7k104")
+region = Rect2(0, 48, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dxifv"]
 atlas = ExtResource("1_7k104")
@@ -85,16 +87,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5uyk1")
+"texture": SubResource("AtlasTexture_rh62s")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_sv1en")
+"texture": SubResource("AtlasTexture_n4i4n")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_1u7tg")
+"texture": SubResource("AtlasTexture_ld0qu")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_jwhlm")
+"texture": SubResource("AtlasTexture_cmhxm")
 }],
 "loop": false,
 "name": &"hurt",
@@ -155,7 +157,7 @@ shape = SubResource("SphereShape3D_4gyqm")
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." unique_id=13233984]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.009057343)
 sprite_frames = SubResource("SpriteFrames_wujgv")
-animation = &"awaken"
+animation = &"hurt"
 
 [node name="VisionArea" type="Area3D" parent="." unique_id=1132139018]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.009057343)
@@ -177,6 +179,12 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 visible = false
 layers = 2
 mesh = SubResource("SphereMesh_sv1en")
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="." unique_id=637043563]
+stream = ExtResource("5_rh62s")
+
+[node name="HitSound" type="AudioStreamPlayer" parent="." unique_id=1761759979]
+stream = ExtResource("6_n4i4n")
 
 [connection signal="animation_finished" from="AnimatedSprite3D" to="." method="_on_animated_sprite_3d_animation_finished"]
 [connection signal="body_entered" from="VisionArea" to="." method="_on_area_3d_body_entered"]

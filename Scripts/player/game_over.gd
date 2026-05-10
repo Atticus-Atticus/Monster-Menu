@@ -17,5 +17,4 @@ func _on_respawn_pressed() -> void:
 	
 	if Playerdata.has_method("reset"):
 		Playerdata.reset()
-		
 	get_tree().reload_current_scene()

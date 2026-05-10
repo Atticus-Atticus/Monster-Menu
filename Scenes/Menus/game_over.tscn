@@ -5,6 +5,7 @@
 [sub_resource type="Theme" id="Theme_m0h5h"]
 
 [node name="GameOver" type="CanvasLayer" unique_id=749302593]
+process_mode = 3
 script = ExtResource("1_jw20l")
 
 [node name="Panel" type="Panel" parent="." unique_id=1037882357]
@@ -27,6 +28,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="respawn" type="Button" parent="." unique_id=1910953561]
+process_mode = 3
 offset_left = 807.0
 offset_top = 630.0
 offset_right = 1036.0

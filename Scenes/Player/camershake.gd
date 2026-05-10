@@ -1,7 +1,7 @@
 
 extends Camera3D
 
-@export var shake_threshold := 0.1
+@export var shake_threshold := 0.5
 var shake_amount := 0.5
 var default_offset : Vector3
 

@@ -26,8 +26,12 @@
 [ext_resource type="PackedScene" uid="uid://bog36erxobt4t" path="res://Scenes/slimetwink.tscn" id="23_1e6no"]
 [ext_resource type="PackedScene" uid="uid://ti4gdl0acon5" path="res://squashed_slimetwink.tscn" id="24_3ob7l"]
 [ext_resource type="PackedScene" uid="uid://bxwscthh1bdc3" path="res://Scenes/Enemies/boss_slime.tscn" id="24_cww0g"]
+[ext_resource type="AudioStream" uid="uid://br8yl8hd8b7ng" path="res://Assets/Sounds/death cue idea 1.wav" id="24_tb33k"]
 [ext_resource type="PackedScene" uid="uid://bn8sa3o3fdfpa" path="res://Scenes/Levels/next_level.tscn" id="27_75hc7"]
+[ext_resource type="Resource" uid="uid://bj3msxuk1d1k5" path="res://Scripts/items/slimeball.tres" id="27_ghvxm"]
 [ext_resource type="PackedScene" uid="uid://utjh5wocdp0q" path="res://Scenes/Levels/Restaurant Scene.tscn" id="28_j8bor"]
+[ext_resource type="PackedScene" uid="uid://guvi0egexwy8" path="res://Scenes/Enemies/slimeball.tscn" id="28_tn5yf"]
+[ext_resource type="AudioStream" uid="uid://cvjioa6ec70ro" path="res://Assets/Sounds/Potential music for the gamejam game.wav" id="29_eroq4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rli08"]
 sky_top_color = Color(0.38039216, 0.38039216, 0.38039216, 1)
@@ -9435,8 +9439,6 @@ shape = SubResource("ConcavePolygonShape3D_84fpf")
 [node name="TunnelWallCornerOut" type="MeshInstance3D" parent="Level/CollisionShape3D133" unique_id=2099210263]
 material_override = SubResource("StandardMaterial3D_0f6sf")
 mesh = SubResource("ArrayMesh_hhin8")
-
-[node name="GameOver" parent="Level/CollisionShape3D133" unique_id=749302593 groups=["dead"] instance=ExtResource("6_bguqn")]
 
 [node name="CollisionShape3D134" type="CollisionShape3D" parent="Level" unique_id=1878689639]
 transform = Transform3D(8.742277e-08, 0, -1, 0, 1, 0, 1, 0, 8.742277e-08, 68.10294, 1, -42.77941)
@@ -24586,6 +24588,15 @@ transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 33.93872, 4.5467587, 8.625184
 [node name="player" parent="." unique_id=1415999693 instance=ExtResource("6_1nb6p")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -4, 2, 6)
 
+[node name="Background Music" type="AudioStreamPlayer3D" parent="player" unique_id=545378376]
+transform = Transform3D(0.6666667, 0, 0, 0, 0.6666667, 0, 0, 0, 0.6666667, 2.6666667, -1.3333334, -4)
+stream = ExtResource("29_eroq4")
+autoplay = true
+
+[node name="DeathSoundEffect" type="AudioStreamPlayer" parent="player" unique_id=795658327]
+process_mode = 3
+stream = ExtResource("24_tb33k")
+
 [node name="Slime enemy2" parent="." unique_id=2109864643 instance=ExtResource("21_1tkvn")]
 transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 43.197876, 3.012497, -37.004246)
 
@@ -24613,7 +24624,7 @@ transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -50, 1, -19)
 [node name="HealthPotion4" parent="." unique_id=1308643864 instance=ExtResource("22_h8oyw")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -45, 1, -20)
 
-[node name="Slimetwink" parent="." unique_id=432569736 groups=["npc_slimetwink"] instance=ExtResource("23_1e6no")]
+[node name="Slimetwink" parent="." unique_id=432569736 instance=ExtResource("23_1e6no")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5464416, 1.9948661, 2.52739)
 
 [node name="slinkcam1" type="Camera3D" parent="Slimetwink" unique_id=519234792]
@@ -24629,6 +24640,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34553528, 1.791687, 5.41799
 [node name="Boss Slime" parent="." unique_id=1297845405 node_paths=PackedStringArray("next_level_door") instance=ExtResource("24_cww0g")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 22.555237, 3.807, -83.83796)
 next_level_door = NodePath("../next_level")
+speed = 5
+drop_resource = ExtResource("27_ghvxm")
+pickup_scene = ExtResource("28_tn5yf")
 
 [node name="squashed slimetwink" parent="." unique_id=766555285 groups=["squashed"] instance=ExtResource("24_3ob7l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 1, -83)
@@ -24650,3 +24664,5 @@ transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, -11.20825, 3.0125008, -70.273
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 19.519697, 1.5140421, -91.57908)
 visible = false
 next_scene = ExtResource("28_j8bor")
+
+[node name="GameOver" parent="." unique_id=749302593 groups=["dead"] instance=ExtResource("6_bguqn")]

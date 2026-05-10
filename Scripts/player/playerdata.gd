@@ -32,7 +32,10 @@ var speed := 10
 var jump_velocity := 5
 
 func reset():
+	slimeballs_collected = 0
 	health = max_health
 	attack_damage = attack_damage
 	speed = speed
 	jump_velocity = jump_velocity
+	if inventory_data:
+		inventory_data.reset()

@@ -171,15 +171,18 @@ func restore_health(amount: int) -> void:
 	Playerdata.health = min(Playerdata.health + amount, Playerdata.max_health)
 
 func die() -> void:
-	var game_over_screen = get_tree().get_first_node_in_group("dead")
+	$DeathSoundEffect.play()
 	
+	# Force the mouse to show up immediately
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE) 
+	
+	var game_over_screen = get_tree().get_first_node_in_group("dead")
 	if game_over_screen:
-		game_over_screen.game_over() # Triggers the game_over() function
-	else:
-		push_warning("GameOver screen not found in group 'dead'!")
-		
-	queue_free()
-
+		game_over_screen.game_over()
+	
+	hide()
+	set_physics_process(false)
+	process_mode = PROCESS_MODE_DISABLED
 func add_item(item_data: Resource) -> void:
 	if Playerdata.inventory_data:
 		Playerdata.inventory_data.add_item(item_data)
