@@ -4,28 +4,33 @@
 [ext_resource type="Resource" uid="uid://bj3msxuk1d1k5" path="res://Scripts/items/slimeball.tres" id="2_07n3t"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gtvf4"]
-size = Vector3(3, 4, 3)
+size = Vector3(2.8909073, 0.53982544, 2.3077545)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_07n3t"]
+albedo_color = Color(0, 0.49803922, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_hsgi2"]
+material = SubResource("StandardMaterial3D_07n3t")
 
 [sub_resource type="SystemFont" id="SystemFont_07n3t"]
+subpixel_positioning = 0
 
 [node name="squashed slimetwink" type="Area3D" unique_id=766555285]
-transform = Transform3D(1.4174405, 0, 0, 0, 0.28170323, 0, 0, 0, 1.4383017, 0, 0, 0)
 script = ExtResource("1_hsgi2")
 item = ExtResource("2_07n3t")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2016336567]
-transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0.5, 0)
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
 shape = SubResource("BoxShape3D_gtvf4")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=948985600]
+transform = Transform3D(3, 0, 0, 0, 0.669, 0, 0, 0, 3, 0, 0, 0)
 mesh = SubResource("BoxMesh_hsgi2")
 
 [node name="Label3D" type="Label3D" parent="." unique_id=400402856]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 11.282596, 0)
-pixel_size = 0.01
-billboard = 1
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 1.9576225, 0)
+pixel_size = 0.009
+billboard = 2
 alpha_cut = 3
 texture_filter = 0
 text = "Press 'E' to Harvest"

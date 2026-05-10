@@ -11,7 +11,6 @@ albedo_texture = ExtResource("2_ne6n7")
 albedo_texture = ExtResource("2_ne6n7")
 
 [node name="Knight_Body" unique_id=2020508082 instance=ExtResource("1_ch5hp")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(1274482698) index="0" unique_id=710843057]
 bones/1/position = Vector3(1.0139672e-15, -0.03215666, 0.09030522)

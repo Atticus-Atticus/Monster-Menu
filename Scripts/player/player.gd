@@ -1,7 +1,6 @@
 extends CharacterBody3D
 
 # --- Nodes ---
-# Based on image_54a0a0.jpg, these are children of the player
 @onready var cam_origin = $"cam origin" 
 @onready var knight_mesh = $Knight_Body
 @onready var actionable_finder = $ActionableFinder
@@ -11,9 +10,9 @@ extends CharacterBody3D
 
 # --- Settings ---
 @export_group("Movement")
-@export var dash_speed := 40
-@export var dash_duration := 0.25
-@export var dash_cooldown := 0.7
+@export var dash_speed := 20
+@export var dash_duration := 0.2
+@export var dash_cooldown := 0.5
 @export var fall_multiplier := 4.0
 
 @export_group("Combat")
@@ -151,6 +150,11 @@ func attack() -> void:
 func hurt(hit_points: int) -> void:
 	if is_dead: return
 	Playerdata.health = max(Playerdata.health - hit_points, 0)
+	
+	var active_cam = get_viewport().get_camera_3d()
+	if active_cam and active_cam.has_method("add_shake"):
+		active_cam.add_shake(0.5) # Adjust this number for more or less shake
+	
 	if Playerdata.health <= 0:
 		is_dead = true
 		attacking = false 
@@ -167,10 +171,18 @@ func restore_health(amount: int) -> void:
 	Playerdata.health = min(Playerdata.health + amount, Playerdata.max_health)
 
 func die() -> void:
-	if get_parent().has_node("GameOver"):
-		get_parent().get_node("GameOver").game_over()
-	queue_free()
-
+	$DeathSoundEffect.play()
+	
+	# Force the mouse to show up immediately
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE) 
+	
+	var game_over_screen = get_tree().get_first_node_in_group("dead")
+	if game_over_screen:
+		game_over_screen.game_over()
+	
+	hide()
+	set_physics_process(false)
+	process_mode = PROCESS_MODE_DISABLED
 func add_item(item_data: Resource) -> void:
 	if Playerdata.inventory_data:
 		Playerdata.inventory_data.add_item(item_data)

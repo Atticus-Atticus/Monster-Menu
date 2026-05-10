@@ -12,11 +12,11 @@ radius = 1.4853516
 height = 6.4309235
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_jhyir"]
-height = 0.7027588
-radius = 0.60839844
+height = 1.746048
+radius = 0.84033203
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_htcer"]
-radius = 0.37158605
+radius = 0.80910474
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jhyir"]
 albedo_color = Color(0, 0, 1, 1)
@@ -37,22 +37,27 @@ atlas = ExtResource("11_oikmp")
 region = Rect2(0.9578142, 66.12133, 9.557633, 10.4076)
 
 [node name="player" type="CharacterBody3D" unique_id=1415999693 groups=["player"]]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 script = ExtResource("1_xpcdj")
 
 [node name="Knight_Body" parent="." unique_id=2020508082 instance=ExtResource("6_dd0ac")]
 
+[node name="Circle" parent="Knight_Body/Armature/Skeleton3D" parent_id_path=PackedInt32Array(2020508082, 710843057) index="0" unique_id=1278544030]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00013135871, 0.0031306744, -0.00088485086)
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1401308739]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.27139974, 0)
+visible = false
 shape = SubResource("CapsuleShape3D_hqtel")
 
 [node name="MeleeHitbox" type="Area3D" parent="." unique_id=1507677051]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0.014227167, 0.1702203, 0.0035686865)
-visible = false
 monitoring = false
 monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeleeHitbox" unique_id=1156702933]
-transform = Transform3D(0.59999967, 0, 0, 0, 0.59999967, 0, 0, 0, 0.59999967, 0, 0.11209726, 0)
+transform = Transform3D(0.59999967, 0, 0, 0, 0.59999967, 0, 0, 0, 0.59999967, 0, 0.2498338, 0)
+visible = false
 shape = SubResource("CylinderShape3D_jhyir")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1301226535]
@@ -78,12 +83,12 @@ anchor_bottom = 0.043518517
 metadata/_edit_use_anchors_ = true
 
 [node name="ActionableFinder" type="Area3D" parent="." unique_id=274848868]
-visible = false
 collision_layer = 16
 collision_mask = 16
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ActionableFinder" unique_id=1250034448]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1808203, 0)
+visible = false
 shape = SubResource("SphereShape3D_htcer")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=186904857]
@@ -97,8 +102,8 @@ mesh = SubResource("SphereMesh_74mp2")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.64465064, 0)
 
 [node name="SpringArm3D" type="SpringArm3D" parent="." unique_id=1095507065]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3279743, 0)
-spring_length = 1.5
+transform = Transform3D(1.0000002, 0, 0, 0, 1.0000002, 0, 0, 0, 1.0000002, 0, 2.0340219, 0)
+spring_length = 2.5
 margin = 0.5
 
 [node name="player camera" type="Camera3D" parent="SpringArm3D" unique_id=343637069 groups=["main_camera"]]

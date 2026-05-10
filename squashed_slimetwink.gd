@@ -22,6 +22,7 @@ func _process(_delta):
 
 func harvest():
 	has_been_harvested = true
+	Globals.slinkLoot = true
 	interact_label.hide() # Hide the text immediately so it doesn't linger
 	
 	var player = get_tree().get_first_node_in_group("player")
