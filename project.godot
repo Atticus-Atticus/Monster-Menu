@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Monster Menu"
-run/main_scene="uid://nhxfs7djtsoi"
+run/main_scene="uid://b7tik7rqfbccg"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://Assets/Sprites/icon.svg"
 
@@ -22,7 +22,6 @@ RestaurantGlobals="*uid://c617fg1rlwguw"
 DialogueManager="*uid://c3rodes2l3gxb"
 InsideFridge="*uid://dv74jl602b3f2"
 Playerdata="*uid://du35vs4fc80i3"
-ID="*uid://kc3oc8jugfh3"
 
 [display]
 

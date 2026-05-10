@@ -1,11 +1,18 @@
 [gd_scene format=3 uid="uid://co0j1h3knvxb8"]
 
 [ext_resource type="Script" uid="uid://8jjl8bvka625" path="res://Scripts/player/player.gd" id="1_xpcdj"]
+[ext_resource type="Texture2D" uid="uid://djs24c5xcwt38" path="res://Assets/Materials/Texture/Diffuse02.png" id="3_0u5uq"]
 [ext_resource type="PackedScene" uid="uid://kie42x1272by" path="res://Scenes/Player/inventory.tscn" id="4_mtuoh"]
 [ext_resource type="PackedScene" uid="uid://cjx1awwrnbasi" path="res://Scenes/Player/Knight_Body.tscn" id="6_dd0ac"]
 [ext_resource type="Script" uid="uid://b7i1ata4bnegy" path="res://Scenes/Player/camershake.gd" id="10_06tpx"]
 [ext_resource type="Script" uid="uid://cbugynpqebhpl" path="res://Scenes/Player/healthbar.gd" id="10_74mp2"]
 [ext_resource type="Texture2D" uid="uid://ypo6ds5scwqa" path="res://Assets/Sprites/HealthUI.png" id="11_oikmp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jlvik"]
+albedo_texture = ExtResource("3_0u5uq")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gk6dx"]
+albedo_texture = ExtResource("3_0u5uq")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hqtel"]
 radius = 1.4853516
@@ -42,8 +49,12 @@ script = ExtResource("1_xpcdj")
 
 [node name="Knight_Body" parent="." unique_id=2020508082 instance=ExtResource("6_dd0ac")]
 
-[node name="Circle" parent="Knight_Body/Armature/Skeleton3D" parent_id_path=PackedInt32Array(2020508082, 710843057) index="0" unique_id=1278544030]
+[node name="Circle" parent="Knight_Body/Armature/Skeleton3D" parent_id_path=PackedInt32Array(2020508082, 154614782) index="0" unique_id=1029987412]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00013135871, 0.0031306744, -0.00088485086)
+surface_material_override/0 = SubResource("StandardMaterial3D_jlvik")
+
+[node name="Circle_001" parent="Knight_Body/Armature/Skeleton3D" parent_id_path=PackedInt32Array(2020508082, 154614782) index="1" unique_id=2120399251]
+surface_material_override/0 = SubResource("StandardMaterial3D_gk6dx")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1401308739]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.27139974, 0)
