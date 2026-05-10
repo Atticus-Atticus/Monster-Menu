@@ -1,7 +1,6 @@
 extends Area2D
 
 @export var Appearance_Frames: AnimatedSprite2D
-@onready var clickLeft = 3
 var dialogueResource = preload("res://Scripts/Restaurant/Dialogues/NPCDialogue_1.dialogue")
 var RanNumGen = RandomNumberGenerator.new()
 var canInteract = false
@@ -44,6 +43,7 @@ func on_click():
 	RestaurantGlobals.orderFulfilled = false
 
 func finishOrder():
+	Globals.decreaseCustomers()
 	$AnimationPlayer.play("FadeOut")
 	await get_tree().create_timer($AnimationPlayer.current_animation_length).timeout
 	get_parent().delaySpawn()

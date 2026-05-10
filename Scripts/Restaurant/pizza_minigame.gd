@@ -11,10 +11,9 @@ var rightInteractable = false
 @onready var cursorOpen = preload("res://Assets/Restaurant Assets/bellow open small.png")
 @onready var cursorClosed = preload("res://Assets/Restaurant Assets/bellow closed small.png")
 
-
 func _ready() -> void:
 	# custom mouse cursor when the minigame is open!
-	Input.set_custom_mouse_cursor(cursorOpen, 0, Vector2(256, 240))
+	Input.set_custom_mouse_cursor(cursorOpen, Input.CursorShape.CURSOR_ARROW, Vector2(60, 60))
 	
 	# starting fire randomiser
 	RanNumGen.randomize()
@@ -40,8 +39,8 @@ func endMinigame():
 	if roundsLeft <= 0:
 		RestaurantGlobals.minigameOpen = false
 		RestaurantGlobals.orderFulfilled = true
-		Globals.resScore += score
-		Globals.tempSlimeballNum -= 2
+		Globals.increaseScore(score)
+		Playerdata.slimeballs_collected -= 2
 		Input.set_custom_mouse_cursor(null)
 		queue_free()
 
@@ -50,27 +49,28 @@ func _random_timeout():
 	
 	var tempInt = RanNumGen.randi_range(0,1)
 	if not (leftInteractable == true and rightInteractable == true):
-		# can switch this up to "if tempInt == 0 and leftInteractble == false" if needed.
 		endMinigame()
 		if tempInt == 0 and leftInteractable == false:
 			leftTimer.start()
-			$AnimationPlayer_Left.play("left_fade_out")
 			leftInteractable = true
+			$AnimationPlayer_Left.play("left_fade_out")
 			roundsLeft -= 1
-		else:
+		if tempInt == 1 and rightInteractable == false:
 			rightTimer.start()
-			$AnimationPlayer_Right.play("right_fade_out")
 			rightInteractable = true
+			$AnimationPlayer_Right.play("right_fade_out")
 			roundsLeft -= 1
 
 func left_timeout():
 	score -= 100
+	print(score)
 	$AnimationPlayer_Left.play("RESET")
 	$Audio/Audio_FireOut.play()
 	leftInteractable = false
 
 func right_timeout():
 	score -= 100
+	print(score)
 	$AnimationPlayer_Right.play("RESET")
 	$Audio/Audio_FireOut.play()
 	rightInteractable = false
