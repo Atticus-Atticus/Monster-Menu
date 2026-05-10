@@ -1,54 +1,98 @@
 extends Enemies
 class_name BossEnemy
 
+@export var next_level_door: Node3D
 @export var phase_2_speed_multiplier := 1.5
 var is_in_phase_2 := false
+var is_falling_event := false
+
+@onready var damage_timer = $DamageTimer #
+@onready var hit_area = $PlayerHitArea #
 
 func _ready():
+	visible = false
+	set_physics_process(false) 
+	
+	if Playerdata.has_signal("trigger_boss_drop"):
+		Playerdata.trigger_boss_drop.connect(_on_boss_spawn_triggered)
+	
+	# Set up your timer
+	damage_timer.timeout.connect(_on_damage_timer_timeout)
+	
 	max_health = 10
 	health = max_health
 	speed = 5
+
+func _physics_process(delta):
+	if is_falling_event:
+		velocity = Vector3(0, -30, 0) 
+		move_and_slide()
+		if is_on_floor():
+			is_falling_event = false
+			trigger_squash_logic()
+		return 
+
+	# FIX FOR BUG 2: Correcting the Sprite Direction
+	# If he's moving left but looking right, we flip the scale.x
+	if velocity.x > 0.1:
+		sprite.flip_h = true # Adjust this to false if he flips the wrong way
+	elif velocity.x < -0.1:
+		sprite.flip_h = false
+
+	super._physics_process(delta)
 	
-	knockback_duration = 0.3
+	# FIX FOR BUG 1: Constant Damage logic
+	# Check if the player is just sitting inside the hit area
+	if awake and hit_area.has_overlapping_bodies():
+		for body in hit_area.get_overlapping_bodies():
+			if body.is_in_group("player") and damage_timer.is_stopped():
+				apply_boss_damage(body)
+				damage_timer.start()
 
-	super._ready()
+func apply_boss_damage(target):
+	if target.has_method("hurt"):
+		target.hurt(1) # Apply 1 heart/hit point
+		print("Boss smacked the player!")
 
-func take_damage(amount: int, knockback_dir := Vector3.ZERO):
-	super.take_damage(amount, knockback_dir)
-	if health <= max_health / 2.0 and not is_in_phase_2:
-		enter_phase_2()
-	if knockback_dir != Vector3.ZERO:
-		var boss_knockback_strength := 15
-		velocity = knockback_dir.normalized() * boss_knockback_strength
+func _on_damage_timer_timeout():
+	# Timer finished, physics_process will trigger damage again if player is still there
+	pass 
 
-func enter_phase_2():
-	is_in_phase_2 = true
-	speed *= phase_2_speed_multiplier
-	print("Boss entered Phase 2! It is moving faster!")
-	$DamageTimer.wait_time = 0.15 
+func _on_boss_spawn_triggered():
+	global_position.y += 20.0 
+	visible = true
+	set_physics_process(true)
+	is_falling_event = true
+	player = get_tree().get_first_node_in_group("player") 
+
+func die():
+	if next_level_door:
+		# Make it visible
+		next_level_door.show() 
+		# Turn its logic and collisions back on so the player can enter it
+		next_level_door.process_mode = Node.PROCESS_MODE_INHERIT
+		
+	# Call the parent class (Enemies) death function so the boss still deletes itself properly
+	super.die()
+
+func trigger_squash_logic():
+	# Impact Shake
+	var cam = get_viewport().get_camera_3d()
+	if cam and cam.has_method("add_shake"):
+		cam.add_shake(1.0)
+
+	await get_tree().create_timer(0.05).timeout 
 	
+	var npc = get_tree().get_first_node_in_group("npc_slimetwink")
+	if npc:
+		npc.hide()
+		npc.process_mode = Node.PROCESS_MODE_DISABLED
 
-
-func _on_vision_area_body_entered(body: Node3D) -> void:
-	if body.is_in_group("player"):
-		player = body
-		awake = true
-
-
-func _on_vision_area_body_exited(body: Node3D) -> void:
-	if body == player:
-		player = null
-		awake = false
-
-func _on_player_hit_area_body_entered(body: Node3D) -> void:
-	if body.is_in_group("player"):
-		player_in_hitbox = true
-		if body.has_method("hurt"): 
-			body.hurt(1)
-		$DamageTimer.start()
-
-
-func _on_player_hit_area_body_exited(body: Node3D) -> void:
-	if body.is_in_group("player"):
-		player_in_hitbox = false
-		$DamageTimer.stop()   # stop continuous damage
+	var squashed = get_tree().get_first_node_in_group("squashed")
+	if squashed:
+		squashed.show()
+		squashed.process_mode = Node.PROCESS_MODE_INHERIT
+	
+	awake = true 
+	has_awakened = true
+	

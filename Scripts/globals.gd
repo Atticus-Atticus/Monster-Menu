@@ -9,7 +9,10 @@ var health: int = 3
 #Restaurant score + money. Shortened bc none of us can spell restrant.
 var resScore: int = 0
 var money: int = 0
-var tempSlimeballNum: int = 5
+var tempSlimeballNum: int:
+	get:
+		return Playerdata.slimeballs_collected if Playerdata else 0
+
 
 var slinkLoot: bool = false
 

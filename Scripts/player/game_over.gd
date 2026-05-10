@@ -1,17 +1,21 @@
 extends CanvasLayer
 
-@onready var minimap = $"../Minimap_UI"
-func _ready() -> void:
+func _ready():
+	# This is a code-based backup for the Inspector setting
+	process_mode = Node.PROCESS_MODE_ALWAYS 
 	self.hide()
 
-func _on_respawn_pressed() -> void:
-	get_tree().paused = false
-	get_tree().reload_current_scene()
-
-func game_over():
-	minimap.hide()
-	get_tree().paused = true
+func game_over() -> void:
 	self.show()
-	Playerdata.reset()
-	Playerdata.inventory_data.reset()
+	get_tree().paused = true
+	# Make sure the mouse actually appears so you can click
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE 
+
+func _on_respawn_pressed() -> void:
+	print("Respawn button clicked!") # Check your Output console for this
+	get_tree().paused = false
 	
+	if Playerdata.has_method("reset"):
+		Playerdata.reset()
+		
+	get_tree().reload_current_scene()

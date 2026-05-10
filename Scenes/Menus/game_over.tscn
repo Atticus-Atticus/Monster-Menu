@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cqb0imqf3quff"]
 
-[ext_resource type="Script" uid="uid://dtes08a6lrlud" path="res://Scenes/Levels/game_over.gd" id="1_jw20l"]
+[ext_resource type="Script" uid="uid://dtes08a6lrlud" path="res://Scripts/player/game_over.gd" id="1_jw20l"]
 
 [sub_resource type="Theme" id="Theme_m0h5h"]
 

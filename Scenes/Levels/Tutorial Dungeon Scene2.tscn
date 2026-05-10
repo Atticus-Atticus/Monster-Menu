@@ -7,8 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://byr7xrulvbgx8" path="res://Assets/Models/Lush Dungeon/Lush-Dungeon-Parts_0.png" id="5_1nb6p"]
 [ext_resource type="Texture2D" uid="uid://dx6ovhlmr7hlh" path="res://Assets/Models/Lush Dungeon/Lush-Dungeon-Parts_3.png" id="5_3uls8"]
 [ext_resource type="Shader" uid="uid://cie75p0nqjovd" path="res://Shaders/WaterShader.gdshader" id="5_ra17v"]
-[ext_resource type="PackedScene" uid="uid://mhe6fu28wwjn" path="res://Scenes/Player/player.tscn" id="6_1nb6p"]
+[ext_resource type="PackedScene" uid="uid://co0j1h3knvxb8" path="res://Scenes/Player/player.tscn" id="6_1nb6p"]
 [ext_resource type="PackedScene" uid="uid://bjvdoydll5ybm" path="res://Scenes/DungeonObjects/Fire.tscn" id="6_1rctj"]
+[ext_resource type="PackedScene" uid="uid://cqb0imqf3quff" path="res://Scenes/Menus/game_over.tscn" id="6_bguqn"]
 [ext_resource type="PackedScene" uid="uid://esof4ffx2x8v" path="res://Scenes/DungeonObjects/Torch.tscn" id="7_3uls8"]
 [ext_resource type="Texture2D" uid="uid://3v4pnbnmx5yb" path="res://Assets/Models/Clutter/GameJam Objects_Barrel.png" id="7_xwekh"]
 [ext_resource type="Texture2D" uid="uid://cp43nlqyplsms" path="res://Assets/Models/Clutter/GameJam Objects_Material.png" id="8_1tkvn"]
@@ -20,6 +21,13 @@
 [ext_resource type="Texture2D" uid="uid://c65yjk2teb5gs" path="res://Assets/Models/Clutter/GameJam Objects_Cylinder Base Color.png" id="14_75hc7"]
 [ext_resource type="Texture2D" uid="uid://dlv6awltcjn2c" path="res://Assets/Models/Clutter/GameJam Objects_Material_8.png" id="15_j8bor"]
 [ext_resource type="Texture2D" uid="uid://cyo1yqufsm0b5" path="res://Assets/Models/Clutter/GameJam Objects_Material_9.png" id="16_eroq4"]
+[ext_resource type="PackedScene" uid="uid://cbb8i8nd8nro3" path="res://Scenes/Enemies/slime_enemy.tscn" id="21_1tkvn"]
+[ext_resource type="PackedScene" uid="uid://dyulg7p3d3632" path="res://Scenes/Player/health_potion.tscn" id="22_h8oyw"]
+[ext_resource type="PackedScene" uid="uid://bog36erxobt4t" path="res://Scenes/slimetwink.tscn" id="23_1e6no"]
+[ext_resource type="PackedScene" uid="uid://ti4gdl0acon5" path="res://squashed_slimetwink.tscn" id="24_3ob7l"]
+[ext_resource type="PackedScene" uid="uid://bxwscthh1bdc3" path="res://Scenes/Enemies/boss_slime.tscn" id="24_cww0g"]
+[ext_resource type="PackedScene" uid="uid://bn8sa3o3fdfpa" path="res://Scenes/Levels/next_level.tscn" id="27_75hc7"]
+[ext_resource type="PackedScene" uid="uid://utjh5wocdp0q" path="res://Scenes/Levels/Restaurant Scene.tscn" id="28_j8bor"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rli08"]
 sky_top_color = Color(0.38039216, 0.38039216, 0.38039216, 1)
@@ -2350,6 +2358,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1, -0.5)
 shape = SubResource("ConcavePolygonShape3D_qrmmj")
 
 [node name="Ground" type="MeshInstance3D" parent="Level/Ground77" unique_id=1246144447]
+transform = Transform3D(0.9999995, 0.0005898224, -0.00079673296, -0.0005925348, 0.999994, -0.0034194489, 0.0007947178, 0.0034199178, 0.99999386, 0, 0, 0)
 mesh = SubResource("ArrayMesh_5q1p8")
 
 [node name="Ground78" type="CollisionShape3D" parent="Level" unique_id=2108060132]
@@ -9426,6 +9435,8 @@ shape = SubResource("ConcavePolygonShape3D_84fpf")
 [node name="TunnelWallCornerOut" type="MeshInstance3D" parent="Level/CollisionShape3D133" unique_id=2099210263]
 material_override = SubResource("StandardMaterial3D_0f6sf")
 mesh = SubResource("ArrayMesh_hhin8")
+
+[node name="GameOver" parent="Level/CollisionShape3D133" unique_id=749302593 groups=["dead"] instance=ExtResource("6_bguqn")]
 
 [node name="CollisionShape3D134" type="CollisionShape3D" parent="Level" unique_id=1878689639]
 transform = Transform3D(8.742277e-08, 0, -1, 0, 1, 0, 1, 0, 8.742277e-08, 68.10294, 1, -42.77941)
@@ -24569,5 +24580,73 @@ shadow_enabled = true
 spot_range = 29.91694
 spot_angle = 27.631275
 
+[node name="Slime enemy" parent="." unique_id=1294842684 instance=ExtResource("21_1tkvn")]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 33.93872, 4.5467587, 8.625184)
+
 [node name="player" parent="." unique_id=1415999693 instance=ExtResource("6_1nb6p")]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0.25607634, 2.1952863, 2.4512925)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -4, 2, 6)
+
+[node name="Slime enemy2" parent="." unique_id=2109864643 instance=ExtResource("21_1tkvn")]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 43.197876, 3.012497, -37.004246)
+
+[node name="Slime enemy3" parent="." unique_id=1440551710 instance=ExtResource("21_1tkvn")]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 45.710796, 2.5033112, -34.469578)
+
+[node name="Slime enemy4" parent="." unique_id=746988993 instance=ExtResource("21_1tkvn")]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, -25.621765, 2.3754315, 25.615284)
+
+[node name="Slime enemy5" parent="." unique_id=678495562 instance=ExtResource("21_1tkvn")]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 5.034877, 3.0125046, -47.96955)
+
+[node name="Slime enemy6" parent="." unique_id=286600217 instance=ExtResource("21_1tkvn")]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 15.388598, 3.0125008, -40.56958)
+
+[node name="HealthPotion" parent="." unique_id=114972891 instance=ExtResource("22_h8oyw")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -50, 1, -26)
+
+[node name="HealthPotion2" parent="." unique_id=1213022604 instance=ExtResource("22_h8oyw")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -46, 1, -25)
+
+[node name="HealthPotion3" parent="." unique_id=1108983839 instance=ExtResource("22_h8oyw")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -50, 1, -19)
+
+[node name="HealthPotion4" parent="." unique_id=1308643864 instance=ExtResource("22_h8oyw")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -45, 1, -20)
+
+[node name="Slimetwink" parent="." unique_id=432569736 groups=["npc_slimetwink"] instance=ExtResource("23_1e6no")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5464416, 1.9948661, 2.52739)
+
+[node name="slinkcam1" type="Camera3D" parent="Slimetwink" unique_id=519234792]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.32002783, 2.0897152, 2.6448336)
+
+[node name="Slimetwink1" parent="." unique_id=1693989250 groups=["npc_slimetwink"] instance=ExtResource("23_1e6no")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.294151, 1.9948623, -83.68223)
+is_first_slimetwink = false
+
+[node name="slinkcam1" type="Camera3D" parent="Slimetwink1" unique_id=141343970]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34553528, 1.791687, 5.4179916)
+
+[node name="Boss Slime" parent="." unique_id=1297845405 node_paths=PackedStringArray("next_level_door") instance=ExtResource("24_cww0g")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 22.555237, 3.807, -83.83796)
+next_level_door = NodePath("../next_level")
+
+[node name="squashed slimetwink" parent="." unique_id=766555285 groups=["squashed"] instance=ExtResource("24_3ob7l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 1, -83)
+visible = false
+
+[node name="Slime enemy7" parent="." unique_id=1299560499 instance=ExtResource("21_1tkvn")]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 78.07171, 3.0124998, -49.698677)
+
+[node name="Slime enemy8" parent="." unique_id=74381931 instance=ExtResource("21_1tkvn")]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 75.26927, 3.0124998, -56.917175)
+
+[node name="Slime enemy9" parent="." unique_id=1663103861 instance=ExtResource("21_1tkvn")]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 82.48638, 3.0125008, -53.919624)
+
+[node name="Slime enemy10" parent="." unique_id=786625888 instance=ExtResource("21_1tkvn")]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, -11.20825, 3.0125008, -70.27319)
+
+[node name="next_level" parent="." unique_id=1446430955 instance=ExtResource("27_75hc7")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 19.519697, 1.5140421, -91.57908)
+visible = false
+next_scene = ExtResource("28_j8bor")
