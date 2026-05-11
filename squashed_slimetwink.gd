@@ -7,7 +7,7 @@ extends Area3D
 
 var player_in_range = false
 var has_been_harvested = false
-var slimeball_amount = 20
+var slimeball_amount = 5
 
 func _ready():
 	hide()

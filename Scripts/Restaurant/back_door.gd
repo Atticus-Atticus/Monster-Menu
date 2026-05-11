@@ -11,8 +11,5 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int):
 		on_click()
 
 func on_click():
-	# leave the kitchen to go to the dungeons
-	Playerdata.health = 5
-	Playerdata.slimeballs_collected = 0
-	RestaurantGlobals.dayFinished = false
-	get_tree().change_scene_to_file("res://Scenes/Menus/Main Menu.tscn")
+	# quit the game
+	get_tree().quit()

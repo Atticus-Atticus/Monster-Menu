@@ -1,5 +1,8 @@
 extends CharacterBody3D
 
+# --- Dialogue ---
+var dialogueResource = preload("res://Dialogue/start_dialogue.dialogue")
+
 # --- Nodes ---
 @onready var cam_origin = $"cam origin" 
 @onready var knight_mesh = $Knight_Body
@@ -40,6 +43,7 @@ var last_safe_position: Vector3
 func _ready() -> void:
 	last_safe_position = global_position
 	DialogueManager.dialogue_ended.connect(func(_res): in_dialogue = false)
+	DialogueManager.show_dialogue_balloon(dialogueResource, "dungeonTutorial")
 
 func _physics_process(delta: float) -> void:
 	if is_dead: return

@@ -34,3 +34,10 @@ Slimetwink: The local slimes are getting totally out of hand. Could you hunt som
 	Slimetwink: ...We don't talk about that. Just get the 10 slimeballs, please.
 	set Playerdata.slimetwink_quest_status = "active"
 	=> END
+	
+~ dungeonTutorial
+Welcome to Monster Menu.
+You need to collect slime balls for your slime pizza restaurant!
+Oh? Who's that?
+Press E to talk to him!
+=> END
