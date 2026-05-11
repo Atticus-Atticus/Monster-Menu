@@ -40,7 +40,7 @@ func endMinigame():
 		RestaurantGlobals.minigameOpen = false
 		RestaurantGlobals.orderFulfilled = true
 		Globals.increaseScore(score)
-		Playerdata.slimeballs_collected -= 2
+		Playerdata.slimeballs_collected -= 3
 		Input.set_custom_mouse_cursor(null)
 		queue_free()
 

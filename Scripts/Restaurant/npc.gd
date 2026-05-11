@@ -17,6 +17,7 @@ func _ready():
 func RandomiseAppearance():
 	RanNumGen.randomize()
 	Appearance = RanNumGen.randi_range(0, 2)
+	print(Appearance)
 	Appearance_Frames.frame = Appearance
 
 func dialogue_end():
@@ -43,10 +44,10 @@ func on_click():
 	RestaurantGlobals.orderFulfilled = false
 
 func finishOrder():
-	Globals.decreaseCustomers()
 	$AnimationPlayer.play("FadeOut")
 	await get_tree().create_timer($AnimationPlayer.current_animation_length).timeout
 	get_parent().delaySpawn()
+	Globals.decreaseCustomers()
 	queue_free()
 
 #Lets player interact ONLY when NPC is centred

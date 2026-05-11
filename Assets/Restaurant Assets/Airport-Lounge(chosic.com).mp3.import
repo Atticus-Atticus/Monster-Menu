@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ddf2si7wb75ir"
+path="res://.godot/imported/Airport-Lounge(chosic.com).mp3-9057776472a8444b9166dfb51afb502c.mp3str"
+
+[deps]
+
+source_file="res://Assets/Restaurant Assets/Airport-Lounge(chosic.com).mp3"
+dest_files=["res://.godot/imported/Airport-Lounge(chosic.com).mp3-9057776472a8444b9166dfb51afb502c.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

@@ -8,6 +8,6 @@ var canCustomerOrder = true
 var orderFulfilled = false
 
 func _ready():
-	Globals.customersLeft = (Playerdata.slimeballs_collected / 2)
+	Globals.customersLeft = (Playerdata.slimeballs_collected / 3)
 	$"../CanvasLayer/Switch_Screens".updateCustomers()
 	DialogueManager.show_example_dialogue_balloon(dialogueResource, "tutorialDialogue")
