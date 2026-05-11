@@ -1,11 +1,11 @@
 extends Node2D
 
-@export var roundsLeft: int = 10
+@export var roundsLeft: int = 5
 @onready var leftTimer = $Area2D_Left/Collision_Left/Left_Timer
 @onready var rightTimer = $Area2D_Right/Collision_Right/Right_Timer
 @onready var randomTimer = $Random_Timer
 var RanNumGen = RandomNumberGenerator.new()
-var score = 1000
+var score = 500
 var leftInteractable = false
 var rightInteractable = false
 @onready var cursorOpen = preload("res://Assets/Restaurant Assets/bellow open small.png")

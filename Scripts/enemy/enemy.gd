@@ -1,7 +1,7 @@
 extends CharacterBody3D
 class_name Enemies
 @export var speed := 3
-@export var max_health := 3
+@export var max_health := 2
 @export var drop_resource: Resource
 @export var pickup_scene: PackedScene
 var health := max_health
